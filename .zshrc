@@ -86,8 +86,9 @@ source $ZSH/oh-my-zsh.sh
 # dotfiles manager
 alias dot="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
-# enable autocompletion on dotfiles manager
+# enable autocompletion on dotfiles manager and aliases
 compdef dot='git'
+compdef g='git'
 setopt complete_aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
