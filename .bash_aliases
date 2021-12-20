@@ -15,6 +15,7 @@ alias asg='. ~/Programming/virtualenvs/sg/bin/activate && cd ~/dev/sglavoie/sgla
 alias c='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias cat="bat"
 alias cl='clear'
+alias cleanZip='_cleanZip(){ zip -d $1 "__MACOSX/*" && zip -d $1 "*/.DS_Store" }; _cleanZip'
 alias diff='diff-so-fancy'
 alias dockerclean='docker stop $(docker ps -qa); docker system prune -a --volumes'
 alias f='fg'
