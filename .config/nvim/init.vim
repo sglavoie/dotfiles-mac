@@ -221,12 +221,12 @@ nnoremap <leader>Q :qall!<CR>
 " Reset edits made in current buffer if file hasn't been saved
 nnoremap <leader>e :e!<CR>
 
-" In order: previous, next, alternate, first, last
-nnoremap <M-1> :bp<CR>
-nnoremap <M-2> :bn<CR>
-nnoremap <M-3> :b#<CR>
-nnoremap <M-4> :bf<CR>
-nnoremap <M-5> :bl<CR>
+" In order: previous, next, alternate, first, last (M-1 to M5)
+nnoremap <char-161> :bp<CR>
+nnoremap <char-8482> :bn<CR>
+nnoremap <char-163> :b#<CR>
+nnoremap <char-162> :bf<CR>
+nnoremap <char-8734> :bl<CR>
 
 " Change working directory to currently opened file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -301,13 +301,13 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" Adjust size of current window vertically
-map <M-k> <C-w>+
-map <M-j> <C-w>-
+" Adjust size of current window vertically (M-k, M-j)
+map <char-730> <C-w>+
+map <char-8710> <C-w>-
 
-" Adjust size of current window horizontally
-map <M-l> <C-w>>
-map <M-h> <C-w><
+" Adjust size of current window horizontally (M-l, M-h)
+map <char-172> <C-w>>
+map <char-729> <C-w><
 
 " Moves more easily with long lines that wrap without compromising default
 " hjkl behavior
@@ -364,20 +364,21 @@ nnoremap <leader>Lf :set spelllang=fr<CR>
 " Toggle spelling
 nnoremap <leader>LL :set spell!<CR>
 
-" Go to previous/next spelling error
-nnoremap <M-S-s> [s
-nnoremap <M-s> ]s
+" Go to previous/next spelling error (M-S-s, M-s)
+nnoremap <char-205> [s
+nnoremap <char-223> ]s
 """" }}}
 
 """" TERMINAL SPECIFIC {{{
 " Exit from terminal buffer (Neovim) more easily (remaps Esc key in terminal)
 tnoremap <C-[> <C-\><C-n>
 
-" Open terminal buffer (Neovim) in new tab in insert mode
-nnoremap <M-t> :tabnew<CR>:te<CR>i
+" Open terminal buffer (Neovim) in new tab in insert mode (M-t)
+nnoremap <char-8224> :tabnew<CR>:te<CR>i
 
 " Switch to terminal buffer automatically (when only one terminal is open)
-nnoremap <M-0> :b term://<CR>
+" (M-0)
+nnoremap <char-186> :b term://<CR>
 
 tnoremap <C-j><C-k> <C-\><C-N>
 tnoremap <C-h> <C-\><C-N><C-w>h
