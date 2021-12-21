@@ -38,6 +38,10 @@ alias sysupdate='sudo apt update && sudo apt dist-upgrade -y && sudo snap refres
 alias t='tmux'
 alias www='python3 -m http.server'
 
+# x86_64 support
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias python3.7='/usr/local/opt/python@3.7/bin/python3.7'
+
 # confirmation
 alias ln='ln -i'
 
