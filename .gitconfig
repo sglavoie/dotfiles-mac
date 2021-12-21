@@ -15,31 +15,48 @@
     can = commit --amend --no-edit
     ch = checkout
     d = diff
-    difflast = diff --cached HEAD^
     ds = diff --staged
-    l = log
-    last = l -1 HEAD
-    lg = l --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    ln = l --name-only
-    logda = l --oneline --decorate --graph --all
-    ls = l --stat
     po = push origin
-    pof = push origin --force
     pos = push --set-upstream origin main
     rc = rebase --continue
     ri = rebase -i
     rl = reflog
-    s = status --short
     sh = show
-    sl = shortlog
+    s = status --short
     st = status
+    sw = switch
     t = tag
-    undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
     unstage = reset HEAD --
-    vdiff = difftool --tool=
-    hs = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d %Creset%s' --date=relative --date-order --gaph
+
+    ; show changes since last commit
+    difflast = diff --cached HEAD^
+
+    ; show last commit
+    last = l -1 HEAD
+
+    ; undo last commit
+    undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+
+    l = log
+
+    ; short log
+    sl = shortlog
+
+    ; log graph
+    lg = l --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+    ; log name
+    ln = l --name-only
+
+    ; log decorate all
+    logda = l --oneline --decorate --graph --all
+
+    ; log stat
+    ls = l --stat
+
+    ; log pretty
+    lp = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d %Creset%s' --date=relative --date-order --graph
 [core]
-    ; editor = code --wait
     editor = nvim
     excludesfile = ~/.gitignore
     pager = diff-so-fancy | less --tabs=4 -RFX
@@ -48,10 +65,6 @@
     template = ~/.gitmessage
 [mergetool "nvim"]
     cmd = nvim $MERGED
-; [difftool "nvim"]
-;     cmd = nvim --diff $LOCAL $REMOTE
-; [mergetool "vscode"]
-;     cmd = code --wait $MERGED
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
 [mergetool]
