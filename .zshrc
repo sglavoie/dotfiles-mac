@@ -1,5 +1,7 @@
 # NOTE: Some commands need to be adjusted (coming from Linux dotfiles)
 
+export LANG=en_US.UTF-8
+
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
