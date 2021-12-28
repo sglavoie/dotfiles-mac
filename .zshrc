@@ -85,11 +85,8 @@ plugins=(git ssh-agent fzf gitignore docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
-# dotfiles manager
-alias dot="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
-
 # enable autocompletion on dotfiles manager and aliases
-compdef dot='git'
+compdef c='git'
 compdef g='git'
 setopt complete_aliases
 
