@@ -81,7 +81,7 @@ alias pipupgrade="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d 
 alias pipupdateall="pip install -U \$(pip freeze | awk '{split(\$0, a, \"==\"); print a[1]}')"
 alias pylint='/usr/bin/env python =pylint'
 alias pythonlines='find . -name \*.py | xargs wc -l'
-alias pyclean='find . -regex ".*\(__pycache__\|\.py[co]\)" -delete'
+alias pyclean='find . -name "*.py[co]" -or -name "__pycache__" -exec rm -rf -- {} +'
 
 # Ignore specific files/directories in Dropbox
 dropbox-ignore(){
