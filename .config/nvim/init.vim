@@ -88,8 +88,6 @@ set shortmess+=I  " Disable default startup message
 set smartcase  " Match uppercase in search if used in pattern, else, no
 set softtabstop=4  " Number of spaces to insert when TAB is pressed
 set spell  " enable spell checking by default
-set spellfile=~/.config/nvim/spell/en.utf-8.add
-set spelllang=en,es,fr  " Set automatic spell checking for those languages
 set splitbelow  " Put new window below current one when splitting
 set splitright  " Put new window to the right of the current one when splitting
 set tabstop=4  " Ideally, same value as 'shiftwidth'
@@ -355,11 +353,6 @@ function! s:fixLineSpellError()
 endfunction
 
 inoremap <F10> <c-g>u<Esc>:call <sid>fixLineSpellError()<cr>`]a<c-g>u
-
-" Set language for spelling
-nnoremap <leader>Ls :set spelllang=es<CR>
-nnoremap <leader>Le :set spelllang=en<CR>
-nnoremap <leader>Lf :set spelllang=fr<CR>
 
 " Toggle spelling
 nnoremap <leader>LL :set spell!<CR>
