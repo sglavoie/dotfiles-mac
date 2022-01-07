@@ -13,5 +13,6 @@
 /Users/sglavoie/Programming/virtualenvs
 /Users/sglavoie/opt
 node_modules
+report_*.csv.gz
 reports_*.tar
 
