@@ -42,17 +42,17 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '20%'})
 " Git files
 map <C-p> :GFiles!<CR>
 
-" Git files with modified status
-map <C-M-p> :GFiles!?<CR>
+" Git files with modified status (M-p)
+map <char-960> :GFiles!?<CR>
 
-" Make use of FZF command instead of CtrlP Ð All files
-map <M-S-p> :Files!<CR>
+" Make use of FZF command instead of CtrlP for all files (M-S-p)
+map <char-8719> :Files!<CR>
 
-" All lines in loaded buffers
-map <M-S-l> :Lines!<CR>
+" All lines in opened buffers (M-S-l)
+map <char-210> :Lines!<CR>
 
-" All lines in current buffer
-map <C-M-l> :BLines!<CR>
+" All lines in current buffer (M-l)
+map <char-172> :BLines!<CR>
 
 " All tags in loaded buffers
 nnoremap <leader>T :Tags!<CR>
