@@ -3,6 +3,11 @@
 """ PLUGINS {{{
 call plug#begin($HOME . '/.local/share/nvim/plugged')
 
+"""" Code completion, Intellisense engine {{{
+" Intellisense engine
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+"""" }}}
+
 """" Moving/editing around {{{
 " Comment text
 Plug 'tpope/vim-commentary'
@@ -28,6 +33,9 @@ Plug 'vimwiki/vimwiki'
 """" }}}
 
 """" Useful features {{{
+" Better syntax-highlighting for filetypes in vim
+Plug 'sheerun/vim-polyglot'
+
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': $HOME . '/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
