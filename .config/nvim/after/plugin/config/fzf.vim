@@ -2,7 +2,7 @@
 let g:fzf_preview_window = ['up:50%', 'ctrl-/']
 
 " [Tags] Command to generate tags file
-let g:fzf_tags_command = 'ctags -R'
+let g:fzf_tags_command = 'ctags -R --exclude=".venv" --exclude="*zulu*"'
 
 " Allows FZF to ignore patterns in .gitignore
 let $FZF_DEFAULT_OPTS = "--bind ctrl-b:preview-up --bind ctrl-f:preview-down"

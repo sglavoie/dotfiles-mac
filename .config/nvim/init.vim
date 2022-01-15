@@ -91,6 +91,7 @@ set spell  " enable spell checking by default
 set splitbelow  " Put new window below current one when splitting
 set splitright  " Put new window to the right of the current one when splitting
 set tabstop=4  " Ideally, same value as 'shiftwidth'
+set tags=tags  " The filename for the tags
 set termguicolors  " Make colors look better in terminal
 set textwidth=0  " Number of characters in a line (0 = no limit)
 set wildignore+=*.pyc,*.db,*__pycache__*,*.png,*.jpg,*.jpeg,*.pdf
