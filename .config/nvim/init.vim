@@ -309,13 +309,14 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" Adjust size of current window vertically (M-k, M-j)
-map <char-730> <C-w>+
-map <char-8710> <C-w>-
+" Adjust size of current window vertically (M--, M-+: tmux uses M-HJKL to move
+" between panes)
+map <char-8800> <C-w>+
+map <char-8211> <C-w>-
 
-" Adjust size of current window horizontally (M-l, M-h)
-map <char-172> <C-w>>
-map <char-729> <C-w><
+" Adjust size of current window horizontally (M-S--, M-S-+)
+map <char-177> <C-w>>
+map <char-8212> <C-w><
 
 " Moves more easily with long lines that wrap without compromising default
 " hjkl behavior
