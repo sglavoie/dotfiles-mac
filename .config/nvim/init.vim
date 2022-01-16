@@ -25,7 +25,6 @@ Plug 'mattn/emmet-vim'
 """" Design & appearance {{{
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
-Plug 'tomasr/molokai'
 """" }}}
 
 """" Note-taking {{{
@@ -61,7 +60,7 @@ call plug#end()
 """ }}}
 
 """" APPEARANCE {{{
-colorscheme molokai
+colorscheme gruvbox
 set background=dark
 """" }}}
 
