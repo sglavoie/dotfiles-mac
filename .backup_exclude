@@ -3,6 +3,7 @@
 /Users/sglavoie/.Trash
 /Users/sglavoie/.cache
 /Users/sglavoie/.npm/_cacache
+/Users/sglavoie/.vscode/extensions
 /Users/sglavoie/Applications
 /Users/sglavoie/Applications (Parallels)
 /Users/sglavoie/Downloads
@@ -12,8 +13,8 @@
 /Users/sglavoie/Parallels
 /Users/sglavoie/Programming/virtualenvs
 /Users/sglavoie/dev/**/minio/
-/Users/sglavoie/opt
 /Users/sglavoie/ignore
+/Users/sglavoie/opt
 node_modules
 report_*.csv.gz
 reports_*.tar
