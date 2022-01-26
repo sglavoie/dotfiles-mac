@@ -1,4 +1,6 @@
+__pycache__/
 *.cq4
+*.pyc
 .venv
 /Users/sglavoie/.Trash
 /Users/sglavoie/.cache
