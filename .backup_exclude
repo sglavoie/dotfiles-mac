@@ -1,4 +1,3 @@
-__pycache__/
 *.cq4
 *.pyc
 .venv
@@ -17,7 +16,9 @@ __pycache__/
 /Users/sglavoie/dev/**/minio/
 /Users/sglavoie/ignore
 /Users/sglavoie/opt
+__pycache__/
 node_modules
 report_*.csv.gz
 reports_*.tar
+vifm/Trash
 
