@@ -1,6 +1,7 @@
 # NOTE: Some commands need to be adjusted (coming from Linux dotfiles)
 
 export LANG=en_US.UTF-8
+export CLOUDSDK_PYTHON=/usr/local/opt/python@3.7/bin/python3.7
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
