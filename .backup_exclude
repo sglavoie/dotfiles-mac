@@ -1,5 +1,6 @@
 *.cq4
 *.pyc
+.DS_Store
 .venv
 /Users/sglavoie/.Trash
 /Users/sglavoie/.cache
