@@ -27,10 +27,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 """" }}}
 
-"""" Note-taking {{{
-Plug 'vimwiki/vimwiki'
-"""" }}}
-
 """" Useful features {{{
 " Better syntax-highlighting for filetypes in vim
 Plug 'sheerun/vim-polyglot'
@@ -256,7 +252,7 @@ vnoremap J :m '>+1<CR>gv=gv
 noremap <F5> :%s/\s\+$//<CR>:echo 'all whitespace removed.'<CR>
 
 " Python: format current file with Black
-nnoremap <F7> :!black -l 79 %<CR>
+nnoremap <F7> :!black -l 89 %<CR>
 """" }}}
 
 """" FUNCTIONS {{{
@@ -391,32 +387,6 @@ tnoremap <C-l> <C-\><C-N><C-w>l
 
 " Save file and regenerate ctags
 nnoremap <leader>W :w<CR>:MakeTags<CR>:echo 'ctags have been updated.'<CR>
-"""" }}}
-
-"""" VIMWIKI {{{
-" 'a' for 'All' (regenerate all HTML pages in wiki)
-nnoremap <Leader>wa :VimwikiAll2HTML<CR>
-
-" 'b' for 'reBuild' ('r' is for renaming wiki page)
-nnoremap <Leader>wb :VimwikiRebuildTags<CR>
-
-" 'c' for 'Content' (stands for "table of Content". 't' as in already Taken)
-nnoremap <Leader>wc :VimwikiTOC<CR>
-
-" 'f' for 'Find' ('s' is for selecting wiki)
-nnoremap <Leader>wf :VimwikiSearchTags<space>
-
-" 'g' for 'Generate'
-nnoremap <Leader>wg :VimwikiGenerateTagLinks<CR>
-
-" 'v' for 'View' (view page in browser)
-nnoremap <Leader>wv :Vimwiki2HTMLBrowse<CR>
-
-" Registered Wikis
-let g:vimwiki_list = [
-  \ {'name': 'personal', 'path': '~/Dropbox/notes/personal', 'path_html': '~/Dropbox/notes/work/'},
-  \ {'name': 'uol', 'path': '~/Dropbox/notes/uol', 'path_html': '~/Dropbox/notes/uol/html/'},
-  \ {'name': 'work', 'path': '~/Dropbox/notes/work/', 'path_html': '~/Dropbox/notes/work/html/'}]
 """" }}}
 
 """" DIFF WINDOWS {{{
