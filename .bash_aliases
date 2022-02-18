@@ -2,6 +2,7 @@
 # to be temporarily broken.
 
 # Shortcuts
+alias alert="afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/KBVONotSynched.aiff"
 alias allextensions="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
 alias articlesbycategories="pushd > /dev/null; \
     cd ~/dev/sglavoie/sglavoie.github.io-source/content; \
