@@ -13,7 +13,7 @@ export CLOUDSDK_PYTHON=/usr/local/opt/python@3.7/bin/python3.7
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/dev/git-scripts:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="$HOME/dev/git-scripts:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$HOME/.poetry/bin:$PATH"
 
 # Set default editor to use
 export EDITOR='nvim'
