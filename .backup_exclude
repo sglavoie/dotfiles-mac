@@ -1,7 +1,10 @@
 *.cq4
 *.pyc
 .DS_Store
-.venv
+.config/gcloud/logs
+.dropbox/
+.npm/
+.venv/
 /Users/sglavoie/.Trash
 /Users/sglavoie/.cache
 /Users/sglavoie/.npm/_cacache
@@ -22,4 +25,3 @@ node_modules
 report_*.csv.gz
 reports_*.tar
 vifm/Trash
-
