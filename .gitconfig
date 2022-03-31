@@ -35,7 +35,8 @@
     last = l -1 HEAD
 
     ; undo last commit
-    undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+    undo = "!f() { git reset --hard $(git rev-parse \
+--abbrev-ref HEAD)@{${1-1}}; }; f"
 
     l = log
 
@@ -43,7 +44,8 @@
     sl = shortlog
 
     ; log graph
-    lg = l --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = l --color --graph --pretty=format:'%Cred%h%Creset \
+-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
     ; log name
     ln = l --name-only
@@ -55,7 +57,8 @@
     ls = l --stat
 
     ; log pretty
-    lp = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d %Creset%s' --date=relative --date-order --graph
+    lp = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d \
+%Creset%s' --date=relative --date-order --graph
 [core]
     editor = nvim
     excludesfile = ~/.gitignore
