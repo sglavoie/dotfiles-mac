@@ -21,6 +21,7 @@
 /Users/sglavoie/ignore
 /Users/sglavoie/opt
 __pycache__/
+google-cloud-sdk/
 node_modules
 report_*.csv.gz
 reports_*.tar
