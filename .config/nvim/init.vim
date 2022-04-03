@@ -3,11 +3,6 @@
 """ PLUGINS {{{
 call plug#begin($HOME . '/.local/share/nvim/plugged')
 
-"""" Code completion, Intellisense engine {{{
-" Intellisense engine
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-"""" }}}
-
 """" Moving/editing around {{{
 " Comment text
 Plug 'tpope/vim-commentary'
