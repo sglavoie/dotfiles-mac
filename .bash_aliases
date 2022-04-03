@@ -24,7 +24,7 @@ alias dockerclean='docker stop $(docker ps -qa); docker system prune -a --volume
 alias f='fg'
 alias g='git'
 alias gal='git addlearning'
-alias gitaliases='git config -l | grep alias | sed "s/^alias\.//g"'
+alias gitaliases='git config -l | grep alias | sed "s/^alias\.//g" | sed "s/=/Ω/" | column -t -s "Ω"'
 alias h='history'
 alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
 alias j='jobs -l'
