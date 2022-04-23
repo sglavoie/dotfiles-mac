@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
 # NOTE: Some commands need to be adjusted (coming from Linux dotfiles)
 
 export LANG=en_US.UTF-8
@@ -141,6 +139,3 @@ export MCFLY_KEY_SCHEME=vim
 export MCFLY_FUZZY=2
 export MCFLY_RESULTS=50
 eval "$(mcfly init zsh)"
-
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
