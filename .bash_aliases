@@ -68,6 +68,7 @@ alias fgrep='fgrep --color=auto'
 alias cdchallenges='cd ~/dev/sglavoie/programming-challenges'
 
 # Python related
+alias alearning='source ~/Programming/virtualenvs/alearning/bin/activate'
 alias ap='source .venv/bin/activate'
 alias avenv='source venv/bin/activate'
 alias cleanhistory='python \
