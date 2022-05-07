@@ -1,7 +1,18 @@
 " NEOVIM CONFIGURATION FILE
+" Bits copied from https://github.com/ankush/dotfiles/blob/master/.config/nvim/init.vim
 
 """ PLUGINS {{{
 call plug#begin($HOME . '/.local/share/nvim/plugged')
+
+""" IntelliSense {{{
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/lsp_signature.nvim'
+""" }}}
 
 """" Moving/editing around {{{
 " Comment text
@@ -13,13 +24,16 @@ Plug 'tpope/vim-surround'
 " Allow repeating of custom commands like surround
 Plug 'tpope/vim-repeat'
 
-" Emmet support
+" HTML/CSS/JS
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'prettier/vim-prettier'
 Plug 'mattn/emmet-vim'
 """" }}}
 
 """" Design & appearance {{{
-Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'akinsho/nvim-bufferline.lua'
 """" }}}
 
 """" Useful features {{{
@@ -38,7 +52,7 @@ Plug 'vifm/vifm.vim'
 """" }}}
 
 """" Git related {{{
-" Git wrapper
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'tpope/vim-fugitive'
 " }}}
 
@@ -389,4 +403,7 @@ vnoremap <Leader>dg :diffget<CR>
 vnoremap <Leader>dp :diffput<CR>
 """" }}}
 """ }}}
+
+" Initialize lua stuff in lua init file
+luafile $HOME/.config/nvim/luainit.lua
 " vim:fdm=marker
