@@ -45,7 +45,7 @@ map <C-p> :GFiles!<CR>
 " Git files with modified status (M-p)
 map <char-960> :GFiles!?<CR>
 
-" Make use of FZF command instead of CtrlP for all files (M-S-p)
+" Search all files with FZF (M-S-p)
 map <char-8719> :Files!<CR>
 
 " All lines in opened buffers (M-S-l)
