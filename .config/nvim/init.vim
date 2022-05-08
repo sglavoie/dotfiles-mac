@@ -169,11 +169,22 @@ augroup autoquickfix
     autocmd QuickFixCmdPost [^l]* cwindow
     autocmd QuickFixCmdPost    l* lwindow
 augroup END
+
+if has("autocmd")
+ " Highlight TODO, FIXME, NOTE, etc.
+ if v:version > 701
+ autocmd Syntax * call matchadd('Todo', '\W\zs\(TODO\|FIXME\|BUG\|HACK\)')
+ autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
+ endif
+endif
 """ }}}
 
 """ CUSTOM COMMANDS {{{
 " 'MakeTags' command to generate ctags in project
 command! MakeTags !ctags -R .
+
+command Todo Ack! TODO|FIXME|BUG|HACK
+command Debug Ack! NOTE|INFO|IDEA
 """ }}}
 
 """ KEYBINDINGS {{{
@@ -200,6 +211,10 @@ inoremap ? ?<c-g>u
 
 " Toggle display of line numbers
 nnoremap <F4> :set number! relativenumber!<CR>
+
+" Bindings to display all TODO/FIXME/etc. messages
+nnoremap <F2> :Todo<CR>
+nnoremap <F3> :Debug<CR>
 
 " Avoid entering 'Ex' mode
 nmap Q <Nop>
