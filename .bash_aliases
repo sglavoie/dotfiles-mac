@@ -28,8 +28,9 @@ alias gitaliases='git config -l | grep alias | sed "s/^alias\.//g" | sed "s/=/Ω
 alias h='history'
 alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
 alias j='jobs -l'
+alias k='~/.local/bin/tmux-projects-kill.sh'
 alias n='nvim'
-alias o='xdg-open'
+alias o='~/.local/bin/tmux-sessionizer.sh'
 alias p='python3'
 alias q='exit'
 alias re='tput reset'
