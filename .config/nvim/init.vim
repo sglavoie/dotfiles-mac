@@ -31,9 +31,9 @@ Plug 'mattn/emmet-vim'
 """" }}}
 
 """" Design & appearance {{{
-Plug 'morhetz/gruvbox'
-Plug 'hoob3rt/lualine.nvim'
 Plug 'akinsho/nvim-bufferline.lua'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'morhetz/gruvbox'
 """" }}}
 
 """" Useful features {{{
@@ -93,11 +93,13 @@ set list listchars=tab:>_,trail:-,nbsp:+
 set nojoinspaces  " Use one space, not two, after punctuation
 set noswapfile  " Don't use a swapfile for the buffer
 set nrformats=  " <C-a>/<C-x> with leading zeros → decimal instead of octal
+set number  " Show line number
 set path=$PWD/**  " Allows to search recursively for files with pattern matching (e.g. :find)
+set relativenumber  " Show relative line number
 set scrolloff=0  " Leave X lines above or below the current line, except if set to 0
 set shiftwidth=4  " Number of spaces for indents
-set shortmess+=c  " Don't pass messages to ins-completion-menu
 set shortmess+=I  " Disable default startup message
+set shortmess+=c  " Don't pass messages to ins-completion-menu
 set smartcase  " Match uppercase in search if used in pattern, else, no
 set softtabstop=4  " Number of spaces to insert when TAB is pressed
 set spell  " enable spell checking by default
@@ -172,13 +174,6 @@ augroup END
 """ CUSTOM COMMANDS {{{
 " 'MakeTags' command to generate ctags in project
 command! MakeTags !ctags -R .
-
-" Sort Vimwiki links in visual mode
-command! SortVimwikiLinks norm :sort /^.*\|/<CR>
-
-" Format an URL slug appropriately by converting to lowercase, removing spaces
-" and replacing them by hyphens
-command! MakeSlug norm gg:t3cwSlugkjf wgu$v$:s/ /-/gf-r 0
 """ }}}
 
 """ KEYBINDINGS {{{
