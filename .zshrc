@@ -1,5 +1,9 @@
 # NOTE: Some commands need to be adjusted (coming from Linux dotfiles)
 
+# When no regex match found, execute the command anyways
+# e.g. `git show HEAD^` <- caret finds no match, just run the command
+unsetopt nomatch
+
 export LANG=en_US.UTF-8
 export CLOUDSDK_PYTHON=/usr/local/opt/python@3.7/bin/python3.7
 
@@ -89,7 +93,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode ssh-agent fzf gitignore docker docker-compose)
+plugins=(git ssh-agent fzf gitignore docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
