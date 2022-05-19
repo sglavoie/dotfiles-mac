@@ -87,6 +87,9 @@ alias pylint='/usr/bin/env python =pylint'
 alias pythonlines='find . -name \*.py | xargs wc -l'
 alias pyclean='find . -name "*.py[co]" -or -name "__pycache__" -exec rm -rf -- {} +'
 
+# macOS related
+alias rmmac_garbage='find . -type f -name ".DS_Store" -delete && find . -type d -name "__MACOSX" -delete'
+
 # Ignore specific files/directories in Dropbox
 dropbox-ignore(){
 arg1=$1
