@@ -4,16 +4,6 @@
 """ PLUGINS {{{
 call plug#begin($HOME . '/.local/share/nvim/plugged')
 
-""" IntelliSense {{{
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'neovim/nvim-lspconfig'
-Plug 'ray-x/lsp_signature.nvim'
-""" }}}
-
 """" Moving/editing around {{{
 " Comment text
 Plug 'tpope/vim-commentary'
