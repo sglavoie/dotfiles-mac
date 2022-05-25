@@ -50,7 +50,9 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 
 # Read external environment variables
-source ~/Dropbox/.custom/zsh/environ.variables
+if [[ -r "~/Dropbox/.custom/zsh/environ.variables" ]]; then
+    source ~/Dropbox/.custom/zsh/environ.variables
+fi
 
 bindkey '^x^x' edit-command-line  # Open default editor
 
