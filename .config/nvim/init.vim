@@ -56,7 +56,7 @@ call plug#end()
 
 """" APPEARANCE {{{
 colorscheme gruvbox
-set background=dark
+set background=light
 """" }}}
 
 """" VIM FEATURES {{{
