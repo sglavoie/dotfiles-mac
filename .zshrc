@@ -34,8 +34,12 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export GPG_TTY=$(tty)
 
 # History in cache directory:
-HISTSIZE=50000
-SAVEHIST=50000
+HISTFILE=$HOME/.zshistory
+HISTSIZE=500000
+SAVEHIST=500000
+setopt appendhistory
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
