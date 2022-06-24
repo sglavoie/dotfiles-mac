@@ -86,6 +86,7 @@
     whitespace = red reverse
 [push]
     recurseSubmodules = on-demand
+	default = current
 [gpg]
     program = /opt/homebrew/bin/gpg
 [filter "lfs"]
