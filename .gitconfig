@@ -24,6 +24,8 @@
     sh = show
     s = status --short
     st = status
+    ; Save changes as a stash and leave them in the working tree
+    stash-keep = "!git stash --include-untracked && git stash apply"
     sw = switch
     t = tag
     unstage = reset HEAD --
