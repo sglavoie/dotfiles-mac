@@ -6,6 +6,7 @@
 .npm/
 .venv/
 /Users/sglavoie/.Trash
+/Users/sglavoie/.android/
 /Users/sglavoie/.cache
 /Users/sglavoie/.npm/_cacache
 /Users/sglavoie/.vscode/extensions
@@ -26,3 +27,4 @@ node_modules
 report_*.csv.gz
 reports_*.tar
 vifm/Trash
+
