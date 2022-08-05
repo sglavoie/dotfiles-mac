@@ -36,7 +36,6 @@ alias p='python3'
 alias q='exit'
 alias re='tput reset'
 alias reboot='sudo reboot'
-alias sgl='cd ~/dev/sglavoie/sglavoie.github.io-source && . ~/Programming/virtualenvs/sg/bin/activate && n content/pages/learning-progress.md'
 alias shutdown='sudo shutdown'
 alias sysupdate='sudo apt update && sudo apt dist-upgrade -y && sudo snap refresh && sudo apt autoremove -y && sudo apt clean'
 alias t='tmux'
@@ -81,7 +80,6 @@ alias cpsglavoie='cp -rf \
     cd ~/dev/sglavoie/sglavoie.github.io && git add .'
 alias da='deactivate'
 alias jl='jupyter-lab &'
-alias learning-logs='~/dev/sglavoie/dev-helpers/learning-logs-to-markdown/.venv/bin/python3 ~/dev/sglavoie/dev-helpers/learning-logs-to-markdown/get_learning_logs.py'
 alias pipupgrade="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias pipupdateall="pip install -U \$(pip freeze | awk '{split(\$0, a, \"==\"); print a[1]}')"
 alias pylint='/usr/bin/env python =pylint'
