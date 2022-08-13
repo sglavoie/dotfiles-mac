@@ -5,14 +5,13 @@
 alias alert="afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/KBVONotSynched.aiff"
 alias allextensions="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
 alias articlesbycategories="pushd > /dev/null; \
-    cd ~/dev/sglavoie/sglavoie.github.io-source/content; \
+    cd ~/dev/sglavoie/sglavoie.github.io/content; \
     find . -type f -name '*.md' ! -wholename '*/pages*' | cut -d/ -f2 \
     | sort | uniq -c | sort -n; popd > /dev/null"
 alias articlesnum="pushd > /dev/null; \
-    cd ~/dev/sglavoie/sglavoie.github.io-source/content; \
+    cd ~/dev/sglavoie/sglavoie.github.io/content; \
     find . -name '*.md' | cut -d '/' -f3 | grep -E '^\d.*' \
     | sort | tail -1; popd > /dev/null"
-alias asg='. ~/Programming/virtualenvs/sg/bin/activate && cd ~/dev/sglavoie/sglavoie.github.io-source'
 alias b='python3 ~/dev/sglavoie/dev-helpers/rsync_backup/rsync_backup.py'
 alias c='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias cat="bat"
@@ -65,19 +64,12 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-# Code challenges paths
-alias cdchallenges='cd ~/dev/sglavoie/programming-challenges'
-
 # Python related
 alias alearning='source ~/Programming/virtualenvs/alearning/bin/activate'
 alias ap='source .venv/bin/activate'
 alias avenv='source venv/bin/activate'
 alias cleanhistory='python \
     ~/dev/sglavoie/dev-helpers/zsh_history_cleaner/zsh_history_cleaner.py'
-alias cpsglavoie='cp -rf \
-    ~/dev/sglavoie/sglavoie.github.io-source/output/* \
-    ~/dev/sglavoie/sglavoie.github.io/ && \
-    cd ~/dev/sglavoie/sglavoie.github.io && git add .'
 alias da='deactivate'
 alias jl='jupyter-lab &'
 alias pipupgrade="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
