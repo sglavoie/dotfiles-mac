@@ -28,7 +28,6 @@ alias h='history'
 alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
 alias j='jobs -l'
 alias k='~/.local/bin/tmux-projects-kill.sh'
-alias lv='lvim'
 alias n='nvim'
 alias o='~/.local/bin/tmux-sessionizer.sh'
 alias p='python3'
