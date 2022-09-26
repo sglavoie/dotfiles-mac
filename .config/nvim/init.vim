@@ -23,7 +23,6 @@ Plug 'mattn/emmet-vim'
 """" Design & appearance {{{
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'hoob3rt/lualine.nvim'
-Plug 'morhetz/gruvbox'
 """" }}}
 
 """" Useful features {{{
@@ -53,11 +52,6 @@ Plug 'wincent/ferret'
 
 call plug#end()
 """ }}}
-
-"""" APPEARANCE {{{
-colorscheme gruvbox
-set background=light
-"""" }}}
 
 """" VIM FEATURES {{{
 filetype plugin on
