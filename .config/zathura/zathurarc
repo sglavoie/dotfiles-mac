@@ -1,0 +1,25 @@
+set selection-clipboard clipboard
+set window-height 3000
+set window-width 3000
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+# Remove options at the bottom (toggle with Ctrl+n)
+set guioptions ""
+
+# Set font to use for table of contents and other GUI options
+set font "iosevka 20"
+
+# Make inverse colors look better by keeping color hue
+set recolor-reverse-video "true"
+set recolor-keephue "true"
+
+# Allow to open links in web browser without issue
+set sandbox none
+
+set highlight-color "#E6FF5D"
+set highlight-active-color "#FFE800"
