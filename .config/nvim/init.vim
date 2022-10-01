@@ -1,5 +1,4 @@
 " NEOVIM CONFIGURATION FILE
-" Bits copied from https://github.com/ankush/dotfiles/blob/master/.config/nvim/init.vim
 
 """ PLUGINS {{{
 call plug#begin($HOME . '/.local/share/nvim/plugged')
@@ -10,25 +9,9 @@ Plug 'tpope/vim-commentary'
 
 " Surround text with something
 Plug 'tpope/vim-surround'
-
-" Allow repeating of custom commands like surround
-Plug 'tpope/vim-repeat'
-
-" HTML/CSS/JS
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'prettier/vim-prettier'
-Plug 'mattn/emmet-vim'
-"""" }}}
-
-"""" Design & appearance {{{
-Plug 'akinsho/nvim-bufferline.lua'
-Plug 'hoob3rt/lualine.nvim'
 """" }}}
 
 """" Useful features {{{
-" Better syntax-highlighting for filetypes in vim
-Plug 'sheerun/vim-polyglot'
-
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': $HOME . '/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -39,16 +22,6 @@ Plug 'machakann/vim-highlightedyank'
 " File manager, Vifm
 Plug 'vifm/vifm.vim'
 """" }}}
-
-"""" Git related {{{
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'tpope/vim-fugitive'
-" }}}
-
-"""" Search {{{
-" Multifile replace
-Plug 'wincent/ferret'
-" }}}
 
 call plug#end()
 """ }}}
@@ -68,7 +41,6 @@ set foldlevel=9  " Enable folding of blocks of code
 set foldmethod=indent  " Fold based on whitespace
 set formatoptions-=crot  " See ':h fo-table' for details
 set hidden  " Allows to switch to other buffers without raising error when the current buffer remains unsaved
-set history=1000  " Command history (default: 10,000)
 set ignorecase  " Search regardless of case by default
 set inccommand=nosplit  " Show interactive modifications with search & replace before applying changes
 set lazyredraw  " Don't redraw screen when running macros
@@ -90,7 +62,6 @@ set spell  " enable spell checking by default
 set splitbelow  " Put new window below current one when splitting
 set splitright  " Put new window to the right of the current one when splitting
 set tabstop=4  " Ideally, same value as 'shiftwidth'
-set tags=tags  " The filename for the tags
 set termguicolors  " Make colors look better in terminal
 set textwidth=0  " Number of characters in a line (0 = no limit)
 set wildignore+=*.pyc,*.db,*__pycache__*,*.png,*.jpg,*.jpeg,*.pdf
@@ -115,22 +86,12 @@ endif
 """" }}}
 
 """" NEOVIM FEATURES {{{
-let g:python3_host_prog = $HOME . '/Programming/virtualenvs/nvim/bin/python'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " }}}
 
 """ AUTO EVENTS {{{
 " Automatically rebalance windows when resizing Vim (useful inside tmux)
 autocmd VimResized * :wincmd =
-
-" Source: https://github.com/thoughtbot/dotfiles/blob/master/vimrc
-" When editing a file, always jump to the last known cursor position.
-" Don't do it for commit messages, when the position is invalid, or when
-" inside an event handler (happens when dropping a file on gvim).
-autocmd BufReadPost *
-            \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal g`\"" |
-            \ endif
 
 " Front-end development options
 autocmd BufRead *.html,*.js,*.htm,*.css,*.xml,*.xhtml,*.scss setlocal
@@ -146,29 +107,11 @@ autocmd BufRead *
       \ exec "set path-=".s:default_path |
       \ exec "set path^=".s:tempPath |
       \ exec "set path^=".s:default_path
-
-" Open the quickfix / location window when some action is happening there
-augroup autoquickfix
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost    l* lwindow
-augroup END
-
-if has("autocmd")
- " Highlight TODO, FIXME, NOTE, etc.
- if v:version > 701
- autocmd Syntax * call matchadd('Todo', '\W\zs\(TODO\|FIXME\|BUG\|HACK\)')
- autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
- endif
-endif
 """ }}}
 
 """ CUSTOM COMMANDS {{{
 " 'MakeTags' command to generate ctags in project
 command! MakeTags !ctags -R .
-
-command Todo Ack! TODO|FIXME|BUG|HACK
-command Debug Ack! NOTE|INFO|IDEA
 """ }}}
 
 """ KEYBINDINGS {{{
@@ -195,10 +138,6 @@ inoremap ? ?<c-g>u
 
 " Toggle display of line numbers
 nnoremap <F4> :set number! relativenumber!<CR>
-
-" Bindings to display all TODO/FIXME/etc. messages
-nnoremap <F2> :Todo<CR>
-nnoremap <F3> :Debug<CR>
 
 " Avoid entering 'Ex' mode
 nmap Q <Nop>
@@ -253,30 +192,9 @@ vnoremap J :m '>+1<CR>gv=gv
 
 " Remove all whitespace at the end of every line in the file.
 noremap <F5> :%s/\s\+$//<CR>:echo 'all whitespace removed.'<CR>
-
-" Python: format current file with Black
-nnoremap <F7> :!black -l 89 %<CR>
 """" }}}
 
 """" FUNCTIONS {{{
-" Redirect the output of a Vim or external command into a scratch buffer
-" From: https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
-function! Redir(cmd)
-    if a:cmd =~ '^!'
-        execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
-    else
-        redir => output
-        execute a:cmd
-        redir END
-    endif
-    tabnew
-    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-    call setline(1, split(output, "\n"))
-    put! = a:cmd
-    put = '----'
-endfunction
-command! -nargs=1 Redir silent call Redir(<f-args>)
-
 " Highlight duplicate lines
 " From https://stackoverflow.com/a/1270689/8787680
 function! HighlightRepeats() range
@@ -336,39 +254,9 @@ inoremap kj <esc>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 """" }}}
 
-"""" PROGRAMMING WITH C FAMILY {{{
-map <silent> <M-m> :make<CR>
-map <silent> <M-n> :cnext<CR>
-map <silent> <M-p> :cprevious<CR>
-map <silent> <M-r> :!./run<CR>
-"""" }}}
-
 """" SEARCH {{{
 " Search with Ripgrep (custom command from after/plugin/config/fzf.vim)
 nnoremap \ :RG<CR>
-"""" }}}
-
-"""" SPELLING {{{
-function! s:fixLineSpellError()
-    " Found on Stack Exchange: https://vi.stackexchange.com/a/19792
-    " get current line number
-    let lnum = line('.')
-    " find last misspelled word before cursor
-    normal! [s
-    " do nothing if line changed
-    if lnum != line('.') | return | endif
-    " fix spell error if line doesn't change
-    normal! 1z=
-endfunction
-
-inoremap <F10> <c-g>u<Esc>:call <sid>fixLineSpellError()<cr>`]a<c-g>u
-
-" Toggle spelling
-nnoremap <leader>LL :set spell!<CR>
-
-" Go to previous/next spelling error (M-S-s, M-s)
-nnoremap <char-205> [s
-nnoremap <char-223> ]s
 """" }}}
 
 """" TERMINAL SPECIFIC {{{
@@ -387,9 +275,6 @@ tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
-
-" Save file and regenerate ctags
-nnoremap <leader>W :w<CR>:MakeTags<CR>:echo 'ctags have been updated.'<CR>
 """" }}}
 
 """" DIFF WINDOWS {{{
@@ -397,7 +282,5 @@ vnoremap <Leader>dg :diffget<CR>
 vnoremap <Leader>dp :diffput<CR>
 """" }}}
 """ }}}
-
-" Initialize lua stuff in lua init file
-luafile $HOME/.config/nvim/luainit.lua
 " vim:fdm=marker
+
