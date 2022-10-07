@@ -58,7 +58,7 @@ set shortmess+=I  " Disable default startup message
 set shortmess+=c  " Don't pass messages to ins-completion-menu
 set smartcase  " Match uppercase in search if used in pattern, else, no
 set softtabstop=4  " Number of spaces to insert when TAB is pressed
-set spell  " enable spell checking by default
+set nospell  " disable spell checking by default
 set splitbelow  " Put new window below current one when splitting
 set splitright  " Put new window to the right of the current one when splitting
 set tabstop=4  " Ideally, same value as 'shiftwidth'
