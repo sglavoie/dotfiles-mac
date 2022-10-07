@@ -29,6 +29,7 @@
     sw = switch
     t = tag
     unstage = reset HEAD --
+    wt = worktree
 
     ; show changes since last commit
     difflast = diff --cached HEAD^
