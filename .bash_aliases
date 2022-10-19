@@ -12,7 +12,7 @@ alias articlesnum="pushd > /dev/null; \
     cd ~/dev/sglavoie/sglavoie.github.io/content; \
     find . -name '*.md' | cut -d '/' -f3 | grep -E '^\d\d\d\d.*' \
     | sort | tail -1; popd > /dev/null"
-alias b='python3 ~/dev/sglavoie/dev-helpers/rsync_backup/rsync_backup.py'
+alias b='python3 ~/dev/sglavoie/dev-helpers/python/rsync_backup/rsync_backup.py'
 alias c='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias cat="bat"
 alias cl='clear'
