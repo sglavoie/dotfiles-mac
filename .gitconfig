@@ -64,7 +64,7 @@
 %Creset%s' --date=relative --date-order --graph
 
     ; log work descriptions in chronological order for today
-    lw = "!git log --oneline --pretty='* %s' --after=`date -v -1d '+%Y-%m-%d'`"
+    lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'`"
 
 [core]
     editor = nvim
