@@ -114,3 +114,6 @@
 	signingkey = 4E3015F2A893309877090327833371F52C5B4CDC
 	name = Sébastien Lavoie
 	email = sgdlavoie@gmail.com
+[rerere]
+  autoUpdate = true
+  enabled = true
