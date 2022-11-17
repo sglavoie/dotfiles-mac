@@ -109,6 +109,8 @@
 	default = current
 [pull]
 	rebase = false
+[rebase]
+	autoStash = true
 [rerere]
 	autoUpdate = true
 	enabled = true
