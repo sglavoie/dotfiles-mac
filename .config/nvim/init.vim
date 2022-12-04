@@ -129,6 +129,10 @@ nnoremap Y yg_
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
+nnoremap <c-b> <c-b>zz
+nnoremap <c-d> <c-d>zz
+nnoremap <c-f> <c-f>zz
+nnoremap <c-u> <c-u>zz
 
 " Undo by break point in insert mode so it doesn't undo the whole change at once
 inoremap , ,<c-g>u
