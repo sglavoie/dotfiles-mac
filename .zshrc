@@ -5,7 +5,7 @@
 unsetopt nomatch
 
 export LANG=en_US.UTF-8
-export CLOUDSDK_PYTHON=/usr/local/opt/python@3.7/bin/python3.7
+export CLOUDSDK_GSUTIL_PYTHON=/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
