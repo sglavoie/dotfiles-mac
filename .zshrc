@@ -101,6 +101,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom: https://github.com/agkozak/zsh-z
 plugins=(git ssh-agent fzf gitignore docker docker-compose zsh-z)
 
+# Ruby version to work with Expo / React Native
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.1.3
+
 source $ZSH/oh-my-zsh.sh
 
 # enable autocompletion on dotfiles manager and aliases
