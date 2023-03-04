@@ -5,11 +5,11 @@
 alias alert="afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/KBVONotSynched.aiff"
 alias allextensions="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
 alias articlesbycategories="pushd > /dev/null; \
-    cd ~/dev/sglavoie/sglavoie.github.io/content; \
+    cd ~/dev/sglavoie/sglavoie.github.io/main/content; \
     find . -type f -name '*.md' ! -wholename '*/pages*' | cut -d/ -f2 \
     | sort | uniq -c | sort -n; popd > /dev/null"
 alias articlesnum="pushd > /dev/null; \
-    cd ~/dev/sglavoie/sglavoie.github.io/content; \
+    cd ~/dev/sglavoie/sglavoie.github.io/main/content; \
     find . -name '*.md' | cut -d '/' -f3 | grep -E '^\d\d\d\d.*' \
     | sort | tail -1; popd > /dev/null"
 alias b='python3 ~/dev/sglavoie/dev-helpers/python/rsync_backup/rsync_backup.py'
