@@ -1,36 +1,22 @@
 [alias]
 	a = add
+
 	br = branch
+
 	c = commit
 	ca = commit --amend
 	can = commit --amend --no-edit
+
 	ch = checkout
+
 	d = diff
 	ds = diff --staged
-	po = push origin
-	pos = push --set-upstream origin main
-	rc = rebase --continue
-	ri = rebase -i
-	rl = reflog
-	sh = show
-	s = status --short
-	st = status
-	; Save changes as a stash and leave them in the working tree
-	stash-keep = "!git stash --include-untracked && git stash apply"
-	sw = switch
-	t = tag
-	unstage = reset HEAD --
-	wt = worktree
 
 	; show changes since last commit
 	difflast = diff --cached HEAD^
 
 	; show last commit
-	last = l -1 HEAD
-
-	; undo last commit
-	undo = "!f() { git reset --hard $(git rev-parse \
---abbrev-ref HEAD)@{${1-1}}; }; f"
+	last = log -1 HEAD
 
 	l = log
 
@@ -56,6 +42,34 @@
 
 	; log work descriptions in chronological order for today
 	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'`"
+
+	rc = rebase --continue
+	ri = rebase --interactive
+
+	rl = reflog
+
+	pushf = push --force-with-lease --force-with-includes
+
+	sh = show
+
+	s = status --short
+	st = status
+
+	; Save changes as a stash and leave them in the working tree
+	stash-keep = "!git stash --include-untracked && git stash apply"
+
+	sw = switch
+
+	t = tag
+
+	unstage = reset HEAD --
+
+	wt = worktree
+
+	; undo last commit
+	undo = "!f() { git reset --hard $(git rev-parse \
+--abbrev-ref HEAD)@{${1-1}}; }; f"
+
 [color]
 	branch = auto
 	diff = auto
@@ -118,3 +132,5 @@
 	signingkey = 4E3015F2A893309877090327833371F52C5B4CDC
 	name = Sébastien Lavoie
 	email = sgdlavoie@gmail.com
+[http]
+	postBuffer = 157286400
