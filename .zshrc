@@ -132,21 +132,6 @@ if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc' ]; the
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/sglavoie/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/sglavoie/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/sglavoie/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/sglavoie/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -154,3 +139,19 @@ export MCFLY_KEY_SCHEME=vim
 export MCFLY_FUZZY=2
 export MCFLY_RESULTS=50
 eval "$(mcfly init zsh)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/sglavoie/Programming/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/sglavoie/Programming/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/sglavoie/Programming/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/sglavoie/Programming/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
