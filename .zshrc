@@ -1,15 +1,3 @@
-# NOTE: Some commands need to be adjusted (coming from Linux dotfiles)
-
-# When no regex match found, execute the command anyways
-# e.g. `git show HEAD^` <- caret finds no match, just run the command
-unsetopt nomatch
-
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export CLOUDSDK_GSUTIL_PYTHON=/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
-
-zstyle :omz:plugins:ssh-agent agent-forwarding on
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -17,12 +5,30 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="/Library/TeX/texbin:$HOME/Programming/git-scripts:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$HOME/.poetry/bin:$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git ssh-agent fzf gitignore)
+
+# Load multiple SSH keys
+zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
+
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/dev/git-scripts:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 # Set default editor to use
 export EDITOR='nvim'
 export VISUAL='nvim'
-export MANPAGER="nvim +Man!"
+
+export BROWSER='/usr/bin/brave-browser'
+
+# Get colorized output for `man` pages with `bat`
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc.
@@ -30,16 +36,9 @@ export MANPAGER="nvim +Man!"
 # --follow: Follow symlinks
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 
-# This fixes a possible issue where Git doesn't look for the right signing key when committing
-export GPG_TTY=$(tty)
-
 # History in cache directory:
-HISTFILE=$HOME/.zshistory
-HISTSIZE=500000
-SAVEHIST=500000
-setopt appendhistory
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
+HISTSIZE=10000
+SAVEHIST=10000
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -53,29 +52,22 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+aptsources-cleanup () {
+    sudo ~/.local/bin/aptsources-cleanup
+}
+
 # Read external environment variables
-if [[ -r "~/Dropbox/.custom/zsh/environ.variables" ]]; then
-    source ~/Dropbox/.custom/zsh/environ.variables
-fi
+source ~/Dropbox/.custom/zsh/environ.variables
 
 bindkey '^x^x' edit-command-line  # Open default editor
 
 ##### Functions
 
-# FIXME: invalid arguments for `find` command on Mac
+# Select a configuration file with fzf and open it with Neovim
+conf() { find ~/.config/ ~/Dropbox/.custom/ | cut -f1 --complement | fzf | xargs -r nvim ;}
+
 # Select a file from current folder and recursively with fzf and open it with Neovim, ignoring hidden files
-se() { find -not -path '*/\.*' -type f | cut -f 1 | fzf | xargs -r nvim ;}
-
-# [University specific] Select a file recursively with fzf and open it with default app in the background
-sc() { find ~/Dropbox/university ~/dev/sglavoie/world-class | cut -f 1 | fzf | (xargs -r open &) ;}
-
-renamemp3() {
-for f in *.mp3; do
-    mv "$f" `echo $f | tr -cd "a-zA-Z0-9\-_\ \." \
-        | sed s/' - '/'-'/g | sed s/' '/_/g \
-        | sed s/__/_/g | sed s/'('//g | sed s/')'//g`
-done
-}
+se() { find -not -path '*/\.*' -type f | cut -f1 --complement | fzf | xargs -r nvim ;}
 
 # Source: https://www.stefaanlippens.net/pretty-csv.html
 function pretty_csv {
@@ -94,27 +86,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# Custom: https://github.com/agkozak/zsh-z
-plugins=(git ssh-agent fzf gitignore docker docker-compose zsh-z)
-
-# Ruby version to work with Expo / React Native
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.3
-
 source $ZSH/oh-my-zsh.sh
-
-# enable autocompletion on dotfiles manager and aliases
-compdef c='git'
-compdef g='git'
-setopt complete_aliases
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Activate correct virtual environment from inside Neovim when
 # the VIRTUAL_ENV var is set
@@ -123,38 +95,30 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 # source "${VIRTUAL_ENV}/bin/activate"  # commented out by conda initialize
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sglavoie/Programming/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc'; fi
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_FUZZY=2
-export MCFLY_RESULTS=50
-eval "$(mcfly init zsh)"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/sglavoie/Programming/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/sglavoie/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/sglavoie/Programming/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/sglavoie/Programming/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/sglavoie/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/sglavoie/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/sglavoie/Programming/miniconda3/bin:$PATH"
+        export PATH="/Users/sglavoie/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Add commands ??, git?, and gh?
 eval "$(github-copilot-cli alias -- "$0")"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
