@@ -4,7 +4,8 @@
 # e.g. `git show HEAD^` <- caret finds no match, just run the command
 unsetopt nomatch
 
-export LANG=en_US.UTF-8
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 export CLOUDSDK_GSUTIL_PYTHON=/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
