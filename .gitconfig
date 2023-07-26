@@ -1,75 +1,5 @@
-[alias]
-	a = add
-
-	br = branch
-
-	c = commit
-	ca = commit --amend
-	can = commit --amend --no-edit
-
-	ch = checkout
-
-	d = diff
-	ds = diff --staged
-
-	; show changes since last commit
-	difflast = diff --cached HEAD^
-
-	; show last commit
-	last = log -1 HEAD
-
-	l = log
-
-	; short log
-	sl = shortlog
-
-	; log graph
-	lg = l --color --graph --pretty=format:'%Cred%h%Creset \
--%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-	; log name
-	ln = l --name-only
-
-	; log decorate all
-	logda = l --oneline --decorate --graph --all
-
-	; log stat
-	ls = l --stat
-
-	; log pretty
-	lp = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d \
-%Creset%s' --date=relative --date-order --graph
-
-	; log work descriptions in chronological order for today
-	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'`"
-
-	rc = rebase --continue
-	ri = rebase --interactive
-
-	rl = reflog
-
-	pushf = push --force-with-lease --force-with-includes
-
-	sh = show
-
-	s = status --short
-	st = status
-
-	; Save changes as a stash and leave them in the working tree
-	stash-keep = "!git stash --include-untracked && git stash apply"
-
-	sw = switch
-
-	t = tag
-
-	unstage = reset HEAD --
-
-	wt = worktree
-
-	; undo last commit
-	undo = "!f() { git reset --hard $(git rev-parse \
---abbrev-ref HEAD)@{${1-1}}; }; f"
-
+[include]
+	path = ~/Dropbox/.custom/.gitconfig-sglavoie
 [color]
 	branch = auto
 	diff = auto
@@ -77,6 +7,55 @@
 	interactive = auto
 	status = auto
 	ui = true
+[alias]
+	a = add
+	br = branch
+	c = commit
+	ca = commit --amend
+	can = commit --amend --no-edit
+	ch = checkout
+	d = diff
+	difflast = diff --cached HEAD^
+	ds = diff --staged
+	l = log
+	last = l -1 HEAD
+	lg = l --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ln = l --name-only
+	logda = l --oneline --decorate --graph --all
+	ls = l --stat
+	po = push origin
+	pof = push origin --force
+	pos = push --set-upstream origin main
+	rc = rebase --continue
+	ri = rebase -i
+	rl = reflog
+	s = status --short
+	sh = show
+	sl = shortlog
+	st = status
+	t = tag
+	undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+	unstage = reset HEAD --
+	vdiff = difftool --tool=
+	hs = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d %Creset%s' --date=relative --date-order --graph
+[core]
+	; editor = code --wait
+	editor = nvim
+	excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[commit]
+	gpgsign = true
+	template = ~/.gitmessage
+[mergetool "nvim"]
+	cmd = nvim $MERGED
+; [difftool "nvim"]
+; 	cmd = nvim --diff $LOCAL $REMOTE
+; [mergetool "vscode"]
+; 	cmd = code --wait $MERGED
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[mergetool]
+  prompt = false
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -89,48 +68,21 @@
 	new = green bold
 	old = red bold
 	whitespace = red reverse
-[commit]
-	gpgsign = true
-	template = ~/.gitmessage
-[core]
-	editor = nvim
-	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=4 -RFX
-[credential]
-	helper = store
-[diff]
-	tool = vscode
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+[push]
+	recurseSubmodules = on-demand
+[gpg]
+	program = gpg
 [filter "lfs"]
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+	smudge = git-lfs smudge --skip -- %f
+	process = git-lfs filter-process --skip
 	required = true
-[gpg]
-	program = /opt/homebrew/bin/gpg
-[include]
-	path = ~/Dropbox/.custom/.gitconfig-sglavoie
+[pull]
+	rebase = false
+[credential]
+	helper = store
 [init]
 	defaultBranch = main
 	templateDir = ~/.git-templates
-[mergetool "nvim"]
-	cmd = nvim $MERGED
-[mergetool]
-  prompt = false
-[push]
-	recurseSubmodules = on-demand
-	default = current
-[pull]
-	rebase = false
-[rebase]
-	autoStash = true
-[rerere]
-	autoUpdate = true
-	enabled = true
-[user]
-	signingkey = 4E3015F2A893309877090327833371F52C5B4CDC
-	name = Sébastien Lavoie
-	email = sgdlavoie@gmail.com
-[http]
-	postBuffer = 157286400
+[diff]
+	tool = vscode
