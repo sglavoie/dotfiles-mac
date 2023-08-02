@@ -19,20 +19,34 @@
 	ds = diff --staged
 	l = log
 	last = l -1 HEAD
-	lg = l --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+	; log graph
+	lg = l --color --graph --pretty=format:'%Cred%h%Creset \
+-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+	; log name
 	ln = l --name-only
+
+	; log decorate all
 	logda = l --oneline --decorate --graph --all
+
+	; log pretty
+	lp = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d \
+%Creset%s' --date=relative --date-order --graph
+
+	; log work descriptions in chronological order for today
+	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'`"
+
 	ls = l --stat
-	po = push origin
-	pof = push origin --force
-	pos = push --set-upstream origin main
 	rc = rebase --continue
 	ri = rebase -i
-	rl = reflog
 	s = status --short
 	sh = show
 	sl = shortlog
-	st = status
+
+	; Save changes as a stash and leave them in the working tree
+	stash-keep = "!git stash --include-untracked && git stash apply"
+
 	t = tag
 	undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
 	unstage = reset HEAD --
@@ -70,6 +84,12 @@
 	whitespace = red reverse
 [push]
 	recurseSubmodules = on-demand
+	default = current
+[rebase]
+	autoStash = true
+[rerere]
+	autoUpdate = true
+	enabled = true
 [gpg]
 	program = gpg
 [filter "lfs"]
