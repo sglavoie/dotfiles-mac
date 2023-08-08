@@ -12,44 +12,28 @@ alias articlesnum="pushd > /dev/null; \
     cd ~/dev/sglavoie/sglavoie.github.io/main/content; \
     find . -name '*.md' | cut -d '/' -f3 | grep -E '^\d\d\d\d.*' \
     | sort | tail -1; popd > /dev/null"
-alias b='python3 ~/dev/sglavoie/dev-helpers/python/rsync_backup/rsync_backup.py'
 alias c='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias cat="bat"
-alias cl='clear'
 alias cleanZip='_cleanZip(){ zip -d $1 "__MACOSX/*" && zip -d $1 "*/.DS_Store" }; _cleanZip'
 alias ctags='`brew --prefix`/bin/ctags'
 alias diff='diff-so-fancy'
 alias dockerclean='docker stop $(docker ps -qa); docker system prune -a --volumes'
-alias f='fg'
 alias g='git'
-alias gal='git addlearning'
 alias gitaliases='git config -l | grep alias | sed "s/^alias\.//g" | sed "s/=/Ω/" | column -t -s "Ω"'
 alias h='history'
 alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
 alias j='jobs -l'
-alias k='~/.local/bin/tmux-projects-kill.sh'
 alias n='nvim'
-alias o='~/.local/bin/tmux-sessionizer.sh'
 alias p='python3.11'
 alias q='exit'
 alias re='tput reset'
-alias reboot='sudo reboot'
-alias shutdown='sudo shutdown'
-alias sysupdate='sudo apt update && sudo apt dist-upgrade -y && sudo snap refresh && sudo apt autoremove -y && sudo apt clean'
-alias t='tmux'
 alias www='python3 -m http.server'
 
 # x86_64 support
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
 alias python3.7='/usr/local/opt/python@3.7/bin/python3.7'
 
-# confirmation
-alias ln='ln -i'
-
 # Programs
-alias cast='ffmpeg -y -f x11grab -s 1366x768 -i :0.0 -f \
-    alsa -i default -c:v libx264 -r 30 -c:a flac output.mkv'
-alias convertcast='ffmpeg -i output.mkv -strict -2 -c copy output.mp4'
 alias v='vim'
 
 # General paths
@@ -64,13 +48,11 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Python related
-alias alearning='source ~/Programming/virtualenvs/alearning/bin/activate'
 alias ap='source .venv/bin/activate'
 alias avenv='source venv/bin/activate'
 alias cleanhistory='python \
     ~/dev/sglavoie/dev-helpers/zsh_history_cleaner/zsh_history_cleaner.py'
 alias da='deactivate'
-alias jl='jupyter-lab &'
 alias pipupgrade="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias pipupdateall="pip install -U \$(pip freeze | awk '{split(\$0, a, \"==\"); print a[1]}')"
 alias pylint='/usr/bin/env python =pylint'
