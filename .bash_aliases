@@ -12,7 +12,7 @@ alias articlesnum="pushd > /dev/null; \
     cd ~/dev/sglavoie/sglavoie.github.io/main/content; \
     find . -name '*.md' | cut -d '/' -f3 | grep -E '^\d\d\d\d.*' \
     | sort | tail -1; popd > /dev/null"
-alias c='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias c='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias cat="bat"
 alias cleanZip='_cleanZip(){ zip -d $1 "__MACOSX/*" && zip -d $1 "*/.DS_Store" }; _cleanZip'
 alias ctags='`brew --prefix`/bin/ctags'
