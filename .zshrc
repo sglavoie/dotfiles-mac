@@ -131,3 +131,6 @@ if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc' ]; the
 
 # Add custom aliases conditionally
 type exa >/dev/null 2>&1 && alias ls=exa
+
+# bun completions
+[ -s "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun" ] && source "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun"
