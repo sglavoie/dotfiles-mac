@@ -25,8 +25,6 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-export BROWSER='/usr/bin/brave-browser'
-
 # Get colorized output for `man` pages with `bat`
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
@@ -60,19 +58,6 @@ aptsources-cleanup () {
 source ~/Dropbox/.custom/zsh/environ.variables
 
 bindkey '^x^x' edit-command-line  # Open default editor
-
-##### Functions
-
-# Select a configuration file with fzf and open it with Neovim
-conf() { find ~/.config/ ~/Dropbox/.custom/ | cut -f1 --complement | fzf | xargs -r nvim ;}
-
-# Select a file from current folder and recursively with fzf and open it with Neovim, ignoring hidden files
-se() { find -not -path '*/\.*' -type f | cut -f1 --complement | fzf | xargs -r nvim ;}
-
-# Source: https://www.stefaanlippens.net/pretty-csv.html
-function pretty_csv {
-    column -t -s, -n "$@" | less -F -S -X -K
-}
 
 # Load aliases if existent.
 [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
