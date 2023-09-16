@@ -59,9 +59,6 @@ source ~/Dropbox/.custom/zsh/environ.variables
 
 bindkey '^x^x' edit-command-line  # Open default editor
 
-# Load aliases if existent.
-[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -117,3 +114,9 @@ type exa >/dev/null 2>&1 && alias ls=exa
 
 # bun completions
 [ -s "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun" ] && source "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun"
+
+
+nvm use node 1> /dev/null
+# Load aliases if existent.
+[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
+
