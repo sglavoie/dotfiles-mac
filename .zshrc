@@ -15,8 +15,8 @@ plugins=(git ssh-agent fzf gitignore)
 # Load multiple SSH keys
 zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
 
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/go/bin:$HOME/dev/git-scripts:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export GOPATH=$HOME/go/bin
+export PATH="$GOPATH:$HOME/dev/git-scripts:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
