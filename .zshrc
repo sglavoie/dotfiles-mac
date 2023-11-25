@@ -15,8 +15,8 @@ plugins=(git ssh-agent fzf gitignore)
 # Load multiple SSH keys
 zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
 
-export GOPATH=$HOME/go
-export PATH="$GOPATH:$HOME/dev/git-scripts:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export GOPATH=$HOME/.go
+export PATH="$GOPATH/bin:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -50,10 +50,6 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
-aptsources-cleanup () {
-    sudo ~/.local/bin/aptsources-cleanup
-}
-
 # Read external environment variables
 source ~/Dropbox/.custom/zsh/environ.variables
 
@@ -74,7 +70,6 @@ source $ZSH/oh-my-zsh.sh
 # the VIRTUAL_ENV var is set
 # From https://vi.stackexchange.com/a/7654
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-# source "${VIRTUAL_ENV}/bin/activate"  # commented out by conda initialize
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -87,14 +82,14 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/sglavoie/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/sglavoie/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/sglavoie/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/sglavoie/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/sglavoie/.miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/sglavoie/.miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/sglavoie/miniconda3/bin:$PATH"
+        export PATH="/Users/sglavoie/.miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -104,17 +99,16 @@ unset __conda_setup
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sglavoie/Programming/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/.google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/completion.zsh.inc"; fi
 
 # Add custom aliases conditionally
 type exa >/dev/null 2>&1 && alias ls=exa
 
 # bun completions
 [ -s "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun" ] && source "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun"
-
 
 nvm use node 1> /dev/null
 # Load aliases if existent.
