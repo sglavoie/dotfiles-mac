@@ -23,6 +23,7 @@ alias gitaliases='git config -l | grep alias | sed "s/^alias\.//g" | sed "s/=/Ω
 alias h='history'
 alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
 alias j='jobs -l'
+alias lg='lazygit'
 alias n='nvim'
 alias p='python3.11'
 alias q='exit'
