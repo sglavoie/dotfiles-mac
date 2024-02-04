@@ -107,6 +107,3 @@
 	templateDir = ~/.git-templates
 [diff]
 	tool = vscode
-[user]
-	name = sglavoie
-	email = sgdlavoie@gmail.com
