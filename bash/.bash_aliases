@@ -64,18 +64,30 @@ alias pyclean='find . -name "*.py[co]" -or -name "__pycache__" -exec rm -rf -- {
 alias rmmac_garbage='find . -type f -name ".DS_Store" -delete && find . -type d -name "__MACOSX" -delete'
 
 # Ignore specific files/directories in Dropbox
-dropbox-ignore(){
-arg1=$1
-arg2=$2
-  find . -type $arg1 -name "$arg2" |
-    xargs -I {} xattr -w com.dropbox.ignored "{}"
+dropbox-ignore() {
+    arg1=$1
+    arg2=$2
+
+    if [ -z "$arg1" ] || [ -z "$arg2" ]; then
+        echo "Usage: dropbox-ignore <f|d> <name> (e.g. dropbox-ignore d .git)"
+        return 1
+    fi
+
+    find ~/Dropbox -type $arg1 -name "$arg2" |
+        xargs -I {} xattr -w com.dropbox.ignored 1 "{}"
 }
 
 # Sync specific files/directories in Dropbox
 # that were previously ignored (or not)
-dropbox-sync(){
-arg1=$1
-arg2=$2
-  find . -type $arg1 -name "$arg2" |
-    xargs -I {} xattr -d com.dropbox.ignored "{}"
+dropbox-sync() {
+    arg1=$1
+    arg2=$2
+
+    if [ -z "$arg1" ] || [ -z "$arg2" ]; then
+        echo "Usage: dropbox-sync <f|d> <name> (e.g. dropbox-sync d .git)"
+        return 1
+    fi
+
+    find ~/Dropbox -type $arg1 -name "$arg2" |
+        xargs -I {} xattr -d com.dropbox.ignored "{}"
 }
