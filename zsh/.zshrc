@@ -118,3 +118,5 @@ nvm use node 1> /dev/null
 # Load aliases if existent.
 [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
 
+# jump around - https://github.com/rupa/z
+. /opt/homebrew/etc/profile.d/z.sh
