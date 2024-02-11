@@ -120,3 +120,7 @@ nvm use node 1> /dev/null
 
 # jump around - https://github.com/rupa/z
 . /opt/homebrew/etc/profile.d/z.sh
+
+for bcfile in ~/.bash_completion.d/* ; do
+  . $bcfile
+done
