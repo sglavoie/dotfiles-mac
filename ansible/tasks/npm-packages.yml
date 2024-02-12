@@ -1,0 +1,28 @@
+- name: Install Yarn
+  shell: corepack enable
+  tags:
+    - npm
+- name: Install eslint
+  npm:
+    name: eslint
+    global: yes
+  tags:
+    - npm
+- name: Install Typescript server
+  npm:
+    name: typescript-language-server
+    global: yes
+  tags:
+    - npm
+- name: Install Typescript
+  npm:
+    name: typescript
+    global: yes
+  tags:
+    - npm
+- name: Install TS-Node
+  npm:
+    name: ts-node
+    global: yes
+  tags:
+    - npm

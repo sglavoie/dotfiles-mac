@@ -1,0 +1,11 @@
+---
+downloads: ~/.ansible-downloads/
+
+configure_mac: false
+configure_zsh: false
+configure_homebrew_packages: false
+configure_homebrew_casks: false
+configure_node: false
+configure_npm: false
+configure_dev_tools: true
+configure_dotfiles: false

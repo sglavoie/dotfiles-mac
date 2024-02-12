@@ -1,0 +1,15 @@
+- name: Install `n` to manage node versions
+  shell: brew install n
+  tags:
+    - node
+- name: Set up `n`
+  shell: >
+    sudo mkdir -p /usr/local/n &&
+    sudo chown -R $(whoami) /usr/local/n &&
+    sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share &&
+    sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+- name: Install latest Node.js LTS
+  shell: n lts
+  tags:
+    - node
+  become: true

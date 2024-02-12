@@ -1,0 +1,30 @@
+---
+- name: Configure host
+  hosts: localhost
+  vars_files:
+    - config.yml
+  tasks:
+    - import_tasks: tasks/mac.yml
+      when: configure_mac
+      tags: ['mac']
+    - import_tasks: tasks/homebrew-packages.yml
+      when: configure_homebrew_packages
+      tags: ['homebrew']
+    - import_tasks: tasks/homebrew-casks.yml
+      when: configure_homebrew_casks
+      tags: ['homebrew']
+    - import_tasks: tasks/dev-tools.yml
+      when: configure_dev_tools
+      tags: ['dev']
+    - import_tasks: tasks/dotfiles.yml
+      when: configure_dotfiles
+      tags: ['dotfiles']
+    - import_tasks: tasks/zsh.yml
+      when: configure_zsh
+      tags: ['zsh']
+    - import_tasks: tasks/node.yml
+      when: configure_node
+      tags: ['node']
+    - import_tasks: tasks/npm-packages.yml
+      when: configure_npm
+      tags: ['npm']

@@ -1,0 +1,12 @@
+- name: Install Homebrew casks
+  shell: xargs brew install < {{ playbook_dir }}/homebrew_casks.txt
+  tags:
+    - homebrew
+- name: Install JetBrains Mono font
+  shell: >
+    brew tap homebrew/cask-fonts
+    brew install --cask font-jetbrains-mono
+    brew install --cask font-meslo-for-powerlevel10k
+    brew install --cask font-fira-code-nerd-font
+  tags:
+    - homebrew

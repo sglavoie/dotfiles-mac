@@ -1,0 +1,14 @@
+- name: Install Rust and Cargo
+  shell: curl https://sh.rustup.rs -sSfy | sh
+  tags:
+    - dev
+- name: Create .cargo directory
+  shell: mkdir -p $HOME/.cargo
+  tags:
+    - dev
+- name: Install SDKMAN
+  ansible.builtin.shell: |
+    curl -s "https://get.sdkman.io" | bash
+  args:
+    executable: /bin/bash
+    creates: '{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh'

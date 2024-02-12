@@ -1,0 +1,8 @@
+- name: Remove possible .DS_Store to ignore
+  shell: rm -rf $HOME/.DS_Store
+  tags:
+    - dotfiles
+- name: Stow dotfiles
+  shell: cd $HOME/dotfiles && make
+  tags:
+    - dotfiles

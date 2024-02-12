@@ -1,7 +1,6 @@
-# MacOS system
+#!/bin/zsh
 
-# Remove 'last login...' prompt
-touch $HOME/.hushlogin
+echo "Setting `defaults` values..."
 
 # System settings (most changes require a restart)
 defaults write -g NSScrollViewRubberbanding -int 0
