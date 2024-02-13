@@ -98,19 +98,16 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
+# The next line updates PATH for the Google Cloud SDK
 if [ -f "$HOME/.google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/path.zsh.inc"; fi
 
-# The next line enables shell command completion for gcloud.
+# The next line enables shell command completion for gcloud
 if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/completion.zsh.inc"; fi
 
 # Add custom aliases conditionally
 type eza >/dev/null 2>&1 && alias ls=eza
 
-# bun completions
-[ -s "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun" ] && source "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun"
-
-# Load aliases if existent.
+# Load aliases if existent
 [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
 
 # jump around - https://github.com/rupa/z
@@ -119,3 +116,7 @@ type eza >/dev/null 2>&1 && alias ls=eza
 for bcfile in ~/.bash_completion.d/* ; do
   . $bcfile
 done
+
+# Treat the alias as the real command
+compdef g=git
+
