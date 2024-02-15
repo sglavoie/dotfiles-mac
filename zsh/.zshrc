@@ -110,13 +110,13 @@ type eza >/dev/null 2>&1 && alias ls=eza
 # Load aliases if existent
 [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
 
-# jump around - https://github.com/rupa/z
-. /opt/homebrew/etc/profile.d/z.sh
-
 for bcfile in ~/.bash_completion.d/* ; do
   . $bcfile
 done
 
 # Treat the alias as the real command
 compdef g=git
+
+# A smarter cd command - https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
 
