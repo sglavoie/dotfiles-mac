@@ -107,3 +107,11 @@
 	templateDir = ~/.git-templates
 [diff]
 	tool = vscode
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[maintenance]
+	repo = /Users/sglavoie/1_dev_projects/tradition_ss
+[fetch]
+	writeCommitGraph = true
