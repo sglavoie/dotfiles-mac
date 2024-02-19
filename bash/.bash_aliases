@@ -24,6 +24,7 @@ alias h='history'
 alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
 alias j='jobs -l'
 alias lg='lazygit'
+alias mc='mc --nosubshell' # much faster to start
 alias n='nvim'
 alias p='python3.11'
 alias q='exit'
