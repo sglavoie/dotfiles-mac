@@ -52,6 +52,10 @@ bindkey -s '^o' 'lfcd\n'
 
 # Read external environment variables
 source ~/Dropbox/.custom/zsh/environ.variables
+[ -f "$HOME/Dropbox/.custom/zsh/environ.variables" ] && source "$HOME/Dropbox/.custom/zsh/environ.variables"
+
+# Read aliases
+[ -f "$HOME/Dropbox/.custom/zsh/aliases" ] && source "$HOME/Dropbox/.custom/zsh/aliases"
 
 bindkey '^x^x' edit-command-line  # Open default editor
 
@@ -106,9 +110,6 @@ if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cl
 
 # Add custom aliases conditionally
 type eza >/dev/null 2>&1 && alias ls=eza
-
-# Load aliases if existent
-[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
 
 for bcfile in ~/.bash_completion.d/* ; do
   . $bcfile
