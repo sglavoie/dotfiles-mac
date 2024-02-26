@@ -104,7 +104,6 @@
 	helper = store
 [init]
 	defaultBranch = main
-	templateDir = ~/.git-templates
 [diff]
 	tool = vscode
 [column]
