@@ -15,6 +15,20 @@ plugins=(git ssh-agent fzf gitignore)
 # Load multiple SSH keys
 zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
 
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+SAVEHIST=1000000
+HISTSIZE=1000000
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+
 export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
 
@@ -33,10 +47,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
-
-# History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
