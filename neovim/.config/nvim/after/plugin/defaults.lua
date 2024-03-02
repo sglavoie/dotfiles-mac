@@ -45,6 +45,7 @@ vim.opt.wrap = true
 vim.keymap.set('n', '<C-n>', ":Vifm<CR>", { desc = '[N]avigate with Vifm' })
 vim.keymap.set('n', '<leader>C', ":tabedit ~/.config/nvim/init.lua<CR>",
 	{ desc = 'Edit Neovim [C]onfiguration file in a new tab' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 vim.keymap.set('n', '<leader>y', ":%y<CR>", { desc = 'Copy the content of the entire buffer' })
 vim.keymap.set('n', 'Y', "yg_", { desc = '[Y]ank to the end of the line' })
 vim.keymap.set('n', '<leader>e', ":e!<CR>", { desc = 'Reset [e]dits made in current buffer if file hasn\'t been saved' })
@@ -83,10 +84,15 @@ vim.keymap.set('v', '<Right>', ">gv", { desc = 'Indent text to the right in visu
 vim.keymap.set('v', '<leader>dg', ":diffget<CR>", { desc = 'Indent text to the right in visual mode' })
 vim.keymap.set('v', '<leader>dp', ":diffput<CR>", { desc = 'Indent text to the right in visual mode' })
 
+---- vim fugitive (Git)
+vim.keymap.set('n', '<leader>gb', ":Git blame<CR>", { desc = '[g]it [b]lame' })
+vim.keymap.set('n', '<leader>gb', ":Git commit<CR>", { desc = '[g]it [c]commit' })
+vim.keymap.set('n', '<leader>gd', ":Gdiffsplit<CR>", { desc = '[g]it [d]iff' })
+vim.keymap.set('n', '<leader>gl', ":Gclog<CR>", { desc = '[g]it [l]og' })
+vim.keymap.set('n', '<leader>gs', ":G<CR>", { desc = '[g]it [s]tatus' })
 ------ stage/unstage in visual mode
 vim.keymap.set('v', '<leader>g', ":diffget<CR>", { desc = 'stage' })
 vim.keymap.set('v', '<leader>p', ":diffput<CR>", { desc = 'unstage' })
-
 ------ merge conflicts
 vim.keymap.set('n', '<leader>gH', ":diffget //2<CR>", { desc = 'merge from left' })
 vim.keymap.set('n', '<leader>gL', ":diffget //3<CR>", { desc = 'merge from right' })
