@@ -1,4 +1,4 @@
-packages = git karabiner kitty mc neovim tmux zsh
+packages = direnv git karabiner kitty mc neovim tmux zsh
 
 all:
 	stow --verbose --target=$$HOME --restow ${packages}

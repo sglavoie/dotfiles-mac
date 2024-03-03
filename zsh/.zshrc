@@ -10,7 +10,7 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent fzf gitignore)
+plugins=(direnv git ssh-agent fzf gitignore)
 
 # Load multiple SSH keys
 zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa

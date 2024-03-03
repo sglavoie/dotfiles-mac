@@ -4,6 +4,7 @@ black
 cloudflared
 cmake
 diff-so-fancy
+direnv
 docker
 duckdb
 eza
