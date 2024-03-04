@@ -127,6 +127,7 @@ done
 
 # Treat the alias as the real command
 compdef g=git
+compdef t=tmux
 
 # A smarter cd command - https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
