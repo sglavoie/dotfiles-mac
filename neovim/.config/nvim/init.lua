@@ -14,6 +14,7 @@ vim.opt.showmode = false -- already in status line
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
 vim.opt.breakindent = true
 vim.opt.undofile = true -- Save undo history
+vim.opt.swapfile = false -- nothing critical worked on in Neovim, just annoying.
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
