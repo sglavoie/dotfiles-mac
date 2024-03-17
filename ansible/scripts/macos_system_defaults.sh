@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-echo "Setting `defaults` values..."
+echo "Setting $(defaults) values..."
 
 # System settings (most changes require a restart)
 defaults write -g NSScrollViewRubberbanding -int 0
@@ -8,17 +8,20 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
+
 ## Dock
-defaults delete com.apple.dock autohide-delay; killall Dock  # shows dock immediately
-defaults write com.apple.dock autohide-delay -float 1.5; killall Dock  # shows dock after 1.5 seconds
-defaults write com.apple.dock static-only -bool true; killall Dock
-defaults write com.apple.dock tilesize -int 64; killall Dock
+# defaults delete com.apple.dock autohide-delay # shows dock immediately
+defaults write com.apple.dock autohide-delay -float 1.5 # shows dock after 1.5 seconds
+defaults write com.apple.dock static-only -bool true
+defaults write com.apple.dock tilesize -int 64
+
 ## Finder
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 defaults write com.apple.finder DisableAllAnimations -bool true
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false; killall Finder
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write com.apple.LaunchServices LSQuarantine -bool false
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true; killall Finder
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
@@ -84,3 +87,9 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
+# Prevents the OS from asking for "Developer Tools Access"
+sudo DevToolsSecurity -enable
+sudo dscl . append /Groups/_developer GroupMembership $USER
+
+killall Dock
+killall Finder
