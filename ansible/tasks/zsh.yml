@@ -16,3 +16,7 @@
     - zsh
 - name: Don't show last login
   shell: touch $HOME/.hushlogin
+- name: Install 'rye' plugin Python
+  shell: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+- name: Add 'rye' shims to PATH Python
+  shell: echo 'source "$HOME/.rye/env"' >> ~/.zprofile
