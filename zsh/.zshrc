@@ -121,9 +121,11 @@ if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cl
 # Add custom aliases conditionally
 type eza >/dev/null 2>&1 && alias ls=eza
 
-for bcfile in ~/.bash_completion.d/* ; do
-  . $bcfile
-done
+if [[ -d "$HOME/bash_completion.d" ]]; then
+    for bcfile in ~/.bash_completion.d/* ; do
+      . $bcfile
+    done
+fi
 
 # Treat the alias as the real command
 compdef g=git
