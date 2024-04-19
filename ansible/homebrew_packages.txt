@@ -30,7 +30,6 @@ lazygit
 lf
 llvm
 lynx
-md5sha1sum
 n
 ncdu
 neovim
