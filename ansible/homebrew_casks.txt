@@ -18,7 +18,6 @@ kitty
 mactex
 netnewswire
 raycast
-setapp
 slack
 the-unarchiver
 transmission
