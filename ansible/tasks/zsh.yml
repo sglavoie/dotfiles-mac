@@ -11,7 +11,7 @@
   when: oh_my_stats.stat.exists == False
   become_user: sglavoie
 - name: Install powerlevel10k theme
-  shell: git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  shell: if [ ! -d "/Users/sglavoie/.oh-my-zsh/custom/themes/powerlevel10k" ]; then git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k; fi
   tags:
     - zsh
 - name: Don't show last login
