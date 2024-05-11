@@ -5,7 +5,6 @@ cloudflared
 cmake
 csvkit
 diff-so-fancy
-direnv
 docker
 duckdb
 entr
