@@ -101,6 +101,7 @@
 	required = true
 [pull]
 	rebase = false
+	ff = only
 [credential]
 	helper = store
 [init]
