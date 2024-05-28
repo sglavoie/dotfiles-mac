@@ -4,7 +4,6 @@ black
 cloudflared
 cmake
 csvkit
-diff-so-fancy
 docker
 duckdb
 entr
@@ -18,6 +17,7 @@ gcc
 gh
 ghostscript
 git
+git-delta
 gnupg
 go
 gpg-suite-pinentry
