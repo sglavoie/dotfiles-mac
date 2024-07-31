@@ -27,6 +27,7 @@ imagemagick
 jq
 lazygit
 lf
+libheif
 llvm
 lynx
 n
