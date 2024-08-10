@@ -9,6 +9,9 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
 
+# Window management: make ctrl+cmd with mouse click drag a window
+defaults write -g NSWindowShouldDragOnGesture YES
+
 ## Dock
 # defaults delete com.apple.dock autohide-delay # shows dock immediately
 defaults write com.apple.dock autohide-delay -float 1.5 # shows dock after 1.5 seconds
