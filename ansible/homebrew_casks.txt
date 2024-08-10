@@ -13,7 +13,6 @@ gpg-suite-pinentry
 hovrly
 iina
 inkscape
-karabiner-elements
 kitty
 mactex
 netnewswire
