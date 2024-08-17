@@ -138,3 +138,7 @@ eval "$(zoxide init zsh)"
 source "$HOME/.rye/env"
 export PATH=$PATH:/Users/sglavoie/.pixi/bin
 eval "$(pixi completion --shell zsh)"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
