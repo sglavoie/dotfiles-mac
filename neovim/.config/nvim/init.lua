@@ -491,7 +491,14 @@ require('lazy').setup {
       local servers = {
         -- clangd = {},
         gopls = {},
-        pyright = {},
+        pyright = {
+          plugins = {
+            pycodestyle = {
+              ignore = { 'E501' },
+              maxLineLength = 100,
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
