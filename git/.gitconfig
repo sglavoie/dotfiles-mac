@@ -34,8 +34,8 @@
 	lp = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d \
 %Creset%s' --date=relative --date-order --graph
 
-	; log work descriptions in chronological order for today
-	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'`"
+	; log work descriptions in chronological order for today (oldest at top)
+	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'` | tac"
 
 	ls = l --stat
 	rc = rebase --continue
