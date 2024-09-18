@@ -96,3 +96,35 @@ sudo dscl . append /Groups/_developer GroupMembership $USER
 
 killall Dock
 killall Finder
+
+# Use F5/F6 keys to turn keyboard brightness on/off on keyboard that doesn't have these functions
+# (requires reboot)
+touch ~/Library/LaunchAgents/com.local.KeyRemapping.plist
+cat <<EOF >~/Library/LaunchAgents/com.local.KeyRemapping.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local.KeyRemapping</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/hidutil</string>
+        <string>property</string>
+        <string>--set</string>
+        <string>{"UserKeyMapping":[
+            {
+              "HIDKeyboardModifierMappingSrc": 0xC000000CF,
+              "HIDKeyboardModifierMappingDst": 0xFF00000009
+            },
+            {
+              "HIDKeyboardModifierMappingSrc": 0x10000009B,
+              "HIDKeyboardModifierMappingDst": 0xFF00000008
+            }
+        ]}</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+EOF
