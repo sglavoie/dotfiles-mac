@@ -53,6 +53,13 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+# cd to directory
+cdd() {
+  local dir
+  dir=$(fd --type d | fzf +m) &&
+  cd "$dir"
+}
+
 # Read external environment variables
 source ~/Dropbox/.custom/zsh/environ.variables
 [ -f "$HOME/Dropbox/.custom/zsh/environ.variables" ] && source "$HOME/Dropbox/.custom/zsh/environ.variables"
@@ -119,7 +126,6 @@ fi
 
 # Treat the alias as the real command
 compdef g=git
-compdef t=tmux
 
 # A smarter cd command - https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
