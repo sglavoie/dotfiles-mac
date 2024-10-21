@@ -29,8 +29,8 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 # Set default editor to use
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='vim'
+export VISUAL='vim'
 
 # Get colorized output for `man` pages with `bat`
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
