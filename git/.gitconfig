@@ -58,6 +58,7 @@
 	excludesfile = ~/.gitignore
 	pager = delta
 	autocrlf = input
+	ignorecase = true
 [commit]
 	gpgsign = true
 	template = ~/.gitmessage
