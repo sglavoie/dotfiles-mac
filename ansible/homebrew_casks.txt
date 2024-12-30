@@ -14,7 +14,6 @@ hovrly
 iina
 inkscape
 kitty
-linearmouse
 mactex
 netnewswire
 raycast
