@@ -1,4 +1,4 @@
-packages = atuin git kitty neovim starship tmux zsh
+packages = atuin ghostty git kitty neovim starship tmux zsh
 
 all:
 	stow --verbose --target=$$HOME --restow ${packages}
