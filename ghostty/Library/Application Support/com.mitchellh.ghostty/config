@@ -1,2 +1,9 @@
+auto-update = "download"
 font-size = 20
-theme = Monokai Classic
+macos-option-as-alt = true
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+mouse-shift-capture = "never"
+quit-after-last-window-closed = true
+split-divider-color = "#ed47f9"
+theme = Argonaut
