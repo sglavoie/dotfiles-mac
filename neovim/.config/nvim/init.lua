@@ -90,7 +90,6 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 require('lazy').setup {
-  'christoomey/vim-tmux-navigator', -- Seamless navigation between tmux panes and vim splits
   'tpope/vim-surround', -- Quoting/parenthesizing made simple
 }
 
