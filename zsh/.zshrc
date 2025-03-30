@@ -41,6 +41,9 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # --follow: Follow symlinks
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 
+# Always search case-insensitively
+export LESS="-i"
+
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
     tmp="$(mktemp)"
