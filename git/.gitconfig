@@ -1,12 +1,6 @@
 [include]
 	path = ~/Documents/2_areas/programming/git/gitconfig-sglavoie
-[color]
-	branch = auto
-	diff = auto
-	grep = auto
-	interactive = auto
-	status = auto
-	ui = true
+
 [alias]
 	a = add
 	br = branch
@@ -15,25 +9,13 @@
 	can = commit --amend --no-edit
 	ch = checkout
 	d = diff
-	difflast = diff --cached HEAD^
 	ds = diff --staged
 	fpush = push --force-with-lease
 	l = log
-	last = l -1 HEAD
 
 	; log graph
 	lg = l --color --graph --pretty=format:'%Cred%h%Creset \
 -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-	; log name
-	ln = l --name-only
-
-	; log decorate all
-	logda = l --oneline --decorate --graph --all
-
-	; log pretty
-	lp = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d \
-%Creset%s' --date=relative --date-order --graph
 
 	; log work descriptions in chronological order for today (oldest at top)
 	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'` | tac"
@@ -48,30 +30,116 @@
 	; Save changes as a stash and leave them in the working tree
 	stash-keep = "!git stash --include-untracked && git stash apply"
 
-	t = tag
-	undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
 	unstage = reset HEAD --
-	vdiff = difftool --tool=
-	hs = log --pretty='%C(yellow)%h %C(cyan)%ad %Cblue%aN%C(auto)%d %Creset%s' --date=relative --date-order --graph
+
+[branch]
+	sort = -committerdate
+
+[color]
+	branch = auto
+	diff = auto
+	grep = auto
+	interactive = auto
+	status = auto
+	ui = true
+
+[column]
+	ui = auto
+
+[commit]
+	gpgsign = true
+	template = ~/.gitmessage
+	verbose = true
+
 [core]
-	; editor = code --wait
 	editor = vim
 	excludesfile = ~/.gitignore
 	pager = delta
 	autocrlf = input
 	ignorecase = true
-[commit]
-	gpgsign = true
-	template = ~/.gitmessage
-[interactive]
-	diffFilter = delta --color-only --features=interactive
-[delta]
-	features = decorations
-	side-by-side = true
-	dark = true
 
-[delta "interactive"]
-	keep-plus-minus-markers = false
+[credential]
+	helper = store
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+	tool = vscode
+
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+
+[fetch]
+	all = true
+	prune = true
+	pruneTags = true
+	writeCommitGraph = true
+
+[gpg]
+	format = ssh
+
+[grep]
+	patternType = perl
+
+[help]
+	autocorrect = prompt
+
+[init]
+	defaultBranch = main
+
+[interactive]
+	diffFilter = delta --color-only
+
+[merge]
+	conflictstyle = zdiff3
+
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+
+[mergetool]
+  prompt = false
+
+[pull]
+	rebase = false
+	ff = only
+
+[push]
+	autoSetupRemote = true
+	recurseSubmodules = on-demand
+	default = current
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[rerere]
+	autoUpdate = true
+	enabled = true
+
+[tag]
+	sort = version:refname
+
+
+; Git LFS
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+
+; Visual improvements with Delta
+
+[delta]
+	true-color = always
+	line-numbers = true
+	navigate = true    # use n and N to move between diff sections
+	features = decorations
+	side-by-side = false
 
 [delta "decorations"]
 	commit-decoration-style = blue ol
@@ -79,62 +147,5 @@
 	file-style = omit
 	hunk-header-decoration-style = blue box
 	hunk-header-file-style = red
-	hunk-header-line-number-style = "#067a00"
-	hunk-header-style = file line-number syntax
-[merge]
-	conflictstyle = diff3
-; [mergetool "nvim"]
-; 	cmd = nvim $MERGED
-; [difftool "nvim"]
-; 	cmd = nvim --diff $LOCAL $REMOTE
-[mergetool "vscode"]
-	cmd = code --wait $MERGED
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
-[mergetool]
-  prompt = false
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	commit = yellow bold
-	frag = magenta bold
-	meta = 11
-	new = green bold
-	old = red bold
-	whitespace = red reverse
-[push]
-	recurseSubmodules = on-demand
-	default = current
-[rebase]
-	autoStash = true
-	updateRefs = true
-[rerere]
-	autoUpdate = true
-	enabled = true
-[gpg]
-	format = ssh
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[pull]
-	rebase = false
-	ff = only
-[credential]
-	helper = store
-[init]
-	defaultBranch = main
-[diff]
-	tool = vscode
-[column]
-	ui = auto
-[branch]
-	sort = -committerdate
-[maintenance]
-	repo = /Users/sglavoie/1_dev_projects/tradition_ss
-[fetch]
-	writeCommitGraph = true
+	hunk-header-style = file syntax
+
