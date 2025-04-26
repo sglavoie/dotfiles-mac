@@ -64,11 +64,10 @@ cdd() {
 }
 
 # Read external environment variables
-source ~/Dropbox/.custom/zsh/environ.variables
-[ -f "$HOME/Dropbox/.custom/zsh/environ.variables" ] && source "$HOME/Dropbox/.custom/zsh/environ.variables"
+[ -f "$HOME/Documents/2_areas/programming/zsh/environ.variables" ] && source "$HOME/Documents/2_areas/programming/zsh/environ.variables"
 
 # Read aliases
-[ -f "$HOME/Dropbox/.custom/zsh/aliases" ] && source "$HOME/Dropbox/.custom/zsh/aliases"
+[ -f "$HOME/Documents/2_areas/programming/zsh/aliases" ] && source "$HOME/Documents/2_areas/programming/zsh/aliases"
 
 bindkey '^x^x' edit-command-line  # Open default editor
 

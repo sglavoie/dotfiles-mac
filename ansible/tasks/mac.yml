@@ -3,6 +3,6 @@
   tags:
     - mac
 - name: Install fonts
-  shell: cp -r /Users/sglavoie/Dropbox/.custom/fonts/* ~/Library/Fonts/
+  shell: cp -r /Users/sglavoie/Documents/2_areas/programming/fonts/* ~/Library/Fonts/
   tags:
     - mac

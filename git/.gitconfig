@@ -1,5 +1,5 @@
 [include]
-	path = ~/Dropbox/.custom/.gitconfig-sglavoie
+	path = ~/Documents/2_areas/programming/git/gitconfig-sglavoie
 [color]
 	branch = auto
 	diff = auto
