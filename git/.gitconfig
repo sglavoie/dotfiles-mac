@@ -17,6 +17,7 @@
 	d = diff
 	difflast = diff --cached HEAD^
 	ds = diff --staged
+	fpush = push --force-with-lease
 	l = log
 	last = l -1 HEAD
 
