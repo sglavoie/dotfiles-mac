@@ -13,4 +13,3 @@
 3. Update the vault as needed.
 4. Encrypt the vault: `ansible-vault encrypt codes-and-keys.txt`.
 5. Commit.
-
