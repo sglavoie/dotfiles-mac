@@ -146,3 +146,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(starship init zsh)"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/sglavoie/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
