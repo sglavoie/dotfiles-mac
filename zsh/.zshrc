@@ -23,7 +23,7 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
 export GOPATH=$HOME/.go
-export PATH="$GOPATH/bin:$HOME/.local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$HOME/.rye/env:$HOME/Programming/google-cloud-sdk/bin:$PATH"
+export PATH="$GOPATH/bin:$HOME/.local/bin:$HOME/development/flutter/bin:$HOME/.node/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:$HOME/.local/share/gem/ruby/3.4.0/bin:$HOME/.rye/env:$HOME/Programming/google-cloud-sdk/bin:$PATH"
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
