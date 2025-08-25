@@ -3,7 +3,7 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent fzf gitignore rye)
+plugins=(git ssh-agent fzf fzf-tab gitignore rye zsh-z)
 
 # Load multiple SSH keys
 zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
@@ -120,12 +120,6 @@ if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cl
 # Add custom aliases conditionally
 type eza >/dev/null 2>&1 && alias ls=eza
 
-if [[ -d "$HOME/bash_completion.d" ]]; then
-    for bcfile in ~/.bash_completion.d/* ; do
-      . $bcfile
-    done
-fi
-
 # Treat the alias as the real command
 compdef g=git
 
@@ -163,3 +157,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+if [[ -d "$HOME/.bash_completion.d" ]]; then
+    for bcfile in ~/.bash_completion.d/* ; do
+      source $bcfile
+    done
+fi
+
