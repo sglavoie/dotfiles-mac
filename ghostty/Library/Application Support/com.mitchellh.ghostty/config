@@ -1,9 +1,25 @@
+# Show defaults: ghostty +show-config --default
+
 auto-update = "download"
+auto-update-channel = tip
 font-size = 20
 macos-option-as-alt = true
 mouse-hide-while-typing = true
-mouse-scroll-multiplier = 2
+mouse-scroll-multiplier = 3
 mouse-shift-capture = "never"
 quit-after-last-window-closed = true
-split-divider-color = "#ed47f9"
-theme = Argonaut
+split-divider-color = "#ef2ffd"
+
+# Prevents Dock icon from jumping around
+desktop-notifications = false
+
+# keybindings
+
+# Fix shift+enter for Claude Code
+keybind = shift+enter=text:\n
+
+keybind = global:cmd+option+t=toggle_quick_terminal
+keybind = cmd+option+h=goto_split:left
+keybind = cmd+option+l=goto_split:right
+keybind = cmd+option+j=goto_split:down
+keybind = cmd+option+k=goto_split:up
