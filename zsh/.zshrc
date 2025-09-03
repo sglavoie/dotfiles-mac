@@ -164,3 +164,10 @@ if [[ -d "$HOME/.bash_completion.d" ]]; then
     done
 fi
 
+
+# bun completions
+[ -s "/Users/sglavoie/.bun/_bun" ] && source "/Users/sglavoie/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
