@@ -7,6 +7,7 @@
 	c = commit
 	ca = commit --amend
 	can = commit --amend --no-edit
+	cnv = commit --no-verify
 	ch = checkout
 	d = diff
 	ds = diff --staged
