@@ -1,4 +1,3 @@
-1password
 audacity
 brave-browser
 calibre
