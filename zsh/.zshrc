@@ -129,8 +129,6 @@ type eza >/dev/null 2>&1 && alias ls=eza
 
 # https://rye-up.com/guide/installation/#add-shims-to-path
 source "$HOME/.rye/env"
-export PATH=$PATH:/Users/sglavoie/.pixi/bin
-eval "$(pixi completion --shell zsh)"
 
 . "$HOME/.atuin/bin/env"
 
