@@ -1,4 +1,4 @@
-packages = atuin git iterm2 neovim tmux zsh
+packages = atuin git iterm2 neovim oh-my-posh tmux zsh
 
 all:
 	stow --verbose --target=$$HOME --restow ${packages}

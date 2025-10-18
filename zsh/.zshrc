@@ -90,9 +90,8 @@ else
     compinit
     # End of Docker CLI completions
 
-    # https://github.com/sindresorhus/pure
-    autoload -U promptinit; promptinit
-    prompt pure
+	# https://ohmyposh.dev/
+	eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
