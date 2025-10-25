@@ -35,6 +35,8 @@ else
     export EDITOR='vim'
     export VISUAL='vim'
 
+    export PAGER=delta
+
     # Get colorized output for `man` pages with `bat`
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
