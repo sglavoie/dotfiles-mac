@@ -4,6 +4,7 @@ auto-update = "download"
 auto-update-channel = tip
 font-size = 20
 macos-option-as-alt = true
+maximize = true
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 3
 mouse-shift-capture = "never"
@@ -12,6 +13,8 @@ split-divider-color = "#ef2ffd"
 
 # Prevents Dock icon from jumping around
 desktop-notifications = false
+
+bell-features = system
 
 # keybindings
 
