@@ -1,100 +1,96 @@
-if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:/Users/sglavoie/Programming/google-cloud-sdk/bin:/opt/podman/bin
-else
-    # Which plugins would you like to load?
-    # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-    # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-    # Example format: plugins=(rails git textmate ruby lighthouse)
-    # Add wisely, as too many plugins slow down shell startup.
-    plugins=(git ssh-agent fzf fzf-tab gitignore rye zsh-z)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git ssh-agent fzf fzf-tab gitignore rye zsh-z)
 
-    # Load multiple SSH keys
-    zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
+# Load multiple SSH keys
+zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
 
-    HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-    SAVEHIST=1000000
-    HISTSIZE=1000000
-    setopt EXTENDED_HISTORY
-    setopt INC_APPEND_HISTORY
-    setopt SHARE_HISTORY
-    setopt HIST_EXPIRE_DUPS_FIRST
-    setopt HIST_IGNORE_DUPS
-    setopt HIST_IGNORE_ALL_DUPS
-    setopt HIST_FIND_NO_DUPS
-    setopt HIST_IGNORE_SPACE
-    setopt HIST_SAVE_NO_DUPS
-    setopt HIST_REDUCE_BLANKS
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+SAVEHIST=1000000
+HISTSIZE=1000000
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
 
-    export GOPATH=$HOME/.go
-    export PATH="$GOPATH/bin:$HOME/.local/bin:$HOME/development/flutter/bin:$HOME/.node/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:$HOME/.local/share/gem/ruby/3.4.0/bin:$HOME/.rye/env:$HOME/Programming/google-cloud-sdk/bin:$PATH"
+export GOPATH=$HOME/.go
+export PATH="/opt/homebrew/bin:$GOPATH/bin:$HOME/.local/bin:$HOME/development/flutter/bin:$HOME/.node/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:$HOME/.local/share/gem/ruby/3.4.0/bin:$HOME/.rye/env:$HOME/Programming/google-cloud-sdk/bin:$PATH"
 
-    export LANG="en_US.UTF-8"
-    export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
-    # Set default editor to use
-    export EDITOR='vim'
-    export VISUAL='vim'
+# Set default editor to use
+export EDITOR='vim'
+export VISUAL='vim'
 
-    export PAGER=delta
+export PAGER=delta
 
-    # Get colorized output for `man` pages with `bat`
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Get colorized output for `man` pages with `bat`
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-    # --files: List files that would be searched but do not search
-    # --no-ignore: Do not respect .gitignore, etc.
-    # --hidden: Search hidden files and folders
-    # --follow: Follow symlinks
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc.
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 
-    # Always search case-insensitively
-    export LESS="-i"
+# Always search case-insensitively
+export LESS="-i"
 
-    # Use lf to switch directories and bind it to ctrl-o
-    lfcd () {
-        tmp="$(mktemp)"
-        lf -last-dir-path="$tmp" "$@"
-        if [ -f "$tmp" ]; then
-            dir="$(cat "$tmp")"
-            rm -f "$tmp"
-            [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-        fi
-    }
-    bindkey -s '^o' 'lfcd\n'
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+	tmp="$(mktemp)"
+	lf -last-dir-path="$tmp" "$@"
+	if [ -f "$tmp" ]; then
+		dir="$(cat "$tmp")"
+		rm -f "$tmp"
+		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+	fi
+}
+bindkey -s '^o' 'lfcd\n'
 
-    # cd to directory
-    cdd() {
-    local dir
-    dir=$(fd --type d | fzf +m) &&
-    cd "$dir"
-    }
+# cd to directory
+cdd() {
+local dir
+dir=$(fd --type d | fzf +m) &&
+cd "$dir"
+}
 
-    # Read external environment variables
-    [ -f "$HOME/Documents/2_areas/programming/zsh/environ.variables" ] && source "$HOME/Documents/2_areas/programming/zsh/environ.variables"
+# Read external environment variables
+[ -f "$HOME/Documents/2_areas/programming/zsh/environ.variables" ] && source "$HOME/Documents/2_areas/programming/zsh/environ.variables"
 
-    # Read aliases
-    [ -f "$HOME/Documents/2_areas/programming/zsh/aliases" ] && source "$HOME/Documents/2_areas/programming/zsh/aliases"
+# Read aliases
+[ -f "$HOME/Documents/2_areas/programming/zsh/aliases" ] && source "$HOME/Documents/2_areas/programming/zsh/aliases"
 
-    bindkey '^x^x' edit-command-line  # Open default editor
+bindkey '^x^x' edit-command-line  # Open default editor
 
-    # Path to your oh-my-zsh installation.
-    export ZSH="$HOME/.oh-my-zsh"
-    source $ZSH/oh-my-zsh.sh
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
 
-    # Treat the alias as the real command
-    compdef g=git
+# Treat the alias as the real command
+compdef g=git
 
-    # A smarter cd command - https://github.com/ajeetdsouza/zoxide
-    eval "$(zoxide init zsh)"
+# A smarter cd command - https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
 
-    # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-    fpath=(/Users/sglavoie/.docker/completions $fpath)
-    autoload -Uz compinit
-    compinit
-    # End of Docker CLI completions
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/sglavoie/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
 
-	# https://ohmyposh.dev/
-	eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
-fi
+# https://ohmyposh.dev/
+eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
