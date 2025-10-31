@@ -15,8 +15,12 @@
 	fpush = push --force-with-lease
 	l = log
 
-	; log graph
+	; log graph (NO author)
 	lg = l --color --graph --pretty=format:'%Cred%h%Creset \
+-%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit
+
+	; log graph (with author)
+	lga = l --color --graph --pretty=format:'%Cred%h%Creset \
 -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 	; log work descriptions in chronological order for today (oldest at top)
