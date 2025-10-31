@@ -3,6 +3,10 @@
 auto-update = "download"
 auto-update-channel = tip
 font-size = 20
+font-family = Lilex Nerd Font Mono
+font-family-bold = Lilex Nerd Font Mono
+font-family-italic = Lilex Nerd Font Mono
+font-family-bold-italic = Lilex Nerd Font Mono
 macos-option-as-alt = true
 maximize = true
 mouse-hide-while-typing = true
@@ -20,6 +24,8 @@ bell-features = system
 
 # Fix shift+enter for Claude Code
 keybind = shift+enter=text:\n
+
+clipboard-paste-protection = false
 
 keybind = global:cmd+option+t=toggle_quick_terminal
 keybind = cmd+option+h=goto_split:left
