@@ -2,11 +2,11 @@
 
 auto-update = "download"
 auto-update-channel = tip
-font-size = 20
-font-family = Lilex Nerd Font Mono
-font-family-bold = Lilex Nerd Font Mono
-font-family-italic = Lilex Nerd Font Mono
-font-family-bold-italic = Lilex Nerd Font Mono
+font-size = 24
+font-family = Geist Mono
+font-family-bold = Geist Mono
+font-family-italic = Geist Mono
+font-family-bold-italic = Geist Mono
 macos-option-as-alt = true
 maximize = true
 mouse-hide-while-typing = true
