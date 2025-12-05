@@ -2,10 +2,10 @@
 # Typography / Text
 #
 
-font_family        GeistMono Nerd Font Mono
-bold_font          GeistMono Nerd Font Mono
-italic_font        GeistMono Nerd Font Mono
-bold_italic_font   GeistMono Nerd Font Mono
+font_family        Geist Mono
+bold_font          Geist Mono
+italic_font        Geist Mono Italic
+bold_italic_font   Geist Mono Italic Bold Italic
 font_size          26
 disable_ligatures  always
 cursor_shape       block
@@ -20,10 +20,6 @@ input_delay     0
 repaint_delay   2
 sync_to_monitor no
 
-# Programmatic control (e.g., fetch tab title, emit custom notifications)
-allow_remote_control yes
-listen_on unix:/tmp/kitty-{kitty_pid}
-
 kitty_mod ctrl+shift
 macos_option_as_alt                yes
 macos_quit_when_last_window_closed yes
@@ -34,17 +30,25 @@ remember_window_position           yes
 tab_bar_style       powerline
 tab_powerline_style slanted
 tab_activity_symbol none
-tab_title_template  {"≣ " if layout_name == "stack" else ""}{title}
+tab_title_template  {"≣" if layout_name == "stack" else ""}{title}
 
 # Number of lines of history to keep in memory for scrolling back.
 scrollback_lines 10000
 
 # URLs
 url_style          curly
+open_url_modifiers kitty_mod
 open_url_with      default
 
 copy_on_select no
 strip_trailing_spaces smart
+
+# Select text in a rectangular block with the mouse
+rectangle_select_modifiers   ctrl+alt
+
+# The modifiers to override mouse selection even when a terminal
+# application has grabbed the mouse
+terminal_select_modifiers shift
 
 # Misc options
 enable_audio_bell yes
@@ -77,12 +81,9 @@ map cmd+Left            previous_window
 
 # Layouts management
 map cmd+shift+enter toggle_layout stack
-# Map to default order
-enabled_layouts grid,vertical,stack
-
-map f1 goto_layout  grid
+map f1 goto_layout  horizontal
 map f2 goto_layout  vertical
-map f3 goto_layout  stack
+map f3 goto_layout  grid
 
 # Tab management
 map cmd+shift+right next_tab
@@ -103,6 +104,6 @@ map alt+right send_text all \x1b\x66
 #
 
 # BEGIN_KITTY_THEME
-# Default
+# Dark Pastel
 include current-theme.conf
 # END_KITTY_THEME
