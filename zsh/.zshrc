@@ -150,3 +150,5 @@ if [[ -d "$HOME/.bash_completion.d" ]]; then
 fi
 
 alias claude="/Users/sglavoie/.claude/local/claude"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
