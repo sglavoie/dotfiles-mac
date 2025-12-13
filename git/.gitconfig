@@ -1,5 +1,5 @@
 [include]
-	path = ~/Documents/2_areas/programming/git/gitconfig-sglavoie
+	path = ~/Documents/21_programming/git/gitconfig-sglavoie
 
 [alias]
 	a = add
