@@ -66,10 +66,10 @@ cd "$dir"
 }
 
 # Read external environment variables
-[ -f "$HOME/Documents/2_areas/programming/zsh/environ.variables" ] && source "$HOME/Documents/2_areas/programming/zsh/environ.variables"
+[ -f "$HOME/Documents/21_programming/zsh/environ.variables" ] && source "$HOME/Documents/21_programming/zsh/environ.variables"
 
 # Read aliases
-[ -f "$HOME/Documents/2_areas/programming/zsh/aliases" ] && source "$HOME/Documents/2_areas/programming/zsh/aliases"
+[ -f "$HOME/Documents/21_programming/zsh/aliases" ] && source "$HOME/Documents/21_programming/zsh/aliases"
 
 bindkey '^x^x' edit-command-line  # Open default editor
 
