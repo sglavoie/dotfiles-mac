@@ -5,18 +5,14 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#BF616A",
-          "style": "plain",
-          "template": "{{ .UserName }} ",
-          "type": "session"
-        },
-        {
-          "foreground": "#81A1C1",
-          "properties": {
-            "style": "full"
+          "background": "#61AFEF",
+          "foreground": "#ffffff",
+          "powerline_symbol": "",
+          "template": " {{ .Path }} ",
+          "options": {
+            "style": "folder"
           },
           "style": "plain",
-          "template": "{{ .Path }} ",
           "type": "path"
         }
       ],
