@@ -149,6 +149,14 @@ if [[ -d "$HOME/.bash_completion.d" ]]; then
     done
 fi
 
-alias claude="/Users/sglavoie/.claude/local/claude"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+
+# Vault CLI completion for Zsh
+_vault() {
+    eval $(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)
+}
+compdef _vault vault
+
+alias claude_personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"

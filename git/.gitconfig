@@ -155,3 +155,6 @@
 	hunk-header-file-style = red
 	hunk-header-style = file syntax
 
+[user]
+	name = Sébastien Lavoie
+	email = sgdlavoie@gmail.com
