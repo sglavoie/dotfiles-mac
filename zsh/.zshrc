@@ -69,7 +69,7 @@ cd "$dir"
 [ -f "$HOME/Documents/21_programming/zsh/environ.variables" ] && source "$HOME/Documents/21_programming/zsh/environ.variables"
 
 # Read aliases
-[ -f "$HOME/Documents/21_programming/zsh/aliases" ] && source "$HOME/Documents/21_programming/zsh/aliases"
+[ -f "$HOME/.config/zsh/aliases" ] && source "$HOME/.config/zsh/aliases"
 
 bindkey '^x^x' edit-command-line  # Open default editor
 
@@ -158,5 +158,3 @@ _vault() {
     eval $(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)
 }
 compdef _vault vault
-
-alias claude_personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"

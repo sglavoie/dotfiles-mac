@@ -1,0 +1,155 @@
+# NOTE: Some aliases haven't been tried yet on Mac and some are known
+# to be temporarily broken.
+
+# Shortcuts
+alias alert="afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/KBVONotSynched.aiff"
+alias allextensions="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
+alias cat="bat"
+alias chrome="open -a 'google chrome'"
+alias cleanZip='_cleanZip(){ zip -d $1 "__MACOSX/*" && zip -d $1 "*/.DS_Store" }; _cleanZip'
+alias ctags='`brew --prefix`/bin/ctags'
+alias diff='diff-so-fancy'
+alias dockerclean='docker stop $(docker ps -qa); docker system prune -a --volumes'
+alias f='fg'
+alias g='git'
+alias gitaliases='git config -l | grep alias | sed "s/^alias\.//g" | sed "s/=/Ω/" | column -t -s "Ω"'
+alias gu='gitui'
+alias h='history'
+alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
+alias j='jobs -l'
+alias lg='lazygit'
+alias n='nvim'
+alias p='python3.11'
+alias q='exit'
+alias re='tput reset'
+alias sed='gsed'
+alias specify='uvx --from git+https://github.com/github/spec-kit.git specify'
+alias sk='skate'
+alias www='python3 -m http.server'
+alias claude_personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"
+
+
+large-files() {
+  local ext="${1:+-e $1}"
+  fd --type f ${=ext} --exec wc -l | sort -nr | head -n 10
+}
+
+# Claude Code
+alias format-commit='python3 /Users/sglavoie/.claude/scripts/format-commit.py'
+
+# VTA
+alias vta_invoice='monthly-invoice.sh'
+
+
+# x86_64 support
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias python3.7='/usr/local/opt/python@3.7/bin/python3.7'
+
+# Programs
+alias v='vim'
+
+# General paths
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias cheat='cd ~/Dropbox/Programming/cheatsheets'
+
+# Colorize the grep command output for ease of use (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# Python related
+alias ap='source .venv/bin/activate'
+alias avenv='source venv/bin/activate'
+alias cleanhistory='python \
+    ~/dev/sglavoie/dev-helpers/zsh_history_cleaner/zsh_history_cleaner.py'
+alias da='deactivate'
+alias pipupgrade="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+alias pipupdateall="pip install -U \$(pip freeze | awk '{split(\$0, a, \"==\"); print a[1]}')"
+alias pylint='/usr/bin/env python =pylint'
+alias pythonlines='find . -name \*.py | xargs wc -l'
+alias pyclean='find . -name "*.py[co]" -or -name "__pycache__" -exec rm -rf -- {} +'
+
+# macOS related
+alias rmmac_garbage='find . -type f -name ".DS_Store" -delete && find . -type d -name "__MACOSX" -delete'
+
+# Get core of VS Code problems JSON for AI from clipboard
+# I.e., copy from Problems panel for a specific file
+# output:
+# @/file/path
+# {
+#   "message": "something",
+#   "startLineNumber": 95
+# }
+alias codeproblems='pbpaste | jq -r "([.[0].resource] | \"@\" + .[0]), (.[] | {message: .message, startLineNumber: .startLineNumber})"'
+
+# Open in Code
+oc() {
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && code "${files[@]}"
+}
+
+# Open in Neovim
+onvim() {
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+# Open in Vim
+ovim() {
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && vim "${files[@]}"
+}
+
+function killport() {
+    lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | while read pid; do
+        echo "Killing process with PID $pid listening on port $1"
+        kill -9 "$pid"
+    done
+}
+
+# Usage: sloc <extension>
+# Example: sloc go
+#          sloc py
+sloc() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: sloc <extension>"
+    return 1
+  fi
+
+  find . -name "*.$1" \
+  -not -path "*.venv*" \
+  -not -name "*_pb2.py" \
+  -not -path "*.ipynb_checkpoints*" \
+  -not -path "*__pycache__*" | xargs wc -l
+}
+
+# Ignore specific files/directories in Dropbox
+dropbox-ignore() {
+    arg1=$1
+    arg2=$2
+
+    if [ -z "$arg1" ] || [ -z "$arg2" ]; then
+        echo "Usage: dropbox-ignore <f|d> <name> (e.g. dropbox-ignore d .git)"
+        return 1
+    fi
+
+    find ~/Dropbox -type $arg1 -name "$arg2" |
+        xargs -I {} xattr -w com.dropbox.ignored 1 "{}"
+}
+
+# Sync specific files/directories in Dropbox
+# that were previously ignored (or not)
+dropbox-sync() {
+    arg1=$1
+    arg2=$2
+
+    if [ -z "$arg1" ] || [ -z "$arg2" ]; then
+        echo "Usage: dropbox-sync <f|d> <name> (e.g. dropbox-sync d .git)"
+        return 1
+    fi
+
+    find ~/Dropbox -type $arg1 -name "$arg2" |
+        xargs -I {} xattr -d com.dropbox.ignored "{}"
+}
