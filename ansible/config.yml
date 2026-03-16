@@ -1,11 +1,15 @@
 ---
 downloads: ~/.ansible-downloads/
 
-configure_mac: false
-configure_zsh: false
-configure_homebrew_packages: false
-configure_homebrew_casks: false
-configure_node: false
-configure_npm: false
-configure_dev_tools: false
-configure_dotfiles: false
+configure_mac: true
+configure_zsh: true
+configure_homebrew_taps: true
+configure_homebrew_packages: true
+configure_homebrew_casks: true
+configure_node: true
+configure_npm: true
+configure_dev_tools: true
+configure_dotfiles: true
+configure_pipx: true
+configure_go: true
+configure_vscode: true

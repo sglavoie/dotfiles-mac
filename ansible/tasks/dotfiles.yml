@@ -3,6 +3,6 @@
   tags:
     - dotfiles
 - name: Stow dotfiles
-  shell: cd $HOME/dotfiles && make
+  shell: cd $HOME/dotfiles && just all
   tags:
     - dotfiles

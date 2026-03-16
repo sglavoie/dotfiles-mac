@@ -1,0 +1,14 @@
+- name: Read VS Code extensions list
+  set_fact:
+    vscode_extensions: "{{ lookup('file', playbook_dir + '/vscode_extensions.txt').splitlines() | reject('match', '^\\s*$') | list }}"
+  tags:
+    - vscode
+
+- name: Install VS Code extensions
+  command: code --install-extension {{ item }}
+  loop: "{{ vscode_extensions }}"
+  register: vscode_result
+  changed_when: "'was successfully installed' in vscode_result.stdout"
+  failed_when: vscode_result.rc != 0
+  tags:
+    - vscode

@@ -20,9 +20,31 @@ brew install ansible
 git clone git@github.com:sglavoie/dotfiles-mac.git ~/dotfiles
 
 # Run the Ansible playbook
-cd ~/dotfiles/ansible
-ansible-playbook main.yml -K
+cd ~/dotfiles
+just ansible
 ```
+
+## Re-running parts of the setup
+
+Each task file is tagged, so you can re-run specific parts with `--tags`:
+
+```bash
+cd ~/dotfiles/ansible
+
+# Run only Homebrew packages and casks
+ansible-playbook main.yml -K --tags homebrew
+
+# Run only npm packages
+ansible-playbook main.yml -K --tags npm
+
+# Run only macOS system defaults
+ansible-playbook main.yml -K --tags mac
+
+# Combine multiple tags
+ansible-playbook main.yml -K --tags "homebrew,npm"
+```
+
+Available tags: `ansible-playbook main.yml --list-tags`.
 
 ## Dotfiles usage
 
@@ -30,24 +52,36 @@ ansible-playbook main.yml -K
 brew install stow  # if not already installed
 git clone git@github.com:sglavoie/dotfiles-mac.git ~/dotfiles
 cd ~/dotfiles
-make
+just
 ```
 
 ### Update/recreate dotfiles
 
 ```bash
-make
+just all
 ```
 
 ### Remove all dotfiles symlinks
 
 ```bash
-make delete
+just delete
 ```
 
-## Get installed Homebrew packages and casks
+## Detect drift between dotfiles and installed packages
 
 ```bash
-brew leaves | xargs brew desc --eval-all
-brew ls --casks | xargs brew desc --eval-all
+just drift
+just drift --no-color  # for piping to a file
 ```
+
+This compares brew formulae, casks, fonts, npm packages, and VS Code extensions defined in `ansible/` against what's actually installed on the system.
+
+## External dependencies
+
+Some configuration lives outside this repo:
+
+- **`~/scripts`** — custom scripts, launch agents (`com.sglavoie.*` plists), and `~/.local/bin/` symlinks
+- **`~/Documents/21_programming/git/gitconfig-sglavoie`** — private git identity (included by `.gitconfig`)
+- **`~/Documents/21_programming/zsh/environ.variables`** — private shell variables (sourced by `.zshrc`)
+- **`~/Documents/21_programming/fonts/`** — custom fonts installed by Ansible
+- **SSH config (`~/.ssh/config`)** — tracked in `~/scripts` repo (contains host-specific info)

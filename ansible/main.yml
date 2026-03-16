@@ -7,6 +7,9 @@
     - import_tasks: tasks/mac.yml
       when: configure_mac
       tags: ['mac']
+    - import_tasks: tasks/homebrew-taps.yml
+      when: configure_homebrew_taps
+      tags: ['homebrew_taps']
     - import_tasks: tasks/homebrew-packages.yml
       when: configure_homebrew_packages
       tags: ['homebrew']
@@ -28,3 +31,12 @@
     - import_tasks: tasks/npm-packages.yml
       when: configure_npm
       tags: ['npm']
+    - import_tasks: tasks/pipx-packages.yml
+      when: configure_pipx
+      tags: ['pipx']
+    - import_tasks: tasks/go-tools.yml
+      when: configure_go
+      tags: ['go']
+    - import_tasks: tasks/vscode-extensions.yml
+      when: configure_vscode
+      tags: ['vscode']

@@ -1,0 +1,38 @@
+Adobe Acrobat DC
+Amphetamine
+Cloudflare WARP
+Discord
+Flux
+GitHub Desktop
+Google Docs
+Google Drive
+Google Sheets
+Google Slides
+GPG Keychain
+IntelliJ IDEA
+kdenlive
+Keynote
+lghub
+Microsoft Excel
+Microsoft OneNote
+Microsoft Outlook
+Microsoft PowerPoint
+Microsoft Word
+Numbers
+OBS
+Obsidian
+Pages
+Parallels Desktop
+Parallels Toolbox
+PDFgear
+Podman Desktop
+QuickShade
+RustRover
+ScreenBrush
+Setapp
+Tapo
+TinkerTool
+Tradition - Katana
+Viscosity
+Wacom Tablet
+Xcode

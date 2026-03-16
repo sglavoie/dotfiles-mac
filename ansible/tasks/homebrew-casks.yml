@@ -1,12 +1,32 @@
 - name: Install Homebrew casks
-  shell: xargs brew install < {{ playbook_dir }}/homebrew_casks.txt
-  tags:
-    - homebrew
-- name: Install JetBrains Mono font
-  shell: >
-    brew tap homebrew/cask-fonts
-    brew install --cask font-jetbrains-mono
-    brew install --cask font-meslo-for-powerlevel10k
-    brew install --cask font-fira-code-nerd-font
+  shell: |
+    ASKPASS=$(mktemp)
+    chmod 700 "$ASKPASS"
+    printf '#!/bin/sh\necho "%s"\n' "$SUDO_PASSWORD" > "$ASKPASS"
+    export SUDO_ASKPASS="$ASKPASS"
+
+    failed=0
+    while IFS= read -r cask; do
+      [ -z "$cask" ] && continue
+      if brew list --cask "$cask" &>/dev/null; then
+        continue
+      fi
+      output=$(brew install --cask "$cask" 2>&1)
+      rc=$?
+      if [ $rc -ne 0 ]; then
+        if echo "$output" | grep -q "already an App"; then
+          echo "Skipping $cask: app already exists in /Applications"
+        else
+          echo "$output" >&2
+          failed=$((failed + 1))
+        fi
+      fi
+    done < {{ playbook_dir }}/homebrew_casks.txt
+
+    rm -f "$ASKPASS"
+    exit $failed
+  environment:
+    SUDO_PASSWORD: '{{ ansible_become_pass }}'
+  # no_log: true
   tags:
     - homebrew

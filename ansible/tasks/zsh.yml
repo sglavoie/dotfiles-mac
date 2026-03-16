@@ -10,13 +10,7 @@
     - zsh
   when: oh_my_stats.stat.exists == False
   become_user: sglavoie
-- name: Install powerlevel10k theme
-  shell: if [ ! -d "/Users/sglavoie/.oh-my-zsh/custom/themes/powerlevel10k" ]; then git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k; fi
-  tags:
-    - zsh
 - name: Don't show last login
   shell: touch $HOME/.hushlogin
-- name: Install 'rye' plugin Python
-  shell: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-- name: Add 'rye' shims to PATH Python
-  shell: echo 'source "$HOME/.rye/env"' >> ~/.zprofile
+  tags:
+    - zsh

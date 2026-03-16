@@ -1,0 +1,29 @@
+- name: Install Go tools
+  shell: go install {{ item }}@latest
+  loop:
+    - github.com/air-verse/air
+    - github.com/spf13/cobra-cli
+    - golang.org/x/tools/cmd/deadcode
+    - github.com/go-delve/delve/cmd/dlv
+    - github.com/kisielk/errcheck
+    - github.com/loov/goda
+    - golang.org/x/tools/cmd/goimports
+    - github.com/golangci/golangci-lint/v2/cmd/golangci-lint
+    - github.com/segmentio/golines
+    - golang.org/x/lint/golint
+    - golang.org/x/tools/gopls
+    - gotest.tools/gotestsum
+    - github.com/sglavoie/dev-helpers/go/gotime
+    - golang.org/x/vuln/cmd/govulncheck
+    - github.com/gordonklaus/ineffassign
+    - golang.org/x/exp/cmd/modgraphviz
+    - golang.org/x/pkgsite/cmd/pkgsite
+    - google.golang.org/protobuf/cmd/protoc-gen-go
+    - github.com/boyter/scc/v3
+    - golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow
+    - github.com/charmbracelet/skate
+    - honnef.co/go/tools/cmd/staticcheck
+    - golang.org/x/website/tour
+    - github.com/charmbracelet/vhs
+  tags:
+    - go

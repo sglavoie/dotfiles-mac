@@ -1,0 +1,7 @@
+- name: Install git-filter-repo via pipx
+  command: pipx install git-filter-repo
+  register: pipx_git_filter_repo
+  changed_when: "'installed package' in pipx_git_filter_repo.stdout"
+  failed_when: pipx_git_filter_repo.rc != 0 and 'already' not in pipx_git_filter_repo.stdout
+  tags:
+    - pipx

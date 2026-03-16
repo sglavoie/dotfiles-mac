@@ -3,13 +3,16 @@
   tags:
     - node
 - name: Set up `n`
-  shell: >
-    sudo mkdir -p /usr/local/n &&
-    sudo chown -R $(whoami) /usr/local/n &&
-    sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share &&
-    sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
-- name: Install latest Node.js LTS
-  shell: n lts
+  shell: |
+    mkdir -p /usr/local/n
+    chown -R {{ ansible_facts["user_id"] }} /usr/local/n
+    mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+    chown -R {{ ansible_facts["user_id"] }} /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+  become: yes
   tags:
     - node
-  become: true
+- name: Install latest Node.js LTS
+  shell: n lts
+  become: yes
+  tags:
+    - node

@@ -26,3 +26,39 @@
     global: yes
   tags:
     - npm
+- name: Install Gemini CLI
+  npm:
+    name: "@google/gemini-cli"
+    global: yes
+  tags:
+    - npm
+- name: Install Mermaid CLI
+  npm:
+    name: "@mermaid-js/mermaid-cli"
+    global: yes
+  tags:
+    - npm
+- name: Install markdownlint-cli
+  npm:
+    name: markdownlint-cli
+    global: yes
+  tags:
+    - npm
+- name: Install Pyright
+  npm:
+    name: pyright
+    global: yes
+  tags:
+    - npm
+- name: Install Yeoman
+  npm:
+    name: yo
+    global: yes
+  tags:
+    - npm
+- name: Install Office Add-in generator
+  npm:
+    name: generator-office
+    global: yes
+  tags:
+    - npm

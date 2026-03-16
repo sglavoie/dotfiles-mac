@@ -19,6 +19,19 @@ defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
 # Window management: make ctrl+cmd with mouse click drag a window
 defaults write -g NSWindowShouldDragOnGesture YES
 
+# Keyboard
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Appearance
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+defaults write NSGlobalDomain AppleReduceDesktopTinting -bool true
+
+# Scrolling direction (natural = true, traditional = false)
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
+
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
@@ -33,10 +46,8 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 # Dock
 ######
 
-# defaults delete com.apple.dock autohide-delay # shows dock immediately
-# defaults write com.apple.dock autohide-delay -float 0.5 # shows dock after X seconds
-# defaults write com.apple.dock static-only -bool true
-# defaults write com.apple.dock tilesize -int 64
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock tilesize -int 64
 
 # Minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool true
@@ -114,6 +125,13 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 ######
 # Misc
 ######
+
+# Screenshots
+defaults write com.apple.screencapture type -string "png"
+
+# Clock
+defaults write com.apple.menuextra.clock ShowAMPM -bool true
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true

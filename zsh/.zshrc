@@ -32,7 +32,11 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+# https://dandavison.github.io/delta/
 export PAGER=delta
+
+# https://difftastic.wilfred.me.uk/git.html
+export GIT_EXTERNAL_DIFF=difft
 
 # Get colorized output for `man` pages with `bat`
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

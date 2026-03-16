@@ -1,0 +1,10 @@
+charmbracelet/tap
+cloudflare/cloudflare
+draftbrew/tap
+filebrowser/tap
+hashicorp/tap
+jandedobbeleer/oh-my-posh
+justinokamoto/espeak-ng
+noahgorstein/tap
+oven-sh/bun
+vjeantet/tap

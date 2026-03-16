@@ -1,0 +1,4 @@
+- name: Install Homebrew taps
+  shell: xargs -I {} brew tap {} < {{ playbook_dir }}/homebrew_taps.txt
+  tags:
+    - homebrew_taps
