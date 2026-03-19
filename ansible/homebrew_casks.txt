@@ -23,6 +23,7 @@ hovrly
 iina
 inkscape
 iterm2
+karabiner-elements
 kitty
 mactex
 netnewswire
