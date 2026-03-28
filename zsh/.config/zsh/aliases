@@ -19,32 +19,6 @@ alias specify='uvx --from git+https://github.com/github/spec-kit.git specify'
 alias www='python3 -m http.server'
 alias claude_personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"
 
-
-large-files() {
-  if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-    echo "Usage: large-files [-u] [extension]"
-    echo ""
-    echo "Show the 10 largest files by line count."
-    echo ""
-    echo "Options:"
-    echo "  -u          Include files ignored by .gitignore"
-    echo "  -h, --help  Show this help message"
-    echo ""
-    echo "Examples:"
-    echo "  large-files          All files"
-    echo "  large-files md       Only .md files"
-    echo "  large-files -u py    Only .py files, including ignored"
-    return 0
-  fi
-  local unrestricted=""
-  if [[ "$1" == "-u" ]]; then
-    unrestricted="-u"
-    shift
-  fi
-  local ext="${1:+-e $1}"
-  fd --type f ${=unrestricted} ${=ext} --exec wc -l | sort -nr | head -n 10
-}
-
 # Claude Code
 alias format-commit='python3 /Users/sglavoie/.claude/scripts/format-commit.py'
 
