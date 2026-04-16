@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+# https://macos-defaults.com
+# Discover:
+# defaults domains              # list all preference domains (comma-separated)
+# defaults domains | tr ',' '\n' | sort   # readable list
+# defaults read                 # dump ALL prefs (huge)
+# defaults read com.apple.dock  # dump one domain's current values
+# defaults read-type com.apple.dock autohide   # show value type
+
 echo "Setting $(defaults) values..."
 
 # Reset a setting with `defaults delete`
@@ -19,10 +27,17 @@ defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
 # Window management: make ctrl+cmd with mouse click drag a window
 defaults write -g NSWindowShouldDragOnGesture YES
 
+##########
 # Keyboard
+##########
+
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
+# Choose whether to enable moving focus with Tab and Shift Tab.
+defaults write NSGlobalDomain AppleKeyboardUIMode -int "2"
 
 # Appearance
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
@@ -38,29 +53,36 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Disable automatic termination of inactive apps
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
-# Disable automatic capitalization as it’s annoying when typing code
+# Disable automatic capitalization as it's annoying when typing code
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-
 
 ######
 # Dock
 ######
 
 defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock tilesize -int 64
+defaults write com.apple.dock tilesize -int 48
 
-# Minimize windows into their application’s icon
+# Minimize windows into their application's icon
 defaults write com.apple.dock minimize-to-application -bool true
 
-# Don’t animate opening applications from the Dock
+# Don't animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
 
-# Don’t automatically rearrange Spaces based on most recent use
+# Don't automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
-# Don’t show recent applications in Dock
+# Don't show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
+# Dock opening delay
+defaults write com.apple.dock "autohide-delay" -float "5"
+
+# Scroll up on a Dock icon to show all Space's opened windows for an app, or open stack.
+defaults write com.apple.dock "scroll-to-open" -bool "true"
+
+# Group windows by application
+defaults write com.apple.dock "expose-group-apps" -bool "true"
 
 ########
 # Finder
@@ -95,6 +117,11 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
+########
+# Safari
+########
+
+defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true"
 
 #############
 # Disk images
@@ -119,6 +146,8 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
+defaults write com.apple.ActivityMonitor "UpdatePeriod" -int "1"
+
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
@@ -126,12 +155,14 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 # Misc
 ######
 
+Displays have separate Spaces
+defaults write com.apple.spaces "spans-displays" -bool "true"
+
 # Screenshots
 defaults write com.apple.screencapture type -string "png"
 
 # Clock
-defaults write com.apple.menuextra.clock ShowAMPM -bool true
-defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE HH:mm:ss\""
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -140,37 +171,8 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 sudo DevToolsSecurity -enable
 sudo dscl . append /Groups/_developer GroupMembership $USER
 
+killall Activity\ Monitor
 killall Dock
 killall Finder
-
-# Use F5/F6 keys to turn keyboard brightness on/off on keyboard that doesn't have these functions
-# (requires reboot)
-touch ~/Library/LaunchAgents/com.local.KeyRemapping.plist
-cat <<EOF >~/Library/LaunchAgents/com.local.KeyRemapping.plist
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.local.KeyRemapping</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/bin/hidutil</string>
-        <string>property</string>
-        <string>--set</string>
-        <string>{"UserKeyMapping":[
-            {
-              "HIDKeyboardModifierMappingSrc": 0xC000000CF,
-              "HIDKeyboardModifierMappingDst": 0xFF00000009
-            },
-            {
-              "HIDKeyboardModifierMappingSrc": 0x10000009B,
-              "HIDKeyboardModifierMappingDst": 0xFF00000008
-            }
-        ]}</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-</dict>
-</plist>
-EOF
+killall Safari
+killall SystemUIServer
