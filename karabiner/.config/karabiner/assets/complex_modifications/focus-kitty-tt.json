@@ -1,0 +1,28 @@
+{
+  "title": "Focus Kitty tt window",
+  "rules": [
+    {
+      "description": "Ctrl+Option+Cmd+T → Activate Kitty and focus 'tt' window",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "t",
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "option",
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/bin/sh /Users/sglavoie/.config/kitty/focus-kitty-tt.sh"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
