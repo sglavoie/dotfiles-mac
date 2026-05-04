@@ -159,3 +159,8 @@ _vault() {
     eval $(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)
 }
 compdef _vault vault
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/sglavoie/.lmstudio/bin"
+# End of LM Studio CLI section
+
