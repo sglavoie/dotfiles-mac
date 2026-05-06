@@ -1,4 +1,4 @@
-packages := "atuin git karabiner kitty neovim oh-my-posh tmux zsh"
+packages := "atuin ghostty git karabiner kitty neovim oh-my-posh tmux zsh"
 
 [private]
 default:
