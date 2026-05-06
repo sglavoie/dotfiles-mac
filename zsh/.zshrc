@@ -3,7 +3,7 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent fzf fzf-tab gitignore rye zsh-z)
+plugins=(git ssh-agent fzf fzf-tab gitignore zsh-z)
 
 # Load multiple SSH keys
 zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
@@ -93,6 +93,52 @@ compinit
 # https://ohmyposh.dev/
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
 
+# https://mise.jdx.dev/
+eval "$(mise activate zsh)"
+
+eval "$(atuin init zsh --disable-up-arrow)"
+
+# The next line updates PATH for the Google Cloud SDK
+if [ -f "$HOME/.google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud
+if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/completion.zsh.inc"; fi
+
+# Add custom aliases conditionally
+type eza >/dev/null 2>&1 && alias ls=eza
+
+source "$HOME/.atuin/bin/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/Users/sglavoie/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+if [[ -d "$HOME/.bash_completion.d" ]]; then
+    for bcfile in ~/.bash_completion.d/* ; do
+      source $bcfile
+    done
+fi
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+# Vault CLI completion for Zsh
+_vault() {
+    eval $(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)
+}
+compdef _vault vault
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/sglavoie/.lmstudio/bin"
+# End of LM Studio CLI section
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -115,52 +161,3 @@ if [ -f "/Users/sglavoie/.miniforge3/etc/profile.d/mamba.sh" ]; then
     . "/Users/sglavoie/.miniforge3/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
-
-# The next line updates PATH for the Google Cloud SDK
-if [ -f "$HOME/.google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud
-if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/completion.zsh.inc"; fi
-
-# Add custom aliases conditionally
-type eza >/dev/null 2>&1 && alias ls=eza
-
-# https://rye-up.com/guide/installation/#add-shims-to-path
-source "$HOME/.rye/env"
-
-. "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh --disable-up-arrow)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# pnpm
-export PNPM_HOME="/Users/sglavoie/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-if [[ -d "$HOME/.bash_completion.d" ]]; then
-    for bcfile in ~/.bash_completion.d/* ; do
-      source $bcfile
-    done
-fi
-
-
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
-
-
-# Vault CLI completion for Zsh
-_vault() {
-    eval $(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)
-}
-compdef _vault vault
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/sglavoie/.lmstudio/bin"
-# End of LM Studio CLI section
-
