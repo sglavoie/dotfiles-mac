@@ -4,6 +4,19 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Ctrl+Option+Cmd+D → Launch ccm dashboard overlay in Kitty",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["control", "option", "command"] }
+                                },
+                                "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/launch-kitty-ccm.sh" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Ctrl+Option+Cmd+M → Activate Kitty and focus 'muse' window",
                         "manipulators": [
                             {
