@@ -23,7 +23,7 @@
       "segments": [
         {
           "foreground": "#6C6C6C",
-          "properties": {
+          "options": {
             "branch_ahead_icon": "<#88C0D0>\u21e1 </>",
             "branch_behind_icon": "<#88C0D0>\u21e3 </>",
             "branch_icon": "",
@@ -43,7 +43,7 @@
       "segments": [
         {
           "foreground": "#A3BE8C",
-          "properties": {
+          "options": {
             "style": "austin"
           },
           "style": "plain",
@@ -60,7 +60,7 @@
         {
           "foreground": "#B48EAD",
           "foreground_templates": ["{{ if gt .Code 0 }}#BF616A{{ end }}"],
-          "properties": {
+          "options": {
             "always_enabled": true
           },
           "style": "plain",
