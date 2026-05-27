@@ -1,9 +1,58 @@
+# Keep PATH/fpath unique as entries are added by login files and tool hooks.
+typeset -U path PATH fpath FPATH
+
+path_prepend_all() {
+  local -a dirs
+  local dir
+
+  for dir in "$@"; do
+    [[ -d "$dir" ]] && dirs+=("$dir")
+  done
+
+  path=("${dirs[@]}" "${path[@]}")
+}
+
+path_append_all() {
+  local dir
+
+  for dir in "$@"; do
+    [[ -d "$dir" ]] && path+=("$dir")
+  done
+}
+
+export GOPATH="$HOME/.go"
+export PNPM_HOME="$HOME/Library/pnpm"
+export SDKMAN_DIR="$HOME/.sdkman"
+export NVM_DIR="$HOME/.nvm"
+
+path_prepend_all \
+  /opt/homebrew/bin \
+  "$GOPATH/bin" \
+  "$HOME/.local/bin" \
+  "$HOME/development/flutter/bin" \
+  "$HOME/.cargo/bin" \
+  /opt/homebrew/opt/ruby/bin \
+  "$HOME/.local/share/gem/ruby/3.4.0/bin" \
+  "$HOME/.google-cloud-sdk/bin" \
+  "$HOME/.miniforge3/condabin" \
+  "$HOME/.sdkman/candidates/java/current/bin" \
+  "$PNPM_HOME"
+
+path_append_all "$HOME/.lmstudio/bin"
+
+[[ -d "$HOME/.zfunc" ]] && fpath=("$HOME/.zfunc" "${fpath[@]}")
+
+# Read external environment variables
+[[ -r "$HOME/Documents/21_programming/zsh/environ.variables" ]] && source "$HOME/Documents/21_programming/zsh/environ.variables"
+
+unfunction path_prepend_all path_append_all
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent fzf fzf-tab gitignore zsh-z)
+plugins=(git ssh-agent fzf fzf-tab gitignore)
 
 # Load multiple SSH keys
 zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
@@ -22,9 +71,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 
-export GOPATH=$HOME/.go
-export PATH="/opt/homebrew/bin:$GOPATH/bin:$HOME/.local/bin:$HOME/development/flutter/bin:$HOME/.node/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:$HOME/.local/share/gem/ruby/3.4.0/bin:$HOME/.rye/env:$HOME/Programming/google-cloud-sdk/bin:$PATH"
-
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
@@ -39,7 +85,6 @@ export PAGER=delta
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # --files: List files that would be searched but do not search
-# --no-ignore: Do not respect .gitignore, etc.
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
@@ -48,47 +93,40 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export LESS="-i"
 
 # Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-	tmp="$(mktemp)"
-	lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-	fi
+lfcd() {
+  local tmp dir
+
+  tmp="$(mktemp)"
+  lf -last-dir-path="$tmp" "$@"
+  if [[ -f "$tmp" ]]; then
+    dir="$(<"$tmp")"
+    rm -f "$tmp"
+    [[ -d "$dir" && "$dir" != "$PWD" ]] && cd "$dir"
+  fi
 }
 bindkey -s '^o' 'lfcd\n'
 
 # cd to directory
 cdd() {
-local dir
-dir=$(fd --type d | fzf +m) &&
-cd "$dir"
+  local dir
+
+  dir=$(fd --type d | fzf +m) && cd "$dir"
 }
 
-# Read external environment variables
-[ -f "$HOME/Documents/21_programming/zsh/environ.variables" ] && source "$HOME/Documents/21_programming/zsh/environ.variables"
-
 # Read aliases
-[ -f "$HOME/.config/zsh/aliases" ] && source "$HOME/.config/zsh/aliases"
+[[ -r "$HOME/.config/zsh/aliases" ]] && source "$HOME/.config/zsh/aliases"
 
 bindkey '^x^x' edit-command-line  # Open default editor
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # Treat the alias as the real command
 compdef g=git
 
 # A smarter cd command - https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/sglavoie/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
 
 # https://ohmyposh.dev/
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
@@ -98,66 +136,77 @@ eval "$(mise activate zsh)"
 
 eval "$(atuin init zsh --disable-up-arrow)"
 
-# The next line updates PATH for the Google Cloud SDK
-if [ -f "$HOME/.google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud
-if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/completion.zsh.inc"; fi
-
 # Add custom aliases conditionally
-type eza >/dev/null 2>&1 && alias ls=eza
-
-source "$HOME/.atuin/bin/env"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# pnpm
-export PNPM_HOME="/Users/sglavoie/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+(( $+commands[eza] )) && alias ls=eza
 
 if [[ -d "$HOME/.bash_completion.d" ]]; then
-    for bcfile in ~/.bash_completion.d/* ; do
-      source $bcfile
-    done
+  for bcfile in "$HOME"/.bash_completion.d/*(N-.); do
+    command_name="${bcfile:t}"
+    [[ -s "$bcfile" && -n "${commands[$command_name]}" ]] && source "$bcfile"
+  done
+  unset bcfile command_name
 fi
-
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
 # Vault CLI completion for Zsh
-_vault() {
-    eval $(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)
+if (( $+commands[vault] )); then
+  _vault() {
+    eval "$(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)"
+  }
+  compdef _vault vault
+fi
+
+_gcloud_lazy_completion() {
+  unfunction _gcloud_lazy_completion
+  [[ -r "$HOME/.google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/.google-cloud-sdk/completion.zsh.inc"
+
+  if (( $+functions[_bash_complete] && $+functions[_python_argcomplete] )); then
+    _bash_complete -o nospace -o default -F _python_argcomplete "$@"
+  fi
 }
-compdef _vault vault
+compdef _gcloud_lazy_completion gcloud
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/sglavoie/.lmstudio/bin"
-# End of LM Studio CLI section
+__load_nvm() {
+  unfunction nvm 2>/dev/null
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+}
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+nvm() {
+  __load_nvm
+  nvm "$@"
+}
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/sglavoie/.miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/sglavoie/.miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/sglavoie/.miniforge3/etc/profile.d/conda.sh"
+__load_conda() {
+  local __conda_setup
+
+  if [[ -x "$HOME/.miniforge3/bin/conda" ]]; then
+    __conda_setup="$("$HOME/.miniforge3/bin/conda" shell.zsh hook 2>/dev/null)"
+    if [[ $? -eq 0 ]]; then
+      eval "$__conda_setup"
+    elif [[ -r "$HOME/.miniforge3/etc/profile.d/conda.sh" ]]; then
+      source "$HOME/.miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/sglavoie/.miniforge3/bin:$PATH"
+      path=("$HOME/.miniforge3/bin" "${path[@]}")
     fi
-fi
-unset __conda_setup
 
-if [ -f "/Users/sglavoie/.miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/Users/sglavoie/.miniforge3/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
+    [[ -r "$HOME/.miniforge3/etc/profile.d/mamba.sh" ]] && source "$HOME/.miniforge3/etc/profile.d/mamba.sh"
+  fi
+}
+
+conda() {
+  unfunction conda mamba 2>/dev/null
+  __load_conda
+  conda "$@"
+}
+
+mamba() {
+  unfunction conda mamba 2>/dev/null
+  __load_conda
+  mamba "$@"
+}
+
+sdk() {
+  unfunction sdk 2>/dev/null
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdk "$@"
+}
