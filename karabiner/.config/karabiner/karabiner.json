@@ -4,14 +4,32 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Ctrl+Option+Cmd+D → Launch ccm dashboard overlay in Kitty",
+                        "manipulators": [
+                            {
+                                "description": "Change caps_lock to command+control+option+shift.",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_control", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Ctrl+Option+Cmd+D → Launch amx dashboard overlay in Kitty",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "d",
                                     "modifiers": { "mandatory": ["control", "option", "command"] }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/launch-kitty-ccm.sh" }],
+                                "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/launch-kitty-amx.sh" }],
                                 "type": "basic"
                             }
                         ]
@@ -38,80 +56,6 @@
                                     "modifiers": { "mandatory": ["control", "option", "command"] }
                                 },
                                 "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/focus-kitty-tt.sh" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Capslock override & caps lock toggle replacement (caps+\\) (required by all other groups)",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "caps_lock pressed",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    {
-                                        "set_variable": {
-                                            "name": "caps_lock pressed",
-                                            "value": 0
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "backslash",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f11",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "shell_command": "/Users/sglavoie/.go/bin/muse volume-down" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f12",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "shell_command": "/Users/sglavoie/.go/bin/muse volume-up" }],
                                 "type": "basic"
                             }
                         ]

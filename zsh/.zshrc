@@ -26,11 +26,11 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export NVM_DIR="$HOME/.nvm"
 
 path_prepend_all \
+  "$HOME/.cargo/bin" \
   /opt/homebrew/bin \
   "$GOPATH/bin" \
   "$HOME/.local/bin" \
   "$HOME/development/flutter/bin" \
-  "$HOME/.cargo/bin" \
   /opt/homebrew/opt/ruby/bin \
   "$HOME/.local/share/gem/ruby/3.4.0/bin" \
   "$HOME/.google-cloud-sdk/bin" \
