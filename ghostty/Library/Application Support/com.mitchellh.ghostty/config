@@ -5,6 +5,7 @@ auto-update-channel = tip
 font-size = 24
 macos-option-as-alt = true
 maximize = true
+minimum-contrast = 1.2
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 3
 mouse-shift-capture = "never"
