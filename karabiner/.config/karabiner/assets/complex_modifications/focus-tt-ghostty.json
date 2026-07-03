@@ -1,8 +1,8 @@
 {
-  "title": "Focus Kitty tt window",
+  "title": "Focus Ghostty tt window",
   "rules": [
     {
-      "description": "Ctrl+Option+Cmd+T → Activate Kitty and focus 'tt' window",
+      "description": "Ctrl+Option+Cmd+T → Activate Ghostty and focus 'tt' window",
       "manipulators": [
         {
           "type": "basic",
@@ -18,7 +18,7 @@
           },
           "to": [
             {
-              "shell_command": "/bin/sh /Users/sglavoie/.config/kitty/focus-kitty-tt.sh"
+              "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/focus-tt-ghostty.sh"
             }
           ]
         }

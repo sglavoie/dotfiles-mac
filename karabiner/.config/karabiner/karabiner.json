@@ -35,27 +35,27 @@
                         ]
                     },
                     {
-                        "description": "Ctrl+Option+Cmd+M → Activate Kitty and focus 'muse' window",
+                        "description": "Ctrl+Option+Cmd+M → Activate Ghostty and focus 'muse' window",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": { "mandatory": ["control", "option", "command"] }
                                 },
-                                "to": [{ "shell_command": "/bin/sh /Users/sglavoie/scripts/bin/.local/bin/focus-kitty-muse.sh" }],
+                                "to": [{ "shell_command": "/bin/sh /Users/sglavoie/scripts/bin/.local/bin/focus-muse-ghostty.sh" }],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Ctrl+Option+Cmd+T → Activate Kitty and focus 'tt' window",
+                        "description": "Ctrl+Option+Cmd+T → Activate Ghostty and focus 'tt' window",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "t",
                                     "modifiers": { "mandatory": ["control", "option", "command"] }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/focus-kitty-tt.sh" }],
+                                "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/focus-tt-ghostty.sh" }],
                                 "type": "basic"
                             }
                         ]
