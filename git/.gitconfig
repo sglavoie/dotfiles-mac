@@ -4,6 +4,7 @@
 [alias]
 	a = add
 	br = branch
+	br-by-author = for-each-ref --format='%(authorname) %09 %(refname:short)' refs/heads refs/remotes
 	c = commit
 	ca = commit --amend
 	can = commit --amend --no-edit
