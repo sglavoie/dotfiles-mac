@@ -1,0 +1,28 @@
+{
+  "title": "Focus BrainNotes vault",
+  "rules": [
+    {
+      "description": "Ctrl+Option+Cmd+N → Run bn vault",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "option",
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.go/bin/bn vault"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
