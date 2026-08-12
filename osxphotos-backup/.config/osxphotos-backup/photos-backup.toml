@@ -1,0 +1,47 @@
+# Configuration for photos-backup (dev-helpers/python/photos_backup).
+# Stow-managed: this file is symlinked to ~/.config/osxphotos-backup/.
+# Every path is expanded for `~` and environment variables, then must be
+# absolute. This file contains no secrets and none should be added to it.
+#
+# Machine-specific values (library path, SD card mount, second drive) are the
+# only lines expected to differ between Macs sharing the same archive.
+
+[apple_photos]
+# Removable volume holding the shared archive, and the archive beneath it.
+# Both Macs use the same two values, because the archive travels with the drive.
+volume = "/Volumes/SanDisk"
+archive = "/Volumes/SanDisk/Media/Apple Photos"
+library = "~/Pictures/Photos Library.photoslibrary"
+
+# Legacy local export. Nothing writes here any more; it is the only directory
+# `photos-backup cleanup-local-export` is allowed to delete.
+legacy_export = "~/Pictures/export"
+
+# Assets exported in testing mode (`apple-photos --testing`); 0 means no limit.
+limit_export = 100
+spouse_device_models = ["iPhone 13"]
+
+# Incremental runs re-export the last 14 days; full runs happen on Monday, or
+# as soon as the last full run is 7 days old.
+incremental_overlap_days = 14
+full_export_weekday = "monday"
+full_export_max_age_days = 7
+
+# Mirror deletions from the library into the archive, capped so that an
+# unexpected mass deletion needs explicit approval instead of happening.
+mirror = true
+cleanup_max_assets = 10
+cleanup_max_fraction = 0.001
+
+[sd_card]
+source = "/Volumes/SDSONY/DCIM/100MSDCF"
+destination = "~/Pictures/SDSONY"
+exclude_file = "~/.osxphotos.sd.exclude"
+
+[ssd]
+# Copy the shared archive, not the legacy export, to the second on-site drive.
+source = "/Volumes/SanDisk/Media/Apple Photos"
+destination = "/Volumes/Data/Pictures"
+
+# No [rclone] section: no remote is configured yet, and `backup-all` reports a
+# workflow whose section is absent as skipped rather than failing.

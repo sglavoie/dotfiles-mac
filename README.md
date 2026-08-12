@@ -67,6 +67,28 @@ just all
 just delete
 ```
 
+### Apple Photos backup configuration
+
+The `osxphotos-backup` package holds
+`~/.config/osxphotos-backup/photos-backup.toml`, read by the `photos-backup`
+CLI from `dev-helpers/python/photos_backup`. Stow it alone with:
+
+```bash
+stow --no --verbose --target=$HOME osxphotos-backup   # simulate
+stow --verbose --target=$HOME osxphotos-backup        # link
+```
+
+`~/.config/osxphotos-backup` is a symlink into this repository, so editing the
+file here changes the live configuration; commit and `git pull` on the other Mac
+to carry it over, without restowing. `apple_photos.volume` and
+`apple_photos.archive` are shared by every Mac using the drive;
+`apple_photos.library`, `[sd_card]`, and `[ssd]` are the per-Mac lines, and a Mac
+lacking one of those simply omits the section.
+
+On a Mac that already keeps a real `~/.config/osxphotos-backup/photos-backup.toml`,
+move it aside before stowing: `just all` runs stow with `--adopt`, which would
+replace the repository copy with that file instead of the other way around.
+
 ## Detect drift between dotfiles and installed packages
 
 ```bash
