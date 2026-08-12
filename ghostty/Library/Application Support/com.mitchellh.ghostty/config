@@ -19,9 +19,6 @@ bell-features = system
 
 # keybindings
 
-# Fix shift+enter for Claude Code
-keybind = shift+enter=text:\n
-
 clipboard-paste-protection = false
 
 keybind = global:cmd+option+t=toggle_quick_terminal
