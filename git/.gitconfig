@@ -38,6 +38,7 @@
 	stash-keep = "!git stash --include-untracked && git stash apply"
 
 	unstage = reset HEAD --
+	wt = worktree
 
 [branch]
 	sort = -committerdate
