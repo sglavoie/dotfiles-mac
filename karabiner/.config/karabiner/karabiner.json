@@ -91,6 +91,17 @@
                         "manipulators": [
                             {
                                 "from": {
+                                    "key_code": "f6",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "shell_command": "/Users/sglavoie/.go/bin/muse now-playing" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
                                     "key_code": "f7",
                                     "modifiers": {
                                         "mandatory": ["fn"],
