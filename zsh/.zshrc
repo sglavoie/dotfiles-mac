@@ -24,6 +24,7 @@ export GOPATH="$HOME/.go"
 export PNPM_HOME="$HOME/Library/pnpm"
 export SDKMAN_DIR="$HOME/.sdkman"
 export NVM_DIR="$HOME/.nvm"
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 path_prepend_all \
   "$HOME/.cargo/bin" \
