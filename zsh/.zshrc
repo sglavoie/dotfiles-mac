@@ -217,3 +217,18 @@ if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/path.zsh.inc' ]; then . '/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc'; fi
+
+# TOTP code from an otpauth:// URI or a bare base32 secret.
+# Requires oath-toolkit (brew install oath-toolkit).
+totp() {
+	local uri="$1" secret
+	case "$uri" in
+	otpauth://*) secret=$(printf '%s' "$uri" | sed -n 's/.*[?&]secret=\([^&]*\).*/\1/p') ;;
+	*) secret="$uri" ;;
+	esac
+	[ -n "$secret" ] || {
+		echo "usage: totp <otpauth://... | BASE32SECRET>" >&2
+		return 1
+	}
+	oathtool --totp -b "$secret"
+}
