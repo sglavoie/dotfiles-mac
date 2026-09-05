@@ -44,6 +44,10 @@ defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 defaults write NSGlobalDomain AppleReduceDesktopTinting -bool true
 
+# Square outer window corners in supported apps (relaunch apps to apply).
+# Use -1 because 0 is ignored. Reset: defaults delete -g NSConvolutionOverride1
+defaults write -g NSConvolutionOverride1 -float -1
+
 # Scrolling direction (natural = true, traditional = false)
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
