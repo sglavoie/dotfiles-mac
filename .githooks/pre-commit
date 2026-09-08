@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Mirror configs that cannot be symlinked into the repo, then stage them.
+#
+# Enabled by `just hooks` (git config core.hooksPath .githooks), which `just
+# all` runs for you.
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+"$repo_root/scripts/sync-karabiner.sh"
+
+karabiner="karabiner/.config/karabiner/karabiner.json"
+if ! git diff --quiet -- "$karabiner"; then
+	git add -- "$karabiner"
+	echo "pre-commit: staged updated $karabiner"
+fi

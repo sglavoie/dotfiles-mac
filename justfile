@@ -5,8 +5,16 @@ default:
     @just --list
 
 # Stow all packages to $HOME
-all:
+all: hooks
     stow --adopt --verbose --target=$HOME --restow {{ packages }}
+
+# Point git at the repo's tracked hooks (not stored in a clone's .git/config)
+hooks:
+    git config core.hooksPath .githooks
+
+# Copy configs that cannot be symlinked into the repo (also run by pre-commit)
+sync:
+    ./scripts/sync-karabiner.sh
 
 # Unstow all packages from $HOME
 delete:

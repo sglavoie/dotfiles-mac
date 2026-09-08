@@ -1,0 +1,7 @@
+# Karabiner-Elements saves karabiner.json by writing a temp file and renaming
+# it over the target, which replaces any symlink with a regular file. Stowing
+# it therefore breaks on the next GUI change and the repo drifts silently.
+#
+# It is mirrored into the repo instead: scripts/sync-karabiner.sh copies the
+# live file here, and .githooks/pre-commit runs that before every commit.
+karabiner\.json
