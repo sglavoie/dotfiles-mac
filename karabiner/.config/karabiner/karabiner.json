@@ -6,7 +6,7 @@
                     {
                         "manipulators": [
                             {
-                                "description": "Change caps_lock to command+control+option+shift.",
+                                "description": "Change caps_lock to command+control+option.",
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
@@ -68,7 +68,7 @@
                                     "key_code": "n",
                                     "modifiers": { "mandatory": ["control", "option", "command"] }
                                 },
-                                "to": [{ "shell_command": "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.go/bin/bn vault" }],
+                                "to": [{ "shell_command": "BNOTES_VAULT=/Users/sglavoie/BrainNotesVault/ PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.go/bin/bn vault" }],
                                 "type": "basic"
                             }
                         ]
@@ -164,6 +164,15 @@
                         "vendor_id": 1452
                     },
                     "treat_as_built_in_keyboard": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 2,
+                        "vendor_id": 14477
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",
