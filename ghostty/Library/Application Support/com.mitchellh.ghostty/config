@@ -15,6 +15,7 @@ window-colorspace = display-p3
 alpha-blending = linear-corrected
 font-thicken = true
 font-thicken-strength = 70
+theme = Gruvbox Dark Hard
 
 # Prevents Dock icon from jumping around
 desktop-notifications = false
