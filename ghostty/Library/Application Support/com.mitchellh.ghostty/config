@@ -11,6 +11,10 @@ mouse-scroll-multiplier = 3
 mouse-shift-capture = "never"
 quit-after-last-window-closed = true
 split-divider-color = "#ef2ffd"
+window-colorspace = display-p3
+alpha-blending = linear-corrected
+font-thicken = true
+font-thicken-strength = 70
 
 # Prevents Dock icon from jumping around
 desktop-notifications = false
