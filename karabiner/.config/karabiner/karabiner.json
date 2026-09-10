@@ -87,13 +87,13 @@
                         ]
                     },
                     {
-                        "description": "Fn+media keys → muse playback control",
+                        "description": "Caps Lock+F6–F10 → muse playback and system mute",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "f6",
                                     "modifiers": {
-                                        "mandatory": ["fn"],
+                                        "mandatory": ["control", "option", "command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -104,7 +104,7 @@
                                 "from": {
                                     "key_code": "f7",
                                     "modifiers": {
-                                        "mandatory": ["fn"],
+                                        "mandatory": ["control", "option", "command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -115,7 +115,7 @@
                                 "from": {
                                     "key_code": "f8",
                                     "modifiers": {
-                                        "mandatory": ["fn"],
+                                        "mandatory": ["control", "option", "command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -126,7 +126,7 @@
                                 "from": {
                                     "key_code": "f9",
                                     "modifiers": {
-                                        "mandatory": ["fn"],
+                                        "mandatory": ["control", "option", "command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -137,7 +137,7 @@
                                 "from": {
                                     "key_code": "f10",
                                     "modifiers": {
-                                        "mandatory": ["fn"],
+                                        "mandatory": ["control", "option", "command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -173,6 +173,22 @@
                         "vendor_id": 14477
                     },
                     "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 2,
+                        "vendor_id": 14477
+                    },
+                    "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 50504,
+                        "vendor_id": 1133
+                    },
+                    "ignore": true
                 }
             ],
             "name": "Default profile",
