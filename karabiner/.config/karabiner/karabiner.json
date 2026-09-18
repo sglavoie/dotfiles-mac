@@ -145,6 +145,49 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Lofree Flow 2 volume slider → quarter-step volume (option+shift)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "product_id": 2, "vendor_id": 14477 }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "consumer_key_code": "volume_increment",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "consumer_key_code": "volume_increment",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "product_id": 2, "vendor_id": 14477 }],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "consumer_key_code": "volume_decrement",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "consumer_key_code": "volume_decrement",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
