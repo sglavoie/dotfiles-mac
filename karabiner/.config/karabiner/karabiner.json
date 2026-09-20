@@ -9,12 +9,19 @@
                                 "description": "Change caps_lock to command+control+option.",
                                 "from": {
                                     "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "key_code": "left_command",
-                                        "modifiers": ["left_control", "left_option"]
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_option"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -27,9 +34,19 @@
                             {
                                 "from": {
                                     "key_code": "d",
-                                    "modifiers": { "mandatory": ["control", "option", "command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/launch-kitty-amx.sh" }],
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/launch-kitty-amx.sh"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -40,9 +57,19 @@
                             {
                                 "from": {
                                     "key_code": "l",
-                                    "modifiers": { "mandatory": ["control", "option", "command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "shell_command": "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.local/bin/trail open --root" }],
+                                "to": [
+                                    {
+                                        "shell_command": "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.local/bin/trail open --root"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -53,9 +80,19 @@
                             {
                                 "from": {
                                     "key_code": "m",
-                                    "modifiers": { "mandatory": ["control", "option", "command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "shell_command": "/bin/sh /Users/sglavoie/scripts/bin/.local/bin/focus-muse-ghostty.sh" }],
+                                "to": [
+                                    {
+                                        "shell_command": "/bin/sh /Users/sglavoie/scripts/bin/.local/bin/focus-muse-ghostty.sh"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -66,9 +103,19 @@
                             {
                                 "from": {
                                     "key_code": "n",
-                                    "modifiers": { "mandatory": ["control", "option", "command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "shell_command": "BNOTES_VAULT=/Users/sglavoie/BrainNotesVault/ PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.go/bin/bn vault" }],
+                                "to": [
+                                    {
+                                        "shell_command": "BNOTES_VAULT=/Users/sglavoie/BrainNotesVault/ PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.go/bin/bn vault"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -79,9 +126,19 @@
                             {
                                 "from": {
                                     "key_code": "t",
-                                    "modifiers": { "mandatory": ["control", "option", "command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/focus-tt-ghostty.sh" }],
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/scripts/bin/.local/bin/focus-tt-ghostty.sh"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -93,55 +150,170 @@
                                 "from": {
                                     "key_code": "f6",
                                     "modifiers": {
-                                        "mandatory": ["control", "option", "command"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/.go/bin/muse now-playing" }],
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/.go/bin/muse now-playing"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "f7",
                                     "modifiers": {
-                                        "mandatory": ["control", "option", "command"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/.go/bin/muse previous" }],
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/.go/bin/muse previous"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "f8",
                                     "modifiers": {
-                                        "mandatory": ["control", "option", "command"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/.go/bin/muse toggle-play" }],
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/.go/bin/muse toggle-play"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "f9",
                                     "modifiers": {
-                                        "mandatory": ["control", "option", "command"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "shell_command": "/Users/sglavoie/.go/bin/muse next" }],
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/.go/bin/muse next"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "f10",
                                     "modifiers": {
-                                        "mandatory": ["control", "option", "command"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "control",
+                                            "option",
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "consumer_key_code": "mute" }],
+                                "to": [
+                                    {
+                                        "consumer_key_code": "mute"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Lofree Flow 2 slider + control → PA27JCV brightness (DDC)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 2,
+                                                "vendor_id": 14477
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "consumer_key_code": "f1",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/.local/bin/ddc-brightness up 4"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 2,
+                                                "vendor_id": 14477
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "consumer_key_code": "f2",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "/Users/sglavoie/.local/bin/ddc-brightness down 4"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -152,18 +324,30 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [{ "product_id": 2, "vendor_id": 14477 }],
+                                        "identifiers": [
+                                            {
+                                                "product_id": 2,
+                                                "vendor_id": 14477
+                                            }
+                                        ],
                                         "type": "device_if"
                                     }
                                 ],
                                 "from": {
                                     "consumer_key_code": "volume_increment",
-                                    "modifiers": { "optional": ["any"] }
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "consumer_key_code": "volume_increment",
-                                        "modifiers": ["left_option", "left_shift"]
+                                        "modifiers": [
+                                            "left_option",
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -171,18 +355,30 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [{ "product_id": 2, "vendor_id": 14477 }],
+                                        "identifiers": [
+                                            {
+                                                "product_id": 2,
+                                                "vendor_id": 14477
+                                            }
+                                        ],
                                         "type": "device_if"
                                     }
                                 ],
                                 "from": {
                                     "consumer_key_code": "volume_decrement",
-                                    "modifiers": { "optional": ["any"] }
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "consumer_key_code": "volume_decrement",
-                                        "modifiers": ["left_option", "left_shift"]
+                                        "modifiers": [
+                                            "left_option",
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -236,7 +432,9 @@
             ],
             "name": "Default profile",
             "selected": true,
-            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+            "virtual_hid_keyboard": {
+                "keyboard_type_v2": "ansi"
+            }
         }
     ]
 }
