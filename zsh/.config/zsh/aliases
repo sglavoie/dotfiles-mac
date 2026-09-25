@@ -17,6 +17,7 @@ alias sed='gsed'
 alias specify='uvx --from git+https://github.com/github/spec-kit.git specify'
 alias www='python3 -m http.server'
 alias claude_personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"
+alias updatebn="python3 /Users/sglavoie/1_dev_projects/sglavoie_raspberry_pi/services/brainnotes/update.py --source local"
 
 # Claude Code
 alias format-commit='python3 /Users/sglavoie/.claude/scripts/format-commit.py'
