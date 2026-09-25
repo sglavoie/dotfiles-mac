@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/usr/bin/env bash
+# Apply scriptable macOS settings. Run with `just macos`; safe to rerun.
 
 # https://macos-defaults.com
 # Discover:
@@ -8,7 +9,7 @@
 # defaults read com.apple.dock  # dump one domain's current values
 # defaults read-type com.apple.dock autohide   # show value type
 
-echo "Setting $(defaults) values..."
+echo "Setting macOS defaults..."
 
 # Reset a setting with `defaults delete`
 # e.g.: defaults delete com.apple.dock tilesize
@@ -39,8 +40,8 @@ defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 # Choose whether to enable moving focus with Tab and Shift Tab.
 defaults write NSGlobalDomain AppleKeyboardUIMode -int "2"
 
-# Appearance
-defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+# Appearance: switch between light and dark automatically
+defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 defaults write NSGlobalDomain AppleReduceDesktopTinting -bool true
 
@@ -57,15 +58,12 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Disable automatic termination of inactive apps
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
-# Disable automatic capitalization as it's annoying when typing code
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-
 ######
 # Dock
 ######
 
 defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.dock tilesize -int 58
 
 # Minimize windows into their application's icon
 defaults write com.apple.dock minimize-to-application -bool true
@@ -79,14 +77,22 @@ defaults write com.apple.dock mru-spaces -bool false
 # Don't show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
-# Dock opening delay
-defaults write com.apple.dock "autohide-delay" -float "5"
-
 # Scroll up on a Dock icon to show all Space's opened windows for an app, or open stack.
 defaults write com.apple.dock "scroll-to-open" -bool "true"
 
 # Group windows by application
 defaults write com.apple.dock "expose-group-apps" -bool "true"
+
+# Hot corners, each triggered while holding Command (modifier 1048576)
+# 2 Mission Control, 3 Application Windows, 4 Desktop, 12 Notification Center
+defaults write com.apple.dock wvous-tl-corner -int 3
+defaults write com.apple.dock wvous-tl-modifier -int 1048576
+defaults write com.apple.dock wvous-tr-corner -int 12
+defaults write com.apple.dock wvous-tr-modifier -int 1048576
+defaults write com.apple.dock wvous-bl-corner -int 2
+defaults write com.apple.dock wvous-bl-modifier -int 1048576
+defaults write com.apple.dock wvous-br-corner -int 4
+defaults write com.apple.dock wvous-br-modifier -int 1048576
 
 ########
 # Finder
@@ -121,12 +127,6 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-########
-# Safari
-########
-
-defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true"
-
 #############
 # Disk images
 #############
@@ -159,7 +159,7 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 # Misc
 ######
 
-Displays have separate Spaces
+# "Displays have separate Spaces": off (true = one Space spans all displays; needs a logout)
 defaults write com.apple.spaces "spans-displays" -bool "true"
 
 # Screenshots
@@ -173,10 +173,8 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Prevents the OS from asking for "Developer Tools Access"
 sudo DevToolsSecurity -enable
-sudo dscl . append /Groups/_developer GroupMembership $USER
+sudo dscl . append /Groups/_developer GroupMembership "$USER"
 
-killall Activity\ Monitor
-killall Dock
-killall Finder
-killall Safari
-killall SystemUIServer
+for app in "Activity Monitor" Dock Finder Safari SystemUIServer; do
+    killall "$app" 2>/dev/null || true
+done

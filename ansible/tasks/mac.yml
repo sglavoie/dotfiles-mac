@@ -1,8 +1,0 @@
-- name: Set default system settings
-  shell: bash {{ playbook_dir }}/scripts/macos_system_defaults.sh
-  tags:
-    - mac
-- name: Install fonts
-  shell: cp -r /Users/sglavoie/Documents/21_programming/fonts/* ~/Library/Fonts/
-  tags:
-    - mac

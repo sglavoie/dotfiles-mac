@@ -1,8 +1,0 @@
-libpq
-librist
-openvino
-pkgconf
-python-setuptools
-python@3.11
-simde
-zlib

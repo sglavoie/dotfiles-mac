@@ -1,4 +1,0 @@
-- name: Install Homebrew packages
-  shell: xargs brew install < {{ playbook_dir }}/homebrew_packages.txt
-  tags:
-    - homebrew

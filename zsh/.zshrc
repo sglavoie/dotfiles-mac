@@ -133,7 +133,7 @@ eval "$(zoxide init zsh)"
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
 
 # https://mise.jdx.dev/
-eval "$(mise activate zsh)"
+# eval "$(mise activate zsh)"
 
 eval "$(atuin init zsh --disable-up-arrow)"
 
@@ -146,14 +146,6 @@ if [[ -d "$HOME/.bash_completion.d" ]]; then
     [[ -s "$bcfile" && -n "${commands[$command_name]}" ]] && source "$bcfile"
   done
   unset bcfile command_name
-fi
-
-# Vault CLI completion for Zsh
-if (( $+commands[vault] )); then
-  _vault() {
-    eval "$(vault --show-completion zsh "$words" "$CURSOR" 2>/dev/null)"
-  }
-  compdef _vault vault
 fi
 
 _gcloud_lazy_completion() {

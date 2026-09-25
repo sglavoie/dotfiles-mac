@@ -20,19 +20,10 @@ sync:
 delete:
     stow --verbose --target=$HOME --delete {{ packages }}
 
-# Run the Ansible playbook (pass tags to run specific parts, e.g. just ansible --tags homebrew)
-ansible *args:
-    #!/usr/bin/env bash
-    read -rsp "BECOME password: " SUDO_PASS; echo
-    echo "$SUDO_PASS" | sudo -S -v 2>/dev/null
-    ansible-playbook ansible/main.yml -i ansible/inventory \
-      -e "ansible_become_pass=$SUDO_PASS" \
-      {{ args }}
+# Apply scriptable macOS settings (asks for sudo for DevToolsSecurity)
+macos:
+    ./scripts/macos-defaults.sh
 
-# List available Ansible playbook tags
-tags:
-    @ansible-playbook ansible/main.yml -i ansible/inventory --list-tags
-
-# Compare dotfiles-defined packages vs what's installed
-drift *args:
-    ./ansible/scripts/dotfiles_drift.sh {{ args }}
+# Copy the curated fonts from ~/Documents/21_programming/fonts into ~/Library/Fonts
+fonts:
+    ./scripts/install-fonts.sh
