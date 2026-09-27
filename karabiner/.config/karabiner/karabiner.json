@@ -68,7 +68,7 @@
                                     "key_code": "n",
                                     "modifiers": { "mandatory": ["control", "option", "command"] }
                                 },
-                                "to": [{ "shell_command": "BNOTES_VAULT=/Users/sglavoie/BrainNotesVault/ PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.go/bin/bn vault" }],
+                                "to": [{ "shell_command": "EDITOR=code BNOTES_VAULT=/Users/sglavoie/BrainNotesVault/ PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.go/bin/bn vault" }],
                                 "type": "basic"
                             }
                         ]
