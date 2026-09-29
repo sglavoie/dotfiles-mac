@@ -75,6 +75,7 @@
                     },
                     {
                         "description": "Ctrl+Option+Cmd+T → Activate Ghostty and focus 'tt' window",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
