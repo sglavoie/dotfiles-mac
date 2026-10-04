@@ -25,7 +25,7 @@ just delete
 
 ## How stow works
 
-Each top-level directory in this repo (`git`, `zsh`, `tmux`, …) is a **stow
+Each top-level directory in this repo (`git`, `zsh`, `kitty`, …) is a **stow
 package**. The contents of a package mirror the layout of `$HOME`, so
 `zsh/.config/zsh/aliases` in the repo becomes `~/.config/zsh/aliases` on the
 system. Stow never copies anything: it creates symlinks pointing back into the
@@ -105,7 +105,8 @@ Stale links pointing at files that no longer exist in the repo are cleared by
 behind.
 
 Stow ignores some files by default, including `README.*`, `LICENSE.*`, and
-`.gitignore`, so `tmux/README.md` is never linked into `$HOME`.
+`.gitignore`, so a package can carry its own `README.md` without it being
+linked into `$HOME`.
 
 ### Apple Photos backup configuration
 
