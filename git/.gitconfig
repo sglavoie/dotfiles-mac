@@ -25,7 +25,7 @@
 -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 	; log work descriptions in chronological order for today (oldest at top)
-	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'` | tac"
+	lw = "!git log --oneline --pretty='%s' --after=`date -v -1d '+%Y-%m-%d'` | tail -r"
 
 	ls = l --stat
 	rc = rebase --continue
@@ -67,7 +67,7 @@
 	ignorecase = true
 
 [credential]
-	helper = store
+	helper = osxkeychain
 
 [diff]
 	algorithm = histogram
@@ -156,7 +156,3 @@
 	hunk-header-decoration-style = blue box
 	hunk-header-file-style = red
 	hunk-header-style = file syntax
-
-[user]
-	name = Sébastien Lavoie
-	email = sgdlavoie@gmail.com
