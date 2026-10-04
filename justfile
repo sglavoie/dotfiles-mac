@@ -27,3 +27,15 @@ macos:
 # Copy the curated fonts from ~/Documents/21_programming/fonts into ~/Library/Fonts
 fonts:
     ./scripts/install-fonts.sh
+
+# Print the decrypted backup codes (asks for the passphrase without the local key)
+codes-show:
+    ./scripts/backup-codes.sh show
+
+# Edit the backup codes in $VISUAL/$EDITOR and re-encrypt them
+codes-edit:
+    ./scripts/backup-codes.sh edit
+
+# New machine: restore ~/.config/age/backup-codes.key from identity.age (passphrase)
+codes-unlock:
+    ./scripts/backup-codes.sh unlock
