@@ -12,14 +12,6 @@ path_prepend_all() {
   path=("${dirs[@]}" "${path[@]}")
 }
 
-path_append_all() {
-  local dir
-
-  for dir in "$@"; do
-    [[ -d "$dir" ]] && path+=("$dir")
-  done
-}
-
 export GOPATH="$HOME/.go"
 export PNPM_HOME="$HOME/Library/pnpm"
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -31,22 +23,17 @@ path_prepend_all \
   /opt/homebrew/bin \
   "$GOPATH/bin" \
   "$HOME/.local/bin" \
-  "$HOME/development/flutter/bin" \
   /opt/homebrew/opt/ruby/bin \
-  "$HOME/.local/share/gem/ruby/3.4.0/bin" \
   "$HOME/.google-cloud-sdk/bin" \
-  "$HOME/.miniforge3/condabin" \
   "$HOME/.sdkman/candidates/java/current/bin" \
   "$PNPM_HOME"
-
-path_append_all "$HOME/.lmstudio/bin"
 
 [[ -d "$HOME/.zfunc" ]] && fpath=("$HOME/.zfunc" "${fpath[@]}")
 
 # Read external environment variables
 [[ -r "$HOME/Documents/21_programming/zsh/environ.variables" ]] && source "$HOME/Documents/21_programming/zsh/environ.variables"
 
-unfunction path_prepend_all path_append_all
+unfunction path_prepend_all
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -56,7 +43,7 @@ unfunction path_prepend_all path_append_all
 plugins=(git ssh-agent fzf fzf-tab gitignore)
 
 # Load multiple SSH keys
-zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519 id_rsa
+zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519
 
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 SAVEHIST=1000000
@@ -80,10 +67,10 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # https://dandavison.github.io/delta/
-export PAGER=delta
+(( $+commands[delta] )) && export PAGER=delta
 
 # Get colorized output for `man` pages with `bat`
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+(( $+commands[bat] )) && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # --files: List files that would be searched but do not search
 # --hidden: Search hidden files and folders
@@ -111,7 +98,12 @@ bindkey -s '^o' 'lfcd\n'
 cdd() {
   local dir
 
-  dir=$(fd --type d | fzf +m) && cd "$dir"
+  if (( $+commands[fd] )); then
+    dir=$(fd --type d | fzf +m)
+  else
+    dir=$(find . -mindepth 1 -type d -not -path '*/.git/*' | fzf +m)
+  fi
+  [[ -n "$dir" ]] && cd "$dir"
 }
 
 # Read aliases
@@ -169,46 +161,11 @@ nvm() {
   nvm "$@"
 }
 
-__load_conda() {
-  local __conda_setup
-
-  if [[ -x "$HOME/.miniforge3/bin/conda" ]]; then
-    __conda_setup="$("$HOME/.miniforge3/bin/conda" shell.zsh hook 2>/dev/null)"
-    if [[ $? -eq 0 ]]; then
-      eval "$__conda_setup"
-    elif [[ -r "$HOME/.miniforge3/etc/profile.d/conda.sh" ]]; then
-      source "$HOME/.miniforge3/etc/profile.d/conda.sh"
-    else
-      path=("$HOME/.miniforge3/bin" "${path[@]}")
-    fi
-
-    [[ -r "$HOME/.miniforge3/etc/profile.d/mamba.sh" ]] && source "$HOME/.miniforge3/etc/profile.d/mamba.sh"
-  fi
-}
-
-conda() {
-  unfunction conda mamba 2>/dev/null
-  __load_conda
-  conda "$@"
-}
-
-mamba() {
-  unfunction conda mamba 2>/dev/null
-  __load_conda
-  mamba "$@"
-}
-
 sdk() {
   unfunction sdk 2>/dev/null
   [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
   sdk "$@"
 }
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sglavoie/Programming/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sglavoie/Programming/google-cloud-sdk/completion.zsh.inc'; fi
 
 # TOTP code from an otpauth:// URI or a bare base32 secret.
 # Requires oath-toolkit (brew install oath-toolkit).

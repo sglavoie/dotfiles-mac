@@ -17,10 +17,7 @@ alias sed='gsed'
 alias specify='uvx --from git+https://github.com/github/spec-kit.git specify'
 alias www='python3 -m http.server'
 alias claude_personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"
-alias updatebn="python3 /Users/sglavoie/1_dev_projects/sglavoie_raspberry_pi/services/brainnotes/update.py --source local"
-
-# Claude Code
-alias format-commit='python3 /Users/sglavoie/.claude/scripts/format-commit.py'
+alias updatebn="python3 $HOME/1_dev_projects/sglavoie_raspberry_pi/services/brainnotes/update.py --source local"
 
 # VTA
 alias vta_invoice='monthly-invoice.sh'
@@ -79,33 +76,4 @@ function killport() {
         echo "Killing process with PID $pid listening on port $1"
         kill -9 "$pid"
     done
-}
-
-# Ignore specific files/directories in Dropbox
-dropbox-ignore() {
-    arg1=$1
-    arg2=$2
-
-    if [ -z "$arg1" ] || [ -z "$arg2" ]; then
-        echo "Usage: dropbox-ignore <f|d> <name> (e.g. dropbox-ignore d .git)"
-        return 1
-    fi
-
-    find ~/Dropbox -type $arg1 -name "$arg2" |
-        xargs -I {} xattr -w com.dropbox.ignored 1 "{}"
-}
-
-# Sync specific files/directories in Dropbox
-# that were previously ignored (or not)
-dropbox-sync() {
-    arg1=$1
-    arg2=$2
-
-    if [ -z "$arg1" ] || [ -z "$arg2" ]; then
-        echo "Usage: dropbox-sync <f|d> <name> (e.g. dropbox-sync d .git)"
-        return 1
-    fi
-
-    find ~/Dropbox -type $arg1 -name "$arg2" |
-        xargs -I {} xattr -d com.dropbox.ignored "{}"
 }
