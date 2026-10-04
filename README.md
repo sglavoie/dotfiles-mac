@@ -42,18 +42,23 @@ Useful flags (all used with `--target=$HOME` from the repo root):
 | `--verbose` | Show each link created or removed. Repeat (`-vv`) for more detail. |
 | `--restow` | Unstow then stow again. This is what `just all` does; it cleans up links for files that were renamed or deleted in the repo. |
 | `--delete` | Remove the symlinks a package owns, leaving the repo untouched. |
-| `--adopt` | Resolve conflicts by *moving the existing file into the repo* (see below). |
+| `--no-folding` | Link files one by one, never whole directories (see below). `just all` always uses it. |
+| `--adopt` | Resolve conflicts by *moving the existing file into the repo* (see below). Only `just adopt` uses it. |
 
 ### Tree folding
 
-If a directory does not exist in `$HOME` yet, stow symlinks the whole directory
-rather than each file inside it (`~/.config/atuin` becomes one link). When a
-second package later needs the same parent directory, stow "unfolds" it: it
-replaces the directory symlink with a real directory containing individual
-links. This is normal and safe, but it means the shape of the links can change
-after adding a package. It also means that a new file added to a folded
-directory in `$HOME` lands inside the repo. Run `just all` after adding
-packages so the folding is recomputed consistently, and check `git status`.
+By default, if a directory does not exist in `$HOME` yet, stow symlinks the
+whole directory rather than each file inside it (`~/.config/kitty` becomes one
+link into the repo). Every file a program later writes there then lands in the
+repo: that is how agentmux's `~/.config/kitty/agent-mux.conf` link got
+committed, and why the live `karabiner.json` was the tracked file itself.
+
+`just all` therefore stows with `--no-folding`: directories in `$HOME` are always
+real, and only the tracked files inside them are links. A Mac stowed by an older,
+folding setup is repaired once with `just unfold` (dry run) and then
+`just unfold --apply`, which moves anything untracked out of the repo before
+swapping each directory link for a real directory. `just all` refuses to run
+while a folded link remains, since restowing one would hide its contents.
 
 ### Conflicts
 
@@ -76,18 +81,17 @@ until the conflict is resolved. Three ways out, in order of preference:
    just all
    ```
 
-2. **Keep the local version.** Use `--adopt`, which moves the existing file
-   into the repo (overwriting the repo's copy) and then links it back:
+2. **Keep the local version.** `just adopt` moves each conflicting file into
+   the repo (overwriting the repo's copy) and links it back:
 
    ```bash
-   stow --adopt --verbose --target=$HOME --restow git
+   just adopt
    git diff                       # inspect what --adopt pulled in
    git checkout -- git/.gitconfig # discard it, if the repo version was right
    ```
 
-   `--adopt` is destructive to the repo, not to `$HOME`. Because `just all`
-   runs with `--adopt`, **always check `git status` / `git diff` afterwards**:
-   a stray local file silently becomes the tracked version.
+   `--adopt` is destructive to the repo, not to `$HOME`, so it is never part of
+   `just all`; check `git status` / `git diff` after `just adopt`.
 
 3. **Merge by hand.** Copy the parts worth keeping from the local file into the
    repo version, then delete the local file and restow.
@@ -95,7 +99,7 @@ until the conflict is resolved. Three ways out, in order of preference:
 ### Debugging a link
 
 ```bash
-stow --no --verbose --target=$HOME --restow zsh   # dry run for one package
+stow --no --no-folding --verbose --target=$HOME --restow zsh   # dry run for one package
 ls -l ~/.zshrc                                     # where does it point?
 stow --verbose --target=$HOME --delete zsh         # unlink one package
 ```
@@ -115,11 +119,11 @@ The `osxphotos-backup` package holds
 CLI from `dev-helpers/python/photos_backup`. Stow it alone with:
 
 ```bash
-stow --no --verbose --target=$HOME osxphotos-backup   # simulate
-stow --verbose --target=$HOME osxphotos-backup        # link
+stow --no --no-folding --verbose --target=$HOME osxphotos-backup   # simulate
+stow --no-folding --verbose --target=$HOME osxphotos-backup        # link
 ```
 
-`~/.config/osxphotos-backup` is a symlink into this repository, so editing the
+`~/.config/osxphotos-backup/photos-backup.toml` is a symlink into this repository, so editing the
 file here changes the live configuration; commit and `git pull` on the other Mac
 to carry it over, without restowing. `apple_photos.volume` and
 `apple_photos.archive` are shared by every Mac using the drive;
@@ -127,8 +131,13 @@ to carry it over, without restowing. `apple_photos.volume` and
 lacking one of those simply omits the section.
 
 On a Mac that already keeps a real `~/.config/osxphotos-backup/photos-backup.toml`,
-move it aside before stowing: `just all` runs stow with `--adopt`, which would
-replace the repository copy with that file instead of the other way around.
+stowing stops with a conflict: move the file aside to use the repository copy,
+or run `just adopt` to make that file the repository copy.
+
+### Backup codes
+
+`backup_codes/` holds recovery codes encrypted with age; `just codes-show` and
+`just codes-edit` read and change them. See `backup_codes/README.md`.
 
 ## External dependencies
 
