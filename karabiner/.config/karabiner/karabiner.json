@@ -23,6 +23,7 @@
                     },
                     {
                         "description": "Ctrl+Option+Cmd+D → Launch amx dashboard overlay in Kitty",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
