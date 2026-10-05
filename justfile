@@ -1,4 +1,4 @@
-# Lives in ~/scripts; a fresh Mac without it has nothing folded to check
+# Lives in ~/scripts; a fresh Mac without it has nothing folded to skip
 unfold := env_var("HOME") / "scripts/bin/.local/bin/stow-unfold"
 packages := "atuin ghostty git karabiner kitty neovim oh-my-posh osxphotos-backup zsh"
 
@@ -11,8 +11,7 @@ default:
 # file aborts instead of being adopted (see `just adopt`).
 # Stow all packages to $HOME
 all: hooks
-    if [ -x "{{ unfold }}" ]; then "{{ unfold }}" --check {{ packages }}; fi
-    stow --no-folding --verbose --target=$HOME --restow {{ packages }}
+    stow --no-folding --verbose --target=$HOME --restow $(if [ -x "{{ unfold }}" ]; then "{{ unfold }}" --ready {{ packages }}; else echo {{ packages }}; fi)
 
 # Take conflicting real files in $HOME into the repo instead (review with git diff)
 adopt: hooks

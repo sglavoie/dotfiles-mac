@@ -57,8 +57,9 @@ committed, and why the live `karabiner.json` was the tracked file itself.
 real, and only the tracked files inside them are links. A Mac stowed by an older,
 folding setup is repaired once with `just unfold` (dry run) and then
 `just unfold --apply`, which moves anything untracked out of the repo before
-swapping each directory link for a real directory. `just all` refuses to run
-while a folded link remains, since restowing one would hide its contents.
+swapping each directory link for a real directory. `just all` skips a package
+that still has a folded link, with a warning, since restowing one would hide
+its contents.
 
 ### Conflicts
 
