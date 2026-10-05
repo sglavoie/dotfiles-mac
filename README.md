@@ -8,7 +8,7 @@ Full rebuild of a Mac: see `~/scripts/system-check/REBUILD.md`.
 brew install stow  # if not already installed
 git clone git@github.com:sglavoie/dotfiles-mac.git ~/dotfiles
 cd ~/dotfiles
-just
+just all
 ```
 
 ### Update/recreate dotfiles
