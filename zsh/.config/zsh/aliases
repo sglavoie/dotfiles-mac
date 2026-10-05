@@ -1,11 +1,7 @@
-# NOTE: Some aliases haven't been tried yet on Mac and some are known
-# to be temporarily broken.
-
 # Shortcuts
 alias allextensions="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
 alias chrome="open -a 'google chrome'"
 alias cleanZip='_cleanZip(){ zip -d $1 "__MACOSX/*" && zip -d $1 "*/.DS_Store" }; _cleanZip'
-alias ctags='`brew --prefix`/bin/ctags'
 alias dockerclean='docker stop $(docker ps -qa); docker system prune -a --volumes'
 alias g='git'
 alias gitaliases='git config -l | grep alias | sed "s/^alias\.//g" | sed "s/=/Ω/" | column -t -s "Ω"'
@@ -24,13 +20,6 @@ alias vta_invoice='monthly-invoice.sh'
 
 # General paths
 alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-
-# Colorize the grep command output for ease of use (good for log files)
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 
 # Python related
 alias ap='source .venv/bin/activate'

@@ -19,8 +19,6 @@ export NVM_DIR="$HOME/.nvm"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 path_prepend_all \
-  "$HOME/.cargo/bin" \
-  /opt/homebrew/bin \
   "$GOPATH/bin" \
   "$HOME/.local/bin" \
   /opt/homebrew/opt/ruby/bin \
@@ -124,21 +122,10 @@ eval "$(zoxide init zsh)"
 # https://ohmyposh.dev/
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
 
-# https://mise.jdx.dev/
-# eval "$(mise activate zsh)"
-
 eval "$(atuin init zsh --disable-up-arrow)"
 
 # Add custom aliases conditionally
 (( $+commands[eza] )) && alias ls=eza
-
-if [[ -d "$HOME/.bash_completion.d" ]]; then
-  for bcfile in "$HOME"/.bash_completion.d/*(N-.); do
-    command_name="${bcfile:t}"
-    [[ -s "$bcfile" && -n "${commands[$command_name]}" ]] && source "$bcfile"
-  done
-  unset bcfile command_name
-fi
 
 _gcloud_lazy_completion() {
   unfunction _gcloud_lazy_completion
