@@ -13,6 +13,9 @@ volume = "/Volumes/SanDisk"
 archive = "/Volumes/SanDisk/Media/Apple Photos"
 library = "~/Pictures/Photos Library.photoslibrary"
 
+# Leave the Hidden album locked; omit its photos/videos from backup coverage.
+exclude_hidden = true
+
 # Legacy local export. Nothing writes here any more; it is the only directory
 # `photos-backup cleanup-local-export` is allowed to delete.
 legacy_export = "~/Pictures/export"
