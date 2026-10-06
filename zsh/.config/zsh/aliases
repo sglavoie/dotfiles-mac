@@ -10,10 +10,11 @@ alias ipe='echo $(curl -s ipinfo.io/ip)' # print external IP address
 alias lg='lazygit'
 alias n='nvim'
 alias sed='gsed'
-alias specify='uvx --from git+https://github.com/github/spec-kit.git specify'
 alias www='python3 -m http.server'
-alias claude_personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"
+
 alias updatebn="python3 $HOME/1_dev_projects/sglavoie_raspberry_pi/services/brainnotes/update.py --source local"
+
+alias pis='~/1_dev_projects/sglavoie_raspberry_pi/scripts/pi.py'
 
 # VTA
 alias vta_invoice='monthly-invoice.sh'

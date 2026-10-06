@@ -124,6 +124,8 @@ eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
 
 eval "$(atuin init zsh --disable-up-arrow)"
 
+eval "$(~/1_dev_projects/sglavoie_raspberry_pi/scripts/pi.py completion zsh)"
+
 # Add custom aliases conditionally
 (( $+commands[eza] )) && alias ls=eza
 
