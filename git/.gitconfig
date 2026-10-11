@@ -1,5 +1,8 @@
-[include]
-	path = ~/Documents/21_programming/git/gitconfig-sglavoie
+[user]
+	email = sgdlavoie@gmail.com
+	name = Sébastien Lavoie
+	# SSH:
+	signingkey = /Users/sglavoie/.ssh/id_ed25519_github_signing
 
 [alias]
 	a = add
