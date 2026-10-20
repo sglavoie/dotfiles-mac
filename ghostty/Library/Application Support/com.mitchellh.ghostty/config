@@ -2,32 +2,49 @@
 
 auto-update = "download"
 auto-update-channel = tip
-font-size = 24
+bell-features = system
+clipboard-paste-protection = false
+copy-on-select = false
 macos-option-as-alt = true
 maximize = true
-minimum-contrast = 1.2
-mouse-hide-while-typing = true
-mouse-scroll-multiplier = 3
-mouse-shift-capture = "never"
 quit-after-last-window-closed = true
 split-divider-color = "#ef2ffd"
-window-colorspace = display-p3
-alpha-blending = linear-corrected
-font-thicken = true
-font-thicken-strength = 70
-theme = Gruvbox Dark Hard
+window-save-state = never
 
 # Prevents Dock icon from jumping around
 desktop-notifications = false
 
-bell-features = system
-
 # keybindings
-
-clipboard-paste-protection = false
-
-keybind = global:cmd+option+t=toggle_quick_terminal
 keybind = cmd+option+h=goto_split:left
-keybind = cmd+option+l=goto_split:right
 keybind = cmd+option+j=goto_split:down
 keybind = cmd+option+k=goto_split:up
+keybind = cmd+option+l=goto_split:right
+keybind = global:cmd+option+t=toggle_quick_terminal
+
+# Font
+font-family = Google Sans Code
+font-size = 24
+font-thicken = true
+font-thicken-strength = 120
+
+# Window style
+adjust-cell-height = 2%
+adjust-cell-width = 10%
+alpha-blending = linear-corrected
+macos-titlebar-style = hidden
+macos-window-shadow = false
+minimum-contrast = 1.5
+theme = JetBrains Darcula
+window-colorspace = display-p3
+window-colorspace = display-p3
+window-padding-balance = true
+window-padding-x = 4
+window-padding-y = 4
+
+# Cursor
+cursor-style-blink = true
+
+# Mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 3
+mouse-shift-capture = "never"
