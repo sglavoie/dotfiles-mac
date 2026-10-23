@@ -22,7 +22,7 @@ keybind = cmd+option+l=goto_split:right
 keybind = global:cmd+option+t=toggle_quick_terminal
 
 # Font
-font-family = Google Sans Code
+font-family = Geist Mono
 font-size = 24
 font-thicken = true
 font-thicken-strength = 120
@@ -31,7 +31,6 @@ font-thicken-strength = 120
 adjust-cell-height = 2%
 adjust-cell-width = 10%
 alpha-blending = linear-corrected
-macos-titlebar-style = hidden
 macos-window-shadow = false
 minimum-contrast = 1.5
 theme = JetBrains Darcula
