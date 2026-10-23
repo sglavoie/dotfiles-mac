@@ -50,6 +50,7 @@
                     },
                     {
                         "description": "Ctrl+Option+Cmd+M → Activate Ghostty and focus 'muse' window",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
