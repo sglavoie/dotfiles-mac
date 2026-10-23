@@ -26,6 +26,7 @@ path_prepend_all \
   "$HOME/.sdkman/candidates/java/current/bin" \
   "$PNPM_HOME"
 
+fpath=(/opt/homebrew/share/zsh/site-functions "${fpath[@]}")
 [[ -d "$HOME/.zfunc" ]] && fpath=("$HOME/.zfunc" "${fpath[@]}")
 
 # Read external environment variables
@@ -38,10 +39,8 @@ unfunction path_prepend_all
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent fzf fzf-tab gitignore)
-
-# Load multiple SSH keys
-zstyle :omz:plugins:ssh-agent quiet yes identities id_ed25519
+# fzf and fzf-tab are loaded after oh-my-zsh so fzf's init can be cached.
+plugins=(git gitignore)
 
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 SAVEHIST=1000000
@@ -111,20 +110,42 @@ bindkey '^x^x' edit-command-line  # Open default editor
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+# Skip compaudit's ownership/permission check of completion dirs.
+ZSH_DISABLE_COMPFIX=true
 source "$ZSH/oh-my-zsh.sh"
 
 # Treat the alias as the real command
 compdef g=git
 
-# A smarter cd command - https://github.com/ajeetdsouza/zoxide
-eval "$(zoxide init zsh)"
+# Source a command's init script from a cache, regenerated when the command
+# moves (e.g. a brew upgrade) or is modified.
+cached_eval() {
+  local cmd=${${commands[$1]:-$1}:A} cache="$HOME/.cache/zsh/${1:t}.zsh" key
 
-# https://ohmyposh.dev/
+  [[ -x "$cmd" ]] || return
+  [[ -r "$cache" ]] && read -r key < "$cache"
+  if [[ "$key" != "# $cmd" || "$cmd" -nt "$cache" ]]; then
+    mkdir -p "${cache:h}"
+    { print -r -- "# $cmd"; "$@" } >| "$cache"
+  fi
+  source "$cache"
+}
+
+# fzf key bindings and completion; fzf-tab must come after so it owns Tab.
+cached_eval fzf --zsh
+source "$ZSH/custom/plugins/fzf-tab/fzf-tab.plugin.zsh"
+
+# A smarter cd command - https://github.com/ajeetdsouza/zoxide
+cached_eval zoxide init zsh
+
+# https://ohmyposh.dev/ (not cached: its output embeds a per-shell session ID)
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh.json)"
 
-eval "$(atuin init zsh --disable-up-arrow)"
+cached_eval atuin init zsh --disable-up-arrow
 
-eval "$(~/1_dev_projects/sglavoie_raspberry_pi/scripts/pi.py completion zsh)"
+cached_eval ~/1_dev_projects/sglavoie_raspberry_pi/scripts/pi.py completion zsh
+
+unfunction cached_eval
 
 # Add custom aliases conditionally
 (( $+commands[eza] )) && alias ls=eza
