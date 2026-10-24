@@ -103,6 +103,14 @@ cdd() {
   [[ -n "$dir" ]] && cd "$dir"
 }
 
+# Count fsync/F_FULLFSYNC calls per process (default 10s)
+fsyncers() {
+  sudo fs_usage -w -t "${1:-10}" -f filesys \
+    | grep -iE 'fsync|fullfsync' \
+    | awk '{print $NF}' | sed 's/\.[0-9]*$//' \
+    | sort | uniq -c | sort -rn | head -"${2:-10}"
+}
+
 # Read aliases
 [[ -r "$HOME/.config/zsh/aliases" ]] && source "$HOME/.config/zsh/aliases"
 
