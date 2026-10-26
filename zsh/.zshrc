@@ -111,6 +111,17 @@ fsyncers() {
     | sort | uniq -c | sort -rn | head -"${2:-10}"
 }
 
+# Schedule shutdown cleanly (`shutdown -h` is abrupt)
+shutdown_in() {
+  local mins=${1:-60}
+  if [[ ! $mins =~ ^[0-9]+$ ]]; then
+    echo "usage: shutdown_in [minutes]" >&2
+    return 1
+  fi
+  ( sleep $(( mins * 60 )) && osascript -e 'tell app "System Events" to shut down' ) &>/dev/null &!
+  echo "Shutdown scheduled at $(date -v+${mins}M '+%H:%M') (PID $!)"
+}
+
 # Read aliases
 [[ -r "$HOME/.config/zsh/aliases" ]] && source "$HOME/.config/zsh/aliases"
 
