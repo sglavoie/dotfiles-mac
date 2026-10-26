@@ -6,4 +6,8 @@ export HOMEBREW_PREFIX="/opt/homebrew"
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
 export HOMEBREW_REPOSITORY="/opt/homebrew"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+# GNU sed as plain `sed`, for scripts and tools that spawn it (git editors,
+# xargs, Makefiles) too, not just interactive shells; BSD sed stays at
+# /usr/bin/sed.
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
