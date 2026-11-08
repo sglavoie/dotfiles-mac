@@ -1,6 +1,6 @@
 # Lives in ~/scripts; a fresh Mac without it has nothing folded to skip
 unfold := env_var("HOME") / "scripts/bin/.local/bin/stow-unfold"
-packages := "atuin ghostty git karabiner kitty neovim oh-my-posh osxphotos-backup zsh"
+packages := "atuin ghostty git karabiner kitty neovim osxphotos-backup zsh"
 
 [private]
 default:

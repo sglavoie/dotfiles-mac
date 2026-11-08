@@ -159,3 +159,5 @@
 	hunk-header-decoration-style = blue box
 	hunk-header-file-style = red
 	hunk-header-style = file syntax
+[safe]
+	directory = /Users/sglavoie/1_dev_projects/tradition_Pulse
