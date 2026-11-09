@@ -275,3 +275,43 @@ totp() {
 	}
 	oathtool --totp -b "$secret"
 }
+
+# --- Command-completion notifications -------------------------------------
+# _notify TITLE MESSAGE: macOS notification via osascript (args passed safely)
+_notify() {
+	osascript \
+		-e 'on run argv' \
+		-e 'display notification (item 1 of argv) with title (item 2 of argv) sound name "Glass"' \
+		-e 'end run' \
+		-- "$2" "$1" >/dev/null 2>&1
+}
+
+# Manual: append to any command, e.g. `make build; ding` or `cmd | grep x; ding`
+ding() {
+	local st=$?	# must be first: exit status of the preceding command
+	setopt localoptions extendedglob
+	local cmd=$(fc -ln -1)
+	cmd=${cmd%ding*}; cmd=${cmd%%[[:space:];&|]#}
+	if (( st == 0 )); then _notify "✅ Done" "$cmd"; else _notify "❌ Failed (exit $st)" "$cmd"; fi
+	_notify_skip=1	# don't also fire the automatic hook for this line
+	return $st
+}
+
+# Automatic: notify when any command takes >= NOTIFY_THRESHOLD seconds
+zmodload zsh/datetime
+autoload -Uz add-zsh-hook
+typeset -g NOTIFY_THRESHOLD=${NOTIFY_THRESHOLD:-30} _notify_cmd _notify_start _notify_skip
+_notify_preexec() { _notify_cmd=$1; _notify_start=$EPOCHSECONDS; _notify_skip=; }
+_notify_precmd() {
+	local st=$?
+	[[ -z $_notify_start ]] && return
+	local elapsed=$(( EPOCHSECONDS - _notify_start ))
+	_notify_start=
+	[[ -n $_notify_skip ]] && { _notify_skip=; return; }
+	(( elapsed < NOTIFY_THRESHOLD )) && return
+	case ${_notify_cmd%% *} in (vim|nvim|n|less|man|ssh|top|htop|btop|lazygit|tmux|claude) return;; esac
+	if (( st == 0 )); then _notify "✅ Done (${elapsed}s)" "$_notify_cmd"
+	else _notify "❌ Failed: exit $st (${elapsed}s)" "$_notify_cmd"; fi
+}
+add-zsh-hook preexec _notify_preexec
+add-zsh-hook precmd _notify_precmd
