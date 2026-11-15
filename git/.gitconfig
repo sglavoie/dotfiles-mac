@@ -16,6 +16,7 @@
 	ch = checkout
 	d = diff
 	ds = diff --staged
+	find-merged = "!f() { git log --oneline --merges --ancestry-path --topo-order --reverse $1..main | head -1; }; f"
 	fpush = push --force-with-lease
 	l = log
 

@@ -43,7 +43,7 @@
                                     "key_code": "l",
                                     "modifiers": { "mandatory": ["control", "option", "command"] }
                                 },
-                                "to": [{ "shell_command": "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/sglavoie/.local/bin/trail open --root" }],
+                                "to": [{ "shell_command": "EDITOR=/opt/homebrew/bin/code /Users/sglavoie/.local/bin/trail open --root" }],
                                 "type": "basic"
                             }
                         ]
