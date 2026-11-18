@@ -301,6 +301,14 @@ ding() {
 zmodload zsh/datetime
 autoload -Uz add-zsh-hook
 typeset -g NOTIFY_THRESHOLD=${NOTIFY_THRESHOLD:-30} _notify_cmd _notify_start _notify_skip
+# _fmt_duration SECONDS: 45 -> 45s, 125 -> 2m05s, 3752 -> 1h02m32s
+_fmt_duration() {
+	local s=$1 h=$(( $1 / 3600 )) m=$(( $1 % 3600 / 60 ))
+	(( s %= 60 ))
+	if (( h )); then printf '%dh%02dm%02ds' $h $m $s
+	elif (( m )); then printf '%dm%02ds' $m $s
+	else printf '%ds' $s; fi
+}
 _notify_preexec() { _notify_cmd=$1; _notify_start=$EPOCHSECONDS; _notify_skip=; }
 _notify_precmd() {
 	local st=$?
@@ -310,8 +318,9 @@ _notify_precmd() {
 	[[ -n $_notify_skip ]] && { _notify_skip=; return; }
 	(( elapsed < NOTIFY_THRESHOLD )) && return
 	case ${_notify_cmd%% *} in (vim|nvim|n|less|man|ssh|top|htop|btop|lazygit|tmux|claude) return;; esac
-	if (( st == 0 )); then _notify "✅ Done (${elapsed}s)" "$_notify_cmd"
-	else _notify "❌ Failed: exit $st (${elapsed}s)" "$_notify_cmd"; fi
+	local dur=$(_fmt_duration $elapsed)
+	if (( st == 0 )); then _notify "✅ Done ($dur)" "$_notify_cmd"
+	else _notify "❌ Failed: exit $st ($dur)" "$_notify_cmd"; fi
 }
 add-zsh-hook preexec _notify_preexec
 add-zsh-hook precmd _notify_precmd
