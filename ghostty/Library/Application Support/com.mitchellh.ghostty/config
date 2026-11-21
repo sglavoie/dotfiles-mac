@@ -22,13 +22,13 @@ keybind = cmd+option+l=goto_split:right
 keybind = global:cmd+option+t=toggle_quick_terminal
 
 # Font
-font-family = Geist Mono
+font-family = CommitMono Nerd Font Mono
 font-size = 24
 font-thicken = true
 font-thicken-strength = 120
 
 # Window style
-adjust-cell-height = 2%
+adjust-cell-height = 5%
 adjust-cell-width = 10%
 alpha-blending = linear-corrected
 macos-window-shadow = false
